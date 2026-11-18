@@ -1,0 +1,456 @@
+<title>kukusini トップ ワイヤー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600&display=swap">
+<style>
+/* レイアウト：左にスマホ画面（375px）を縦に積み、右に各セクションの注記を横並び。狭い画面では注記が下に回る */
+:root {
+  --bg: #f3f4f1;
+  --paper: #ffffff;
+  --ink: #2b332d;
+  --muted: #6b746d;
+  --line: #cfd5cf;
+  --fill: #e6e9e4;
+  --hatch: #d7dcd5;
+  --accent: #2f4a3a;      /* 提案書の深緑 */
+  --warm: #b26a3c;        /* 提案書のテラコッタ：未決・要確認の印 */
+  --warm-bg: #f6e9df;
+  --mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171b18; --paper: #222823; --ink: #e4e8e3; --muted: #9aa49c; --line: #3b443d;
+    --fill: #2c332d; --hatch: #343c36; --accent: #9cc2a8; --warm: #e0a07a; --warm-bg: #3a2c22;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171b18; --paper: #222823; --ink: #e4e8e3; --muted: #9aa49c; --line: #3b443d;
+  --fill: #2c332d; --hatch: #343c36; --accent: #9cc2a8; --warm: #e0a07a; --warm-bg: #3a2c22;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.7;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+
+/* ページ見出し */
+.doc-head { display: flex; flex-direction: column; gap: 10px; }
+.doc-head h1 { font-family: var(--mincho); font-weight: 600; font-size: 26px; margin: 0; letter-spacing: .04em; text-wrap: balance; }
+.doc-head p { margin: 0; color: var(--muted); max-width: 64ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 18px; height: 12px; border-radius: 2px; display: inline-block; }
+.sw.photo { background: repeating-linear-gradient(45deg, var(--hatch) 0 4px, var(--fill) 4px 8px); border: 1px solid var(--line); }
+.sw.tbd { background: var(--warm-bg); border: 1px dashed var(--warm); }
+
+/* 本体：セクション行 */
+.rows { display: grid; grid-template-columns: 375px minmax(0, 1fr); column-gap: 32px; }
+.sp { background: var(--paper); border-left: 1px solid var(--line); border-right: 1px solid var(--line); min-width: 0; }
+.sp.first { border-top: 1px solid var(--line); border-radius: 22px 22px 0 0; overflow: hidden; }
+.sp.last { border-bottom: 1px solid var(--line); border-radius: 0 0 22px 22px; overflow: hidden; }
+.note { padding-block: 20px; border-top: 1px solid var(--line); min-width: 0; font-size: 13px; }
+.note.first { border-top: 0; }
+.note h3 { margin: 0 0 6px; font-size: 13px; display: flex; gap: 8px; align-items: baseline; }
+.note h3 .n { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 700; }
+.note ul { margin: 0; padding-left: 1.2em; color: var(--muted); }
+.note li + li { margin-top: 2px; }
+.note .tag { display: inline-block; font-size: 11px; padding: 0 6px; border-radius: 3px; margin-right: 4px; }
+.tag.base { background: var(--fill); color: var(--ink); font-family: ui-monospace, Menlo, monospace; }
+.tag.tbd { background: var(--warm-bg); color: var(--warm); }
+
+@media (max-width: 760px) {
+  .rows { grid-template-columns: minmax(0, 1fr); max-width: 375px; margin: 0 auto; width: 100%; }
+  .note { border-top: 0; padding: 10px 14px 18px; background: var(--fill); margin-bottom: 0; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .note.last { border-radius: 0 0 22px 22px; border-bottom: 1px solid var(--line); }
+  .sp.last { border-radius: 0; border-bottom: 0; }
+}
+
+/* --- スマホ画面の中身 --- */
+.s { padding: 36px 20px; display: flex; flex-direction: column; gap: 16px; }
+.s + .s { border-top: 1px solid var(--line); }
+.eyebrow { font-size: 11px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+.h2 { font-family: var(--mincho); font-weight: 400; font-size: 21px; line-height: 1.6; margin: 0; letter-spacing: .04em; text-wrap: balance; }
+.lead { margin: 0; color: var(--ink); font-size: 13.5px; line-height: 1.9; }
+.photo {
+  background: repeating-linear-gradient(45deg, var(--hatch) 0 6px, var(--fill) 6px 12px);
+  border: 1px solid var(--line); border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  text-align: center; font-size: 11px; color: var(--muted); padding: 10px; aspect-ratio: 4 / 3; max-width: 100%;
+}
+.photo b { display: block; color: var(--ink); font-weight: 500; font-size: 12px; }
+.photo.tall { aspect-ratio: 4 / 5; }
+.photo.sq { aspect-ratio: 1; }
+.btn { display: block; text-align: center; padding: 12px; border-radius: 999px; font-size: 13px; font-weight: 500; text-decoration: none; }
+.btn.pri { background: var(--accent); color: var(--paper); }
+.btn.sec { border: 1px solid var(--accent); color: var(--accent); }
+.tbd { background: var(--warm-bg); border: 1px dashed var(--warm); color: var(--warm); border-radius: 4px; padding: 10px 12px; font-size: 12px; }
+.link { color: var(--accent); font-size: 12.5px; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ヘッダー */
+.bar-notice { background: var(--accent); color: var(--paper); font-size: 11px; text-align: center; padding: 6px 10px; }
+.header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.logo { border: 1px dashed var(--warm); color: var(--warm); font-size: 11px; padding: 4px 10px; border-radius: 3px; }
+.icons { display: flex; gap: 14px; }
+.ic { width: 22px; height: 22px; border: 1.5px solid var(--ink); border-radius: 4px; position: relative; }
+.ic.menu { border: 0; background: linear-gradient(var(--ink) 0 0) 0 4px / 100% 1.5px no-repeat, linear-gradient(var(--ink) 0 0) 0 10px / 100% 1.5px no-repeat, linear-gradient(var(--ink) 0 0) 0 16px / 100% 1.5px no-repeat; }
+
+/* ヒーロー */
+.hero { padding: 0; gap: 0; }
+.hero .photo { border-radius: 0; border-left: 0; border-right: 0; aspect-ratio: 4 / 5; }
+.hero-copy { padding: 26px 20px 32px; display: flex; flex-direction: column; gap: 14px; }
+.hero-copy .catch { font-family: var(--mincho); font-size: 24px; line-height: 1.6; margin: 0; letter-spacing: .06em; }
+
+/* カード */
+.card { border: 1px solid var(--line); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.card .name { font-weight: 700; font-size: 14px; }
+.price { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.badge { align-self: flex-start; font-size: 10.5px; background: var(--accent); color: var(--paper); padding: 1px 8px; border-radius: 999px; }
+
+/* こだわり */
+.point { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: start; }
+.point .photo { aspect-ratio: 1; font-size: 10px; padding: 4px; }
+.point h4 { margin: 0 0 2px; font-family: var(--mincho); font-weight: 600; font-size: 15px; }
+.point p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+
+/* 早見表 */
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { font-size: 11.5px; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; background: var(--paper); color: var(--ink); cursor: pointer; font-family: inherit; }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.chip:focus-visible, .faq summary:focus-visible { outline: 2px solid var(--warm); outline-offset: 2px; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 12px; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 4px; text-align: left; white-space: nowrap; }
+th { font-weight: 500; color: var(--muted); font-size: 11px; }
+td.stars { letter-spacing: 1px; color: var(--accent); font-variant-numeric: tabular-nums; }
+td .sub { display: block; font-size: 10px; color: var(--warm); }
+tr[hidden] { display: none; }
+
+/* 商品グリッド */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.item { display: flex; flex-direction: column; gap: 4px; font-size: 12px; }
+.item .photo { aspect-ratio: 1; }
+
+/* 声・FAQ */
+.voice { border-left: 2px solid var(--line); padding-left: 12px; font-size: 12.5px; color: var(--ink); }
+.voice small { display: block; color: var(--muted); margin-top: 4px; }
+.faq details { border-bottom: 1px solid var(--line); padding: 10px 0; }
+.faq summary { font-size: 13px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 10px; }
+.faq summary::after { content: "+"; color: var(--muted); }
+.faq details[open] summary::after { content: "−"; }
+.faq p { margin: 8px 0 0; font-size: 12.5px; color: var(--muted); }
+
+/* 卸・メディア・フッター */
+.biz { background: var(--fill); }
+.biz-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.biz-row div { background: var(--paper); border-radius: 4px; padding: 10px; font-size: 12px; }
+.biz-row b { display: block; font-size: 13px; margin-bottom: 2px; }
+.footer { background: var(--accent); color: var(--paper); padding: 28px 20px 36px; font-size: 12px; display: flex; flex-direction: column; gap: 14px; }
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.footer .logo { color: var(--paper); border-color: var(--paper); align-self: flex-start; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="doc-head">
+    <div class="eyebrow">kukusini ECリニューアル ／ ワイヤーフレーム v0.1 ／ 2026.11.19</div>
+    <h1>トップページ（スマホ）</h1>
+    <p>提案書の構成（想い → はじめての方へ → こだわり → 選び方 → 商品 → 声・FAQ）に、卸・メディア向けの案内を加えた縦長1ページです。BASEではページを増やせないため、サイトの中身はほぼすべてここに置きます。文章はヒアリング内容から起こした仮原稿です。</p>
+    <div class="legend">
+      <span><i class="sw photo"></i>写真枠（撮影リストNo.）</span>
+      <span><i class="sw tbd"></i>未決・南さん確認待ち</span>
+    </div>
+  </header>
+
+  <div class="rows">
+
+    <!-- 0 ヘッダー -->
+    <div class="sp first">
+      <div class="bar-notice">【未定】送料無料ライン／初回キャンペーンのお知らせ</div>
+      <div class="header">
+        <span class="ic menu" aria-label="メニュー"></span>
+        <span class="logo">ロゴ（ブランド名 未定）</span>
+        <span class="icons"><span class="ic" aria-label="カート"></span></span>
+      </div>
+    </div>
+    <aside class="note first">
+      <h3><span class="n">0</span>ヘッダー・お知らせ帯</h3>
+      <ul>
+        <li><span class="tag base">お知らせバナー App</span> 送料・キャンペーン告知に使う</li>
+        <li>メニュー：はじめての方へ／こだわり／選び方／商品一覧／FAQ／About／お問い合わせ（トップ内はページ内リンク）</li>
+        <li><span class="tag tbd">未決</span> ロゴ・ブランド名（B07：11/30）。ロゴ元データ未共有</li>
+      </ul>
+    </aside>
+
+    <!-- 1 ヒーロー -->
+    <div class="sp">
+      <section class="s hero">
+        <div class="photo"><div><b>愛犬がおやつを食べている様子</b>手からもらう瞬間／食べている顔のアップ<br>撮影リスト No.1（未撮影・12/5）</div></div>
+        <div class="hero-copy">
+          <p class="catch">愛犬のために、<br>素材からつくり方まで。</p>
+          <p class="lead">淡路島で朝に処理された鶏肉を、生のまま一枚ずつ手で切って仕上げた、無添加のジャーキーです。</p>
+          <a class="btn pri" href="#first">はじめての方へ</a>
+          <a class="btn sec" href="#items">商品を見る</a>
+        </div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">1</span>ファーストビュー</h3>
+      <ul>
+        <li>主役は「愛犬」。写真は犬が食べている実写（生成AI不可）。撮影までは商品写真で仮置き</li>
+        <li>キャッチは提案書のコンセプトをそのまま採用</li>
+        <li><span class="tag tbd">要確認</span>「無添加」「朝引き」の表現（掲載前に南さん確認）</li>
+        <li>ヒーローは画面いっぱいにせず、ボタンが1画面目に見える高さに</li>
+      </ul>
+    </aside>
+
+    <!-- 2 想い -->
+    <div class="sp">
+      <section class="s" id="story">
+        <div class="eyebrow">Our Story</div>
+        <h2 class="h2">買うのは飼い主さま。<br>食べるのは、愛犬。</h2>
+        <p class="lead">kukusiniは、自分の犬に自信をもってあげられるおやつをつくりたい、という思いから始まりました。「とりあえず食べられる」ではなく「食べて豊かになるもの」を。自分の子どもにもあげられる素材だけを使っています。</p>
+        <div class="photo"><div><b>作り手の手元・後ろ姿</b>撮影リスト No.11（既存 No.47 流用可）</div></div>
+        <a class="link" href="#about">kukusiniについて（Aboutページ）</a>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">2</span>ブランドの想い</h3>
+      <ul>
+        <li>いちばん伝えたいこと＝「愛犬のことを考えた商品づくり」（ヒアリング06-②で確定）</li>
+        <li>詳しい話は <span class="tag base">{block:AboutPage}</span> へ。本文は管理画面の「ショップ紹介」</li>
+        <li>理念「家族の幸せが私の幸せ」をここかAboutのどちらに置くかは原稿段階で判断</li>
+        <li>祖父のお名前は掲載不可</li>
+      </ul>
+    </aside>
+
+    <!-- 3 はじめての方へ -->
+    <div class="sp">
+      <section class="s" id="first">
+        <div class="eyebrow">For Beginners</div>
+        <h2 class="h2">はじめての方は、<br>まずささみから。</h2>
+        <div class="card">
+          <span class="badge">いちばん人気</span>
+          <div class="photo"><div><b>ささみ：パッケージ＋中身</b>既存の商品写真から選定</div></div>
+          <div class="name">淡路どり ささみジャーキー</div>
+          <p class="lead" style="font-size:12.5px">手でさくっと割れるやわらかさ。おやつにも、フードのトッピングにも。「ほかのおやつは食べないけれど、これだけは食べる」という声がいちばん多い商品です。</p>
+          <div class="price">35g 770円 ／ 60g 990円 ／ 500g 5,940円</div>
+          <a class="btn pri" href="#items">ささみを見る</a>
+        </div>
+        <div class="tbd"><b>お試しセット（未決）</b><br>A：ささみ・むね・ふりかけの3種 ／ B：ささみ中心の初回限定 ／ C：食べ比べ<br>内容・価格・専用パッケージは次回打ち合わせで決定</div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">3</span>はじめての方へ</h3>
+      <ul>
+        <li>目的：「何を買えばいいか分からない」を減らす（新規購入）</li>
+        <li>ささみカードは商品ページ <span class="tag base">/items/商品ID</span> への手書きリンク</li>
+        <li><span class="tag tbd">未決</span> お試しセット（議題①・最優先）。決まらなければささみカードのみで公開</li>
+        <li>セット写真は撮影リスト No.13（構成決定後）</li>
+      </ul>
+    </aside>
+
+    <!-- 4 こだわり -->
+    <div class="sp">
+      <section class="s" id="craft">
+        <div class="eyebrow">Material &amp; Craft</div>
+        <h2 class="h2">素材とつくり方の、<br>3つのこと。</h2>
+        <div class="point">
+          <div class="photo"><div>鶏・飼育の様子<br>（淡路島フォルダ）</div></div>
+          <div><h4>淡路どり</h4><p>淡路島で育ち、淡路島で処理された鶏。一般より2〜3日長く育てるので、身が大きくコクがあります。</p></div>
+        </div>
+        <div class="point">
+          <div class="photo"><div>朝の生肉<br>No.8</div></div>
+          <div><h4>その日の朝に処理した鶏肉</h4><p>スーパーに並ぶより早い、人が食べるより新鮮な鶏肉を使います。</p></div>
+        </div>
+        <div class="point">
+          <div class="photo"><div>手切りの手元<br>No.8／No.47</div></div>
+          <div><h4>冷凍せず、生のまま手で切る</h4><p>解凍で旨味が抜けないよう生肉を使用。やわらかい生肉は機械で薄く切れないため、すべて手作業です。</p></div>
+        </div>
+        <div class="photo" style="aspect-ratio: 16 / 9"><div><b>乾燥・検品の様子</b>撮影リスト No.9（未撮影・12/8）</div></div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">4</span>素材・製法へのこだわり</h3>
+      <ul>
+        <li>独立ページは作れないので、トップのこの節が「淡路どりのこと」の受け皿</li>
+        <li>掲載可：飼育方法・専用飼料・飼育日数・外はぎ方式（もっと詳しく出す場合はブログ記事に）</li>
+        <li><span class="tag tbd">NG</span> 「地鶏」と書かない ／ 淡路フーズの工場・鶏舎写真は使わない</li>
+        <li>HACCP・資格の記載は表現確認後に追加するか判断</li>
+      </ul>
+    </aside>
+
+    <!-- 5 選び方 -->
+    <div class="sp">
+      <section class="s" id="guide">
+        <div class="eyebrow">How to Choose</div>
+        <h2 class="h2">愛犬に合う、<br>おやつの選び方。</h2>
+        <p class="lead" style="font-size:12.5px">硬さ・風味・おすすめの犬で比べられます。</p>
+        <div class="chips" role="group" aria-label="絞り込み">
+          <button class="chip" type="button" id="f-all" data-f="all" aria-pressed="true">すべて</button>
+          <button class="chip" type="button" id="f-soft" data-f="soft" aria-pressed="false">やわらかめ</button>
+          <button class="chip" type="button" id="f-hard" data-f="hard" aria-pressed="false">噛みごたえ</button>
+          <button class="chip" type="button" id="f-senior" data-f="senior" aria-pressed="false">シニア・食が細い</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>商品</th><th>硬さ</th><th>風味</th><th>おすすめ</th></tr></thead>
+            <tbody id="guide-body">
+              <tr data-t="soft"><td>ささみ</td><td class="stars">●○○○○</td><td class="stars">●●●●○</td><td>全犬種</td></tr>
+              <tr data-t="soft"><td>むね</td><td class="stars">●●○○○</td><td class="stars">●●○○○</td><td>全犬種</td></tr>
+              <tr data-t="soft"><td>きも（レバー）</td><td class="stars">●○○○○</td><td class="stars">●●●●●</td><td>小型犬・食いムラ</td></tr>
+              <tr data-t="soft"><td>鶏頭</td><td class="stars">●●○○○</td><td class="stars">●○○○○</td><td>噛むのが好きな子</td></tr>
+              <tr data-t="hard"><td>砂肝<span class="sub">名称変更案（旧：ずり）</span></td><td class="stars">●●●○○</td><td class="stars">●●●○○</td><td>ダイエット中</td></tr>
+              <tr data-t="hard"><td>軟骨入りセセリ<span class="sub">名称変更案（旧：ネック）</span></td><td class="stars">●●●○○</td><td class="stars">●●○○○</td><td>小型犬</td></tr>
+              <tr data-t="hard"><td>手羽先</td><td class="stars">●●●●○</td><td class="stars">●○○○○</td><td>5kg以上・骨好き</td></tr>
+              <tr data-t="hard"><td>鶏足<span class="sub">名称変更案（旧：もみじ）</span></td><td class="stars">●●●●●</td><td class="stars">●○○○○</td><td>大型犬</td></tr>
+              <tr data-t="senior"><td>ささみふりかけ</td><td class="stars">—</td><td class="stars">●●●●●</td><td>シニア・食が細い</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <a class="link" href="#items">すべての商品を見る</a>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">5</span>選び方（比較早見表）</h3>
+      <ul>
+        <li>比較の軸は南さん指定の「硬さ・風味・おすすめ犬種」。値は南さんの実感値（☆評価）</li>
+        <li>各行から商品ページへリンク。絞り込みはJSでの表示切替のみ（BASEにサーバー処理はない）</li>
+        <li><span class="tag tbd">未決</span> 名称変更（ずり／ネック／もみじ）を採用するか</li>
+        <li>硬い商品は「骨入り・手に持って与える」注意を商品ページ側で明記</li>
+      </ul>
+    </aside>
+
+    <!-- 6 商品一覧 -->
+    <div class="sp">
+      <section class="s" id="items">
+        <div class="eyebrow">Items</div>
+        <h2 class="h2">商品一覧</h2>
+        <div class="chips">
+          <span class="chip">すべて</span><span class="chip">ジャーキー</span><span class="chip">ふりかけ</span><span class="chip">大容量 500g</span>
+        </div>
+        <div class="grid2">
+          <div class="item"><div class="photo"><div>商品画像</div></div>ささみジャーキー<span class="price">770円〜</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div>むねジャーキー<span class="price">770円〜</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div>きもジャーキー<span class="price">770円〜</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div>ささみふりかけ<span class="price">825円〜</span></div>
+        </div>
+        <a class="btn sec" href="#items">もっと見る</a>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">6</span>商品一覧</h3>
+      <ul>
+        <li><span class="tag base">{block:Items}</span> で自動表示（商品名・価格・画像・SOLD OUT）</li>
+        <li>上のチップはBASEの「カテゴリ」へのリンク。リピーター向けに「大容量 500g」を目立つ位置に</li>
+        <li>商品画像の背景・構図を揃える（木のテーブル・白い器・窓の光）</li>
+        <li><span class="tag tbd">要確認</span> 頭・きも・砂肝の写真が不足（撮影リスト No.3・4・6・7）</li>
+      </ul>
+    </aside>
+
+    <!-- 7 お客様の声 -->
+    <div class="sp">
+      <section class="s" id="voice">
+        <div class="eyebrow">Voices</div>
+        <h2 class="h2">お客さまの声</h2>
+        <div class="voice">何も食べられなくなった老犬が、ささみだけは最後まで食べてくれました。<small>ささみ ／ 掲載許可 確認中</small></div>
+        <div class="voice">腎臓の関係でささみをあげられなくなりましたが、むねなら食べられます。<small>むね ／ 掲載許可 確認中</small></div>
+        <div class="voice">硬いものをあげたいけれど歯が心配で。砂肝なら安心してあげられます。<small>砂肝 ／ 掲載許可 確認中</small></div>
+        <div class="photo" style="aspect-ratio: 3 / 2"><div><b>お客さまの愛犬</b>撮影リスト No.12（許可が取れたものだけ）</div></div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">7</span>お客様の声</h3>
+      <ul>
+        <li>文章はヒアリングで聞いたエピソードを仮に要約したもの。実際の声と掲載許可に差し替える</li>
+        <li><span class="tag base">レビュー App</span> を入れるなら商品ページ側にも表示できる</li>
+        <li><span class="tag tbd">要確認</span> 掲載許可・犬の名前</li>
+      </ul>
+    </aside>
+
+    <!-- 8 FAQ -->
+    <div class="sp">
+      <section class="s faq" id="faq">
+        <div class="eyebrow">FAQ</div>
+        <h2 class="h2">よくあるご質問</h2>
+        <div>
+          <details><summary>どれから選べばいいですか？</summary><p>はじめての方には、やわらかくて香りのよい「ささみ」をおすすめしています。</p></details>
+          <details><summary>原材料は何ですか？</summary><p>淡路どりの鶏肉のみです。添加物は使っていません。<br><span class="tbd" style="display:inline-block;margin-top:6px">表現は南さん確認待ち</span></p></details>
+          <details><summary>骨が入っている商品はありますか？</summary><p>手羽先・鶏足・軟骨入りセセリ・鶏頭に骨（軟骨）が含まれます。必ず手に持ったまま与えてください。<br><span class="tbd" style="display:inline-block;margin-top:6px">骨の有無は南さん確認待ち</span></p></details>
+          <details><summary>保存方法と賞味期限は？</summary><p><span class="tbd" style="display:inline-block">南さん確認待ち（商品ごとに記載）</span></p></details>
+          <details><summary>与えるときの注意は？</summary><p>鶏アレルギーのある子には与えないでください。食べている間は目を離さないでください。</p></details>
+          <details><summary>送料はいくらですか？</summary><p><span class="tbd" style="display:inline-block">送料無料ライン・初回特典は未決（議題⑤）</span></p></details>
+        </div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">8</span>よくある質問</h3>
+      <ul>
+        <li>FAQページは作れないので、トップの <span class="tag base">#faq</span> にアコーディオンで置く</li>
+        <li>ヒアリングで「FAQ・保存方法・商品ごとの注意事項」が必要と回答済み</li>
+        <li><span class="tag tbd">要確認</span> 保存方法・賞味期限・骨の有無（提案書 3-②）</li>
+      </ul>
+    </aside>
+
+    <!-- 9 卸・メディア -->
+    <div class="sp">
+      <section class="s biz" id="biz">
+        <div class="eyebrow">For Business</div>
+        <div class="biz-row">
+          <div><b>卸販売のご相談</b>お問い合わせ本文の最初に【卸】とご記入ください。</div>
+          <div><b>取材・メディアの方</b>お問い合わせ本文の最初に【取材】とご記入ください。</div>
+        </div>
+        <a class="link" href="#contact">お問い合わせフォームへ</a>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">9</span>卸・メディア向け</h3>
+      <ul>
+        <li>方針どおり「目立たせすぎない」位置（フッター直前）</li>
+        <li>BASEのお問い合わせフォームは項目を足せないため、本文冒頭の【卸】【取材】で振り分け</li>
+        <li><span class="tag tbd">未決</span> 価格表・最低ロットを公開するか（議題③）、メディアを別案内にするか（議題④）</li>
+      </ul>
+    </aside>
+
+    <!-- 10 フッター -->
+    <div class="sp last">
+      <footer class="footer">
+        <span class="logo">ロゴ（未定）</span>
+        <ul>
+          <li>kukusiniについて</li><li>商品一覧</li><li>よくある質問</li><li>お問い合わせ</li>
+          <li>特定商取引法に基づく表記</li><li>プライバシーポリシー</li><li>ブログ</li><li>Instagram</li>
+        </ul>
+        <div style="opacity:.75">© kukusini</div>
+      </footer>
+    </div>
+    <aside class="note last">
+      <h3><span class="n">10</span>フッター</h3>
+      <ul>
+        <li>特商法・プライバシー・ブログは共通枠に本文が入る（個別デザイン不可）</li>
+        <li>必須タグ <span class="tag base">{IllegalReportTag}</span> などは消さずに残す</li>
+        <li>マルシェ用QR・ショップカードからの流入先もこのトップ</li>
+      </ul>
+    </aside>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  var chips = document.querySelectorAll('#guide .chip');
+  var rows = document.querySelectorAll('#guide-body tr');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      var f = c.getAttribute('data-f');
+      chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      rows.forEach(function (r) { r.hidden = !(f === 'all' || r.getAttribute('data-t') === f); });
+    });
+  });
+})();
+</script>
