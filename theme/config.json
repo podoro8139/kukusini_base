@@ -1,14 +1,14 @@
 {
-  "_説明": "BASEのファイルアップローダーに画像を上げたら、そのURLを images に貼る。カテゴリを作ったら categories にURLを貼る。空欄のままだと、画像は表示されず、カテゴリは「商品一覧」に飛ぶ。",
+  "_説明": "【試し表示用】images は仮に Netlify の資料サイトの画像を参照している。本番前に BASE のファイルアップローダーの URL に差し替えること。BASEのファイルアップローダーに画像を上げたら、そのURLを images に貼る。カテゴリを作ったら categories にURLを貼る。空欄のままだと、画像は表示されず、カテゴリは「商品一覧」に飛ぶ。",
   "images": {
-    "LOGO": "",
-    "LINEUP": "",
-    "SASAMI": "",
-    "BREAK": "",
-    "HANDCUT": "",
-    "TRAY": "",
-    "AWAJI": "",
-    "CHEW": ""
+    "LOGO": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/logo.png",
+    "LINEUP": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/lineup.jpg",
+    "SASAMI": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/sasami.jpg",
+    "BREAK": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/break.jpg",
+    "HANDCUT": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/handcut.jpg",
+    "TRAY": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/tray.jpg",
+    "AWAJI": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/awaji.jpg",
+    "CHEW": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/chew.jpg"
   },
   "categories": {
     "ALL": "https://kukusini.base.shop/categories/5732586",
@@ -25,9 +25,18 @@
   },
   "sizes": {
     "_例": [
-      { "id": 0, "label": "35g 770円" },
-      { "id": 0, "label": "60g 990円" },
-      { "id": 0, "label": "500g 5,940円" }
+      {
+        "id": 0,
+        "label": "35g 770円"
+      },
+      {
+        "id": 0,
+        "label": "60g 990円"
+      },
+      {
+        "id": 0,
+        "label": "500g 5,940円"
+      }
     ]
   }
 }
