@@ -326,7 +326,13 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
 #shopDetailPage .kuku-related-name { font-size: 14px; line-height: 1.65; margin: 12px 0 4px; }
 #shopDetailPage .kuku-related-price { font-size: 13px; color: var(--kk-muted); }
 #shopDetailPage .kuku-all-items { text-align: center; margin: 30px auto 0; }
-@media (max-width: 767px) { #shopDetailPage .kuku-related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
+@media (max-width: 767px) {
+  /* スマホは横スワイプの1列（商品が何個でも空きが出ない） */
+  #shopDetailPage .kuku-related-grid { display: flex !important; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin: 0 -20px; padding: 0 20px 8px; scroll-padding-left: 20px; scrollbar-width: none; }
+  #shopDetailPage .kuku-related-grid::-webkit-scrollbar { display: none; }
+  #shopDetailPage .kuku-related-card { flex: 0 0 42%; scroll-snap-align: start; }
+  #shopDetailPage .kuku-related-name { font-size: 12.5px; }
+}
 #shopDetailPage .kuku-detail-fold { max-width: 1000px; margin: 30px auto 56px; padding: 0 20px; box-sizing: border-box; }
 #shopDetailPage .kuku-detail-fold[hidden] { display: none; }
 #shopDetailPage .kuku-detail-fold > summary { border-top: 1px solid var(--kk-line); border-bottom: 1px solid var(--kk-line); padding: 18px 12px; font-family: var(--kk-mincho); font-size: 16px; }
