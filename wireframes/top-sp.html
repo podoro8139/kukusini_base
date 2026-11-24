@@ -115,6 +115,16 @@ body {
 /* こだわり */
 .point { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: start; }
 .point .photo { aspect-ratio: 1; font-size: 10px; padding: 4px; }
+.bn { display: grid; grid-template-columns: 72px minmax(0, 1fr) 16px; gap: 12px; align-items: center; padding: 10px; border: 1px solid var(--line); border-radius: 6px; text-decoration: none; color: var(--ink); background: var(--paper); }
+.bn-trial { border: 1.5px solid var(--accent); background: var(--fill); }
+.bn .photo { font-size: 10px; padding: 4px; }
+.bn-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.bn-body b { font-family: var(--mincho); font-weight: 600; font-size: 16px; line-height: 1.4; }
+.bn-tag { align-self: flex-start; font-size: 10.5px; font-weight: 700; background: var(--warm); color: var(--paper); padding: 1px 8px; border-radius: 3px; letter-spacing: .04em; }
+.bn-tag-line { background: transparent; color: var(--accent); border: 1px solid var(--accent); font-weight: 500; }
+.bn-sub { font-size: 11.5px; color: var(--muted); }
+.bn-arrow { font-size: 20px; color: var(--muted); }
+.bn:focus-visible { outline: 2px solid var(--warm); outline-offset: 2px; }
 .kw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; text-align: center; }
 .kw > div { display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; line-height: 1.5; }
 .kw .photo { font-size: 10px; padding: 4px; }
@@ -199,8 +209,25 @@ tr[hidden] { display: none; }
         <div class="hero-copy">
           <p class="catch">うちの子のために、<br>素材からつくり方まで。</p>
           <p class="lead">うちの子に、安心して「おいしいよ」と渡せるものを。淡路どりのジャーキーです。</p>
-          <a class="btn pri" href="#first">はじめての方へ</a>
-          <a class="btn sec" href="#items">商品を見る</a>
+          <a class="bn bn-trial" href="#first">
+            <span class="photo sq"><span>セット<br>写真</span></span>
+            <span class="bn-body">
+              <span class="bn-tag">初回限定 ／ 送料無料</span>
+              <b>3種類お試しセット</b>
+              <span class="bn-sub">ささみ・むね・ささみふりかけ</span>
+            </span>
+            <span class="bn-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="bn" href="#guide">
+            <span class="photo sq"><span>部位<br>並び</span></span>
+            <span class="bn-body">
+              <span class="bn-tag bn-tag-line">選び方</span>
+              <b>うちの子の「好き」はどれ？</b>
+              <span class="bn-sub">9種類を、かたさ・香りで比べる</span>
+            </span>
+            <span class="bn-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="link" href="#items">すべての商品を見る</a>
         </div>
       </section>
     </div>
@@ -211,7 +238,11 @@ tr[hidden] { display: none; }
         <li>キャッチは提案書のコンセプトの「愛犬」を「うちの子」に変更（今後の猫向け展開を見据えて）。南さんに共有が必要</li>
         <li>ブランドの言葉は「うちの子」「家族」、商品説明・おすすめ犬種は犬向けのまま</li>
         <li>リードはこだわりの説明を入れず短く（素材の話は次の節とAboutに任せる）</li>
-        <li>ヒーローは画面いっぱいにせず、ボタンが1画面目に見える高さに</li>
+        <li>ボタン2つをバナー2枚に変更（谷さん案）：①お試しセット＝新規購入の入口 ②比較表＝「何を買えばいいか分からない」の解消</li>
+        <li>バナー②の文言候補：「うちの子の『好き』はどれ？」／「部位で変わる、食いつき。」／「かたい？やわらかい？ 9種類の比べ方」。「たべやすさ・風味」は表の項目に合わせて「かたさ・香り」に</li>
+        <li><span class="tag tbd">未決</span> お試しセットの中身（仮にA案を表示）・送料無料（議題①⑤）。セットが間に合わなければバナー①は「まずはささみ」に差し替え</li>
+        <li><span class="tag tbd">要確認</span>「初回限定・送料無料」をBASEの機能でどう実現するか（送料設定・クーポン等）</li>
+        <li>ヒーローは画面いっぱいにせず、バナー1枚目が1画面目に見える高さに</li>
       </ul>
     </aside>
 
