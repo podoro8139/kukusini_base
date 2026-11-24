@@ -17,7 +17,44 @@
         {MetaItemInfoTag}
         <link rel="stylesheet" href="{BASEURL}/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/malihu/malihu-custom-scrollbar-plugin@3.1.5/jquery.mCustomScrollbar.min.css">
-    {/block:ItemPage}
+        <script>
+    // 追加の商品説明の「かたさ／香り／おすすめ」の行を、表の上のカードに並べ替える
+    (function () {
+        'use strict';
+        var KEYS = ['かたさ', '硬さ', '香り', '風味', 'おすすめ'];
+        function buildSpec() {
+            var root = document.getElementById('kuku-custom-content');
+            if (!root || root.querySelector('.kk-spec')) return;
+            var cards = [];
+            root.querySelectorAll('.appsItemDetailCustomTag_heading').forEach(function (h) {
+                var key = (h.textContent || '').trim();
+                if (KEYS.indexOf(key) < 0) return;
+                var d = h.nextElementSibling;
+                if (!d || !d.classList.contains('appsItemDetailCustomTag_description')) return;
+                cards.push([key, (d.textContent || '').trim()]);
+                h.parentNode.removeChild(h);
+                d.parentNode.removeChild(d);
+            });
+            if (!cards.length) return;
+            var box = document.createElement('div');
+            box.className = 'kk-spec';
+            cards.forEach(function (c) {
+                var m = c[1].match(/^([●○★☆]+)\s*(.*)$/);
+                var item = document.createElement('div');
+                var k = document.createElement('span'); k.className = 'kk-k'; k.textContent = c[0]; item.appendChild(k);
+                if (m) { var dt = document.createElement('span'); dt.className = 'kk-dots'; dt.textContent = m[1]; item.appendChild(dt); }
+                var b = document.createElement('b'); b.textContent = m ? m[2] : c[1]; item.appendChild(b);
+                box.appendChild(item);
+            });
+            var title = root.querySelector('.kk-spec-title');
+            if (title && title.nextSibling) root.insertBefore(box, title.nextSibling); else root.insertBefore(box, root.firstChild);
+        }
+        if (document.readyState === 'complete') buildSpec();
+        else window.addEventListener('load', buildSpec);
+        setTimeout(buildSpec, 1500);
+    })();
+    </script>
+{/block:ItemPage}
 
     {block:NotItemPage}
         {MetaShopInfoTag}
@@ -268,6 +305,13 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
   #shopDetailPage .itemlower #appsItemDetailCustom .appsItemDetailCustomTag_heading { width: 100% !important; border-bottom: 0 !important; padding: 12px 4px 0 !important; font-size: 13px !important; color: var(--kk-kraft) !important; }
   #shopDetailPage .itemlower #appsItemDetailCustom .appsItemDetailCustomTag_description { width: 100% !important; padding: 2px 4px 12px !important; }
 }
+/* かたさ・香り・おすすめのカード（追加の商品説明の行からJSで作る） */
+.kk-spec { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 28px; }
+.kk-spec div { background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; padding: 18px 10px; text-align: center; display: flex; flex-direction: column; gap: 4px; }
+.kk-spec .kk-k { font-size: 12px; color: var(--kk-muted); letter-spacing: .1em; }
+.kk-spec .kk-dots { color: var(--kk-green); letter-spacing: 3px; font-size: 13px; }
+.kk-spec b { font-family: var(--kk-mincho); font-weight: 600; font-size: 17px; line-height: 1.5; }
+@media (max-width: 480px) { .kk-spec { gap: 6px; } .kk-spec div { padding: 12px 4px; } .kk-spec b { font-size: 14px; } }
 /* 購入ボタンまわり：既存CSSの黒い箱を消して、緑の丸ボタンに（BASEの実際のクラス名が違っても当たるよう広めに指定） */
 #shopDetailPage .itemdetail .purchase [class*="purchaseButton"], #shopDetailPage .itemdetail .purchase [id*="purchaseButton"] { background: none !important; padding: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
 #shopDetailPage .itemdetail .purchase button, #shopDetailPage .itemdetail .purchase input[type="submit"], #shopDetailPage .itemdetail .purchase input[type="button"], #shopDetailPage .itemdetail .purchase a[class*="purchase"], #shopDetailPage .itemdetail .purchase a[class*="Purchase"], #shopDetailPage .itemdetail .purchase [class*="purchaseButton"] > a, #shopDetailPage .itemdetail .purchase [class*="purchaseButton"] > button, #shopDetailPage .itemdetail .purchase .purchaseButton__btn { display: block !important; width: 100% !important; box-sizing: border-box !important; background: var(--kk-green) !important; background-image: none !important; border: 1px solid var(--kk-green) !important; border-radius: 999px !important; color: var(--kk-paper) !important; padding: 15px 20px !important; font-size: 15px !important; letter-spacing: .08em; text-align: center !important; text-decoration: none !important; box-shadow: none !important; }

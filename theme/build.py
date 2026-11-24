@@ -68,11 +68,11 @@ SAMPLE_ITEMS = [
 
 ADDITIONAL = """<div id="appsItemDetailCustom"><div id="appsItemDetailCustomTag">
 <h3 class="appsItemDetailCustomTag_heading">かたさ</h3>
-<p class="appsItemDetailCustomTag_description">やわらかめ（手でさくっと割れる）</p>
+<p class="appsItemDetailCustomTag_description">●○○○○ やわらかめ</p>
 <h3 class="appsItemDetailCustomTag_heading">香り</h3>
-<p class="appsItemDetailCustomTag_description">強め</p>
+<p class="appsItemDetailCustomTag_description">●●●●○ 強め</p>
 <h3 class="appsItemDetailCustomTag_heading">おすすめ</h3>
-<p class="appsItemDetailCustomTag_description">全犬種。ベビーからシニアまで</p>
+<p class="appsItemDetailCustomTag_description">全犬種</p>
 <h3 class="appsItemDetailCustomTag_heading">使い方</h3>
 <p class="appsItemDetailCustomTag_description">おやつ・ごほうびに。フードのトッピングに。水でふやかせばシニアの子にも。</p>
 <h3 class="appsItemDetailCustomTag_heading">原材料</h3>
