@@ -11,6 +11,40 @@
 </head>
 <body>
 <style>
+.wf-nav { --wf-bg:#1f2a23; --wf-fg:#e9ede8; --wf-mute:#9fb0a4; --wf-on:#f3e6da; --wf-on-fg:#7a3f1f;
+  background:var(--wf-bg); color:var(--wf-fg); font:500 12px/1.4 "Noto Sans JP", system-ui, sans-serif; letter-spacing:0; }
+.wf-nav .wf-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.wf-nav .wf-row { display:flex; align-items:center; gap:18px; width:max-content; min-width:100%;
+  padding:8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px)); }
+.wf-nav .wf-home { color:var(--wf-fg); text-decoration:none; font-weight:700; white-space:nowrap; }
+.wf-nav .wf-grp { display:flex; align-items:center; gap:6px; white-space:nowrap; }
+.wf-nav .wf-grp > span { color:var(--wf-mute); margin-right:2px; }
+.wf-nav .wf-grp a { color:var(--wf-fg); text-decoration:none; padding:3px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.22); }
+.wf-nav .wf-grp a:hover { border-color:var(--wf-fg); }
+.wf-nav .wf-grp a[aria-current="page"] { background:var(--wf-on); color:var(--wf-on-fg); border-color:var(--wf-on); }
+.wf-nav a:focus-visible, .wf-fab:focus-visible { outline:2px solid #e0a07a; outline-offset:2px; }
+.wf-fab { position:fixed; z-index:1000; right:calc(16px + env(safe-area-inset-right, 0px)); bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  width:52px; height:52px; border-radius:50%; border:0; background:#1f2a23; color:#e9ede8; box-shadow:0 4px 16px rgba(0,0,0,.25); cursor:pointer;
+  font:700 11px/1.2 "Noto Sans JP", system-ui, sans-serif; }
+.wf-panel { position:fixed; z-index:1000; right:calc(16px + env(safe-area-inset-right, 0px)); bottom:calc(78px + env(safe-area-inset-bottom, 0px));
+  width:min(300px, calc(100vw - 32px)); max-height:70vh; overflow:auto; background:#fff; color:#2a302b; border-radius:10px;
+  box-shadow:0 10px 32px rgba(0,0,0,.25); padding:12px; font:400 13px/1.5 "Noto Sans JP", system-ui, sans-serif; }
+.wf-panel[hidden] { display:none; }
+.wf-panel b { display:block; font-size:11px; color:#6f756f; margin:10px 4px 4px; }
+.wf-panel b:first-child { margin-top:0; }
+.wf-panel a { display:block; padding:8px 10px; border-radius:6px; color:#2a302b; text-decoration:none; }
+.wf-panel a:hover { background:#eef1ec; }
+.wf-panel a[aria-current="page"] { background:#f3e6da; color:#7a3f1f; font-weight:700; }
+@media print { .wf-nav, .wf-fab, .wf-panel { display:none; } }
+</style><nav class="wf-nav" aria-label="資料のページ切り替え"><div class="wf-scroll"><div class="wf-row"><a class="wf-home" href="index.html">kukusini 資料</a><div class="wf-grp"><span>ワイヤー：トップ</span><a href="top-sp.html">スマホ</a><a href="top-pc.html">PC</a></div><div class="wf-grp"><span>ワイヤー：About</span><a href="about-sp.html" aria-current="page">スマホ</a><a href="about-pc.html">PC</a></div><div class="wf-grp"><span>ワイヤー：商品詳細</span><a href="item-sp.html">スマホ</a><a href="item-pc.html">PC</a></div><div class="wf-grp"><span>仮組み（写真入り）</span><a href="mock/top.html">トップ</a><a href="mock/about.html">About</a></div></div></div></nav><button class="wf-fab" id="wf-fab" type="button" aria-expanded="false" aria-controls="wf-panel">ページ<br>一覧</button><div class="wf-panel" id="wf-panel" hidden><b>目次</b><a href="index.html">すべてのページ</a><b>ワイヤー：トップ</b><a href="top-sp.html">スマホ</a><a href="top-pc.html">PC</a><b>ワイヤー：About</b><a href="about-sp.html" aria-current="page">スマホ</a><a href="about-pc.html">PC</a><b>ワイヤー：商品詳細</b><a href="item-sp.html">スマホ</a><a href="item-pc.html">PC</a><b>仮組み（写真入り）</b><a href="mock/top.html">トップ</a><a href="mock/about.html">About</a></div><script>
+(function(){
+  var b=document.getElementById('wf-fab'), p=document.getElementById('wf-panel');
+  if(!b||!p) return;
+  b.addEventListener('click',function(){ var o=p.hidden; p.hidden=!o; b.setAttribute('aria-expanded', o?'true':'false'); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ p.hidden=true; b.setAttribute('aria-expanded','false'); } });
+})();
+</script>
+<style>
 /* レイアウト：左にスマホ画面（375px）を縦に積み、右に各セクションの注記を横並び。狭い画面では注記が下に回る */
 :root {
   --bg: #f3f4f1;

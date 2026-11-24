@@ -1,0 +1,160 @@
+<title>kukusini About 仮組み</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+.a-hero { position: relative; }
+.a-hero img { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; }
+.a-hero .cap { padding-block: 56px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 56px; align-items: start; }
+.a-hero .catch { text-align: left; margin: 0; }
+.a-hero .body { display: flex; flex-direction: column; gap: 18px; font-size: 15px; line-height: 2.1; }
+@media (max-width: 800px) { .a-hero img { aspect-ratio: 4 / 3; } .a-hero .cap { grid-template-columns: 1fr; gap: 20px; padding-top: 40px; } }
+.belief { text-align: center; }
+.belief .in { max-width: 720px; display: flex; flex-direction: column; gap: 22px; align-items: center; }
+.belief blockquote { margin: 8px 0; font-family: var(--mincho); font-size: clamp(19px, 2.4vw, 24px); line-height: 1.9; letter-spacing: .06em; color: var(--green); }
+.awaji { background: var(--green-soft); }
+.awaji .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.facts div { background: var(--paper); border-radius: 4px; padding: 16px 18px; font-size: 13.5px; line-height: 1.8; }
+.facts b { display: block; font-family: var(--mincho); font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+@media (max-width: 800px) { .awaji .two { grid-template-columns: 1fr; gap: 28px; } .facts { grid-template-columns: 1fr; } }
+.craft .photos { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 14px; margin-bottom: 40px; }
+.craft .photos img, .craft .photos .noimg { width: 100%; height: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
+@media (max-width: 800px) { .craft .photos { grid-template-columns: 1fr 1fr; } .craft .photos > :first-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; } .craft .photos > :first-child img { aspect-ratio: 4 / 3; } }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; counter-reset: st; }
+.steps li { counter-increment: st; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: var(--muted); line-height: 1.8; }
+.steps li::before { content: counter(st); width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--kraft); color: var(--kraft); display: flex; align-items: center; justify-content: center; font-family: var(--mincho); font-size: 13px; }
+.steps b { font-family: var(--mincho); font-weight: 600; font-size: 17px; color: var(--ink); letter-spacing: .06em; }
+@media (max-width: 800px) { .steps { grid-template-columns: 1fr; gap: 0; } .steps li { display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); } .steps li::before { grid-row: span 2; } }
+.safety .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.safety .facts div { background: var(--green-soft); }
+@media (max-width: 900px) { .safety .facts { grid-template-columns: 1fr 1fr; } }
+.cta { text-align: center; border-top: 1px solid var(--line); }
+.cta .btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+</style>
+
+<div class="mock-bar">仮組み：Google ドライブの写真で作った見本です（文章は仮原稿。<span class="tbd">オレンジ</span>は未決・確認待ち）</div>
+<header class="site">
+  <div class="in hbar">
+    <a class="logo" href="top.html"><img src="img/logo.png" alt="kukusini" width="455" height="348"></a>
+    <button class="menu-btn" id="menu-btn" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="gnav"><span></span></button>
+    <nav class="gnav" id="gnav" hidden>
+      <ul>
+        <li><a href="top.html#guide">選び方</a></li>
+        <li><a href="top.html#items">商品一覧</a></li>
+        <li><a href="about.html">kukusiniについて</a></li>
+        <li><a href="top.html#faq">よくある質問</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul>
+    </nav>
+    <a class="cart" href="#">カート</a>
+  </div>
+</header>
+
+<main>
+  <section class="a-hero">
+    <img src="img/awaji.jpg" alt="淡路島から見た海と大鳴門橋" width="1076" height="663">
+    <div class="in cap">
+      <div>
+        <p class="eyebrow">About kukusini</p>
+        <p class="catch">はじまりは、<br>祖父の鶏から。</p>
+      </div>
+      <div class="body">
+        <p>kukusiniのはじまりは、祖父が淡路島で始めた鶏づくりにあります。</p>
+        <p>食べものをつくる家として、ずっと大切にしてきた素材への思い。それをそのまま、家族の一員であるうちの子が口にするものへ。安心で、おいしいものを届けたい。その思いから生まれたのが kukusini です。</p>
+        <p><span class="tbd">「祖父から受け継いだ」の言い方・社名を出すかは確認待ち</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec belief">
+    <div class="in">
+      <p class="eyebrow">Our Belief</p>
+      <h2>家族の幸せが、わたしたちの幸せ。</h2>
+      <p>おじいちゃんやおばあちゃんが孫に何かを買ってあげて、孫が喜ぶと自分もうれしい。kukusiniがつくりたいのは、そんな気持ちになれるおやつです。</p>
+      <blockquote>「とりあえず食べられる」ではなく、<br>「食べて豊かになるもの」を。</blockquote>
+      <p>自分の子どもにもあげられる素材だけを使うこと。うちの子にあげる鶏肉なら kukusini を選べば間違いない、と思ってもらえるブランドを目指しています。</p>
+    </div>
+  </section>
+
+  <section class="sec awaji" id="awajidori">
+    <div class="in two">
+      <div>
+        <p class="eyebrow">Awaji-dori</p>
+        <h2>淡路どりのこと</h2>
+        <p>淡路どりは、淡路島で育ち、淡路島で処理された鶏です。</p>
+        <p style="margin-top:20px"><span class="tbd">鶏の写真は掲載可否を確認中のため、この見本では使っていません</span></p>
+      </div>
+      <div class="facts">
+        <div><b>少し長く育てる</b>一般より2〜3日長く育て、身が大きくコクのある味に。</div>
+        <div><b>専用の飼料</b>淡路どりのために配合した飼料を、成長に合わせて与えます。</div>
+        <div><b>平飼い</b>ウインドレス鶏舎の中で、平飼いで育てています。</div>
+        <div><b>外はぎ方式</b>手さばきに近い方法で処理。内臓面が水にさらされず、うまみが逃げにくい。</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec craft" id="craft">
+    <div class="in">
+      <p class="eyebrow">How We Make</p>
+      <h2>その日の朝の鶏肉を、その日のうちに。</h2>
+      <div class="photos">
+        <img src="img/handcut.jpg" alt="生の鶏肉を包丁で切っている手元" width="964" height="1280">
+        <img src="img/tray.jpg" alt="トレーに並べた手羽先" width="964" height="1280">
+        <img src="img/break.jpg" alt="手で割ったささみジャーキー" width="1000" height="746">
+      </div>
+      <ol class="steps">
+        <li><b>仕入れ</b>その日の朝に処理された鶏肉から選びます。スーパーに並ぶより早い、人が食べるより新鮮な鶏肉です。</li>
+        <li><b>洗浄</b>加工場に持ち帰り、ていねいに洗います。</li>
+        <li><b>手切り</b>冷凍すると解凍で旨味が抜けるため、生のまま。手で割れる薄さに一枚ずつ切ります。</li>
+        <li><b>乾燥</b>鶏肉以外は何も加えずに乾燥させます。</li>
+        <li><b>検品・梱包</b>仕上がりを確かめ、袋に詰めます。</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec safety" style="padding-top:24px">
+    <div class="in">
+      <p class="eyebrow">Safety</p>
+      <h2>安心してあげられるように</h2>
+      <div class="facts">
+        <div><b>原材料は鶏肉だけ</b>添加物は使っていません。</div>
+        <div><b>HACCP</b>鶏肉の処理工場はHACCPを取得しています。</div>
+        <div><b>有資格者がつくる</b>製造者は食鳥処理衛生管理者の資格をもっています。</div>
+        <div><b>与えるときは</b>鶏アレルギーの子には与えず、食べている間は目を離さないでください。</div>
+      </div>
+      <p style="margin-top:16px"><span class="tbd">表現は確認待ち</span></p>
+    </div>
+  </section>
+
+  <section class="sec cta">
+    <div class="in">
+      <h2>まずは、定番のささみから。</h2>
+      <div class="btns"><a class="btn fill" href="top.html#items">商品一覧を見る</a><a class="btn line" href="top.html#guide">選び方を見る</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="in">
+    <div class="frow">
+      <img class="flogo" src="img/logo.png" alt="kukusini" width="455" height="348">
+      <ul>
+        <li><a href="about.html">kukusiniについて</a></li><li><a href="top.html#items">商品一覧</a></li><li><a href="top.html#faq">よくある質問</a></li><li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">特定商取引法に基づく表記</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">ブログ</a></li><li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+    <p class="copy">© kukusini</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var b = document.getElementById('menu-btn'), n = document.getElementById('gnav');
+  b.addEventListener('click', function () {
+    var open = b.getAttribute('aria-expanded') === 'true';
+    b.setAttribute('aria-expanded', open ? 'false' : 'true');
+    n.hidden = open;
+  });
+})();
+</script>

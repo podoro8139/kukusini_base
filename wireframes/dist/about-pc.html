@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>kukusini About PC ワイヤー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600&display=swap">
+</head>
+<body>
+<style>
+.wf-nav { --wf-bg:#1f2a23; --wf-fg:#e9ede8; --wf-mute:#9fb0a4; --wf-on:#f3e6da; --wf-on-fg:#7a3f1f;
+  background:var(--wf-bg); color:var(--wf-fg); font:500 12px/1.4 "Noto Sans JP", system-ui, sans-serif; letter-spacing:0; }
+.wf-nav .wf-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.wf-nav .wf-row { display:flex; align-items:center; gap:18px; width:max-content; min-width:100%;
+  padding:8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px)); }
+.wf-nav .wf-home { color:var(--wf-fg); text-decoration:none; font-weight:700; white-space:nowrap; }
+.wf-nav .wf-grp { display:flex; align-items:center; gap:6px; white-space:nowrap; }
+.wf-nav .wf-grp > span { color:var(--wf-mute); margin-right:2px; }
+.wf-nav .wf-grp a { color:var(--wf-fg); text-decoration:none; padding:3px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.22); }
+.wf-nav .wf-grp a:hover { border-color:var(--wf-fg); }
+.wf-nav .wf-grp a[aria-current="page"] { background:var(--wf-on); color:var(--wf-on-fg); border-color:var(--wf-on); }
+.wf-nav a:focus-visible, .wf-fab:focus-visible { outline:2px solid #e0a07a; outline-offset:2px; }
+.wf-fab { position:fixed; z-index:1000; right:calc(16px + env(safe-area-inset-right, 0px)); bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  width:52px; height:52px; border-radius:50%; border:0; background:#1f2a23; color:#e9ede8; box-shadow:0 4px 16px rgba(0,0,0,.25); cursor:pointer;
+  font:700 11px/1.2 "Noto Sans JP", system-ui, sans-serif; }
+.wf-panel { position:fixed; z-index:1000; right:calc(16px + env(safe-area-inset-right, 0px)); bottom:calc(78px + env(safe-area-inset-bottom, 0px));
+  width:min(300px, calc(100vw - 32px)); max-height:70vh; overflow:auto; background:#fff; color:#2a302b; border-radius:10px;
+  box-shadow:0 10px 32px rgba(0,0,0,.25); padding:12px; font:400 13px/1.5 "Noto Sans JP", system-ui, sans-serif; }
+.wf-panel[hidden] { display:none; }
+.wf-panel b { display:block; font-size:11px; color:#6f756f; margin:10px 4px 4px; }
+.wf-panel b:first-child { margin-top:0; }
+.wf-panel a { display:block; padding:8px 10px; border-radius:6px; color:#2a302b; text-decoration:none; }
+.wf-panel a:hover { background:#eef1ec; }
+.wf-panel a[aria-current="page"] { background:#f3e6da; color:#7a3f1f; font-weight:700; }
+@media print { .wf-nav, .wf-fab, .wf-panel { display:none; } }
+</style><nav class="wf-nav" aria-label="資料のページ切り替え"><div class="wf-scroll"><div class="wf-row"><a class="wf-home" href="index.html">kukusini 資料</a><div class="wf-grp"><span>ワイヤー：トップ</span><a href="top-sp.html">スマホ</a><a href="top-pc.html">PC</a></div><div class="wf-grp"><span>ワイヤー：About</span><a href="about-sp.html">スマホ</a><a href="about-pc.html" aria-current="page">PC</a></div><div class="wf-grp"><span>ワイヤー：商品詳細</span><a href="item-sp.html">スマホ</a><a href="item-pc.html">PC</a></div><div class="wf-grp"><span>仮組み（写真入り）</span><a href="mock/top.html">トップ</a><a href="mock/about.html">About</a></div></div></div></nav><button class="wf-fab" id="wf-fab" type="button" aria-expanded="false" aria-controls="wf-panel">ページ<br>一覧</button><div class="wf-panel" id="wf-panel" hidden><b>目次</b><a href="index.html">すべてのページ</a><b>ワイヤー：トップ</b><a href="top-sp.html">スマホ</a><a href="top-pc.html">PC</a><b>ワイヤー：About</b><a href="about-sp.html">スマホ</a><a href="about-pc.html" aria-current="page">PC</a><b>ワイヤー：商品詳細</b><a href="item-sp.html">スマホ</a><a href="item-pc.html">PC</a><b>仮組み（写真入り）</b><a href="mock/top.html">トップ</a><a href="mock/about.html">About</a></div><script>
+(function(){
+  var b=document.getElementById('wf-fab'), p=document.getElementById('wf-panel');
+  if(!b||!p) return;
+  b.addEventListener('click',function(){ var o=p.hidden; p.hidden=!o; b.setAttribute('aria-expanded', o?'true':'false'); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ p.hidden=true; b.setAttribute('aria-expanded','false'); } });
+})();
+</script>
+<style>
+/* レイアウト：中央に PC 画面（幅 960px 相当）を縦に積み、右に各セクションの注記。狭い画面では注記が下に回る */
+:root {
+  --bg: #f3f4f1; --paper: #ffffff; --ink: #2b332d; --muted: #6b746d; --line: #cfd5cf;
+  --fill: #e6e9e4; --hatch: #d7dcd5; --accent: #2f4a3a; --warm: #b26a3c; --warm-bg: #f6e9df;
+  --z-common: #2f4a3a; --z-item: #b26a3c; --z-auto: #8a938c;
+  --mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #171b18; --paper: #222823; --ink: #e4e8e3; --muted: #9aa49c; --line: #3b443d; --fill: #2c332d; --hatch: #343c36;
+  --accent: #9cc2a8; --warm: #e0a07a; --warm-bg: #3a2c22; --z-common: #9cc2a8; --z-item: #e0a07a; --z-auto: #7d877f; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #171b18; --paper: #222823; --ink: #e4e8e3; --muted: #9aa49c; --line: #3b443d; --fill: #2c332d; --hatch: #343c36;
+  --accent: #9cc2a8; --warm: #e0a07a; --warm-bg: #3a2c22; --z-common: #9cc2a8; --z-item: #e0a07a; --z-auto: #7d877f; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.7;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px; }
+.wrap { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+.doc-head { display: flex; flex-direction: column; gap: 10px; }
+.doc-head h1 { font-family: var(--mincho); font-weight: 600; font-size: 26px; margin: 0; letter-spacing: .04em; }
+.doc-head p { margin: 0; color: var(--muted); max-width: 72ch; }
+.eyebrow { font-size: 11px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 18px; height: 12px; border-radius: 2px; display: inline-block; }
+.sw.photo { background: repeating-linear-gradient(45deg, var(--hatch) 0 4px, var(--fill) 4px 8px); border: 1px solid var(--line); }
+.sw.tbd { background: var(--warm-bg); border: 1px dashed var(--warm); }
+.sw.common { background: var(--z-common); } .sw.item { background: var(--z-item); } .sw.auto { background: var(--paper); border: 1px dashed var(--z-auto); }
+
+.rows { display: grid; grid-template-columns: minmax(0, 960px) minmax(0, 1fr); column-gap: 28px; }
+.pc { background: var(--paper); border-left: 1px solid var(--line); border-right: 1px solid var(--line); min-width: 0; position: relative; }
+.pc.first { border-top: 1px solid var(--line); border-radius: 10px 10px 0 0; overflow: hidden; }
+.pc.last { border-bottom: 1px solid var(--line); border-radius: 0 0 10px 10px; overflow: hidden; }
+.note { padding-block: 20px; border-top: 1px solid var(--line); min-width: 0; font-size: 13px; }
+.note.first { border-top: 0; }
+.note h3 { margin: 0 0 6px; font-size: 13px; display: flex; gap: 8px; align-items: baseline; }
+.note h3 .n { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 700; }
+.note ul { margin: 0; padding-left: 1.2em; color: var(--muted); }
+.tag { display: inline-block; font-size: 11px; padding: 0 6px; border-radius: 3px; margin-right: 4px; }
+.tag.base { background: var(--fill); color: var(--ink); font-family: ui-monospace, Menlo, monospace; }
+.tag.tbd { background: var(--warm-bg); color: var(--warm); }
+@media (max-width: 1100px) {
+  .rows { grid-template-columns: minmax(0, 1fr); }
+  .note { border-top: 0; padding: 10px 16px 18px; background: var(--fill); border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .note.last { border-radius: 0 0 10px 10px; border-bottom: 1px solid var(--line); }
+  .pc.last { border-radius: 0; border-bottom: 0; }
+}
+
+/* PC 画面の中身 */
+.s { padding: 56px 64px; display: flex; flex-direction: column; gap: 20px; }
+.s + .s { border-top: 1px solid var(--line); }
+.h2 { font-family: var(--mincho); font-weight: 400; font-size: 28px; line-height: 1.6; margin: 0; letter-spacing: .05em; text-wrap: balance; }
+.lead { margin: 0; font-size: 14.5px; line-height: 2; max-width: 40em; }
+.center { align-items: center; text-align: center; }
+.photo { background: repeating-linear-gradient(45deg, var(--hatch) 0 7px, var(--fill) 7px 14px); border: 1px solid var(--line); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; color: var(--muted); padding: 10px; aspect-ratio: 4 / 3; max-width: 100%; min-width: 0; }
+.photo b { display: block; color: var(--ink); font-weight: 500; font-size: 13px; }
+.photo.sq { aspect-ratio: 1; }
+.btn { display: inline-block; text-align: center; padding: 12px 32px; border-radius: 999px; font-size: 14px; font-weight: 500; text-decoration: none; }
+.btn.pri { background: var(--accent); color: var(--paper); }
+.btn.sec { border: 1px solid var(--accent); color: var(--accent); }
+.link { color: var(--accent); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
+.tbd { background: var(--warm-bg); border: 1px dashed var(--warm); color: var(--warm); border-radius: 4px; padding: 2px 8px; font-size: 12px; display: inline-block; }
+.badge { align-self: flex-start; font-size: 11px; background: var(--accent); color: var(--paper); padding: 1px 8px; border-radius: 999px; }
+.price { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.bar-notice { background: var(--accent); color: var(--paper); font-size: 12px; text-align: center; padding: 7px 10px; }
+.header { display: flex; align-items: center; gap: 28px; padding: 18px 40px; border-bottom: 1px solid var(--line); }
+.logo { border: 1px dashed var(--warm); color: var(--warm); font-size: 12px; padding: 6px 14px; border-radius: 3px; }
+.gnav { display: flex; gap: 22px; font-size: 13px; margin-left: auto; flex-wrap: wrap; }
+.cart { border: 1px solid var(--ink); border-radius: 999px; padding: 6px 16px; font-size: 12px; }
+
+.bn { display: grid; grid-template-columns: 96px minmax(0, 1fr) 18px; gap: 16px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: 6px; text-decoration: none; color: var(--ink); background: var(--paper); }
+.bn-trial { border: 1.5px solid var(--accent); background: var(--fill); }
+.bn .photo { font-size: 10.5px; padding: 4px; }
+.bn-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.bn-body b { font-family: var(--mincho); font-weight: 600; font-size: 18px; line-height: 1.4; }
+.bn-tag { align-self: flex-start; font-size: 11px; font-weight: 700; background: var(--warm); color: var(--paper); padding: 1px 8px; border-radius: 3px; }
+.bn-tag-line { background: transparent; color: var(--accent); border: 1px solid var(--accent); font-weight: 500; }
+.bn-sub { font-size: 12px; color: var(--muted); }
+.bn-arrow { font-size: 22px; color: var(--muted); }
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { font-size: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; }
+.chip.on { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.lbls { display: flex; flex-wrap: wrap; gap: 4px; }
+.lbl { font-size: 10.5px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; padding: 0 6px; }
+.lbl.pop { background: var(--accent); color: var(--paper); }
+.help { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--fill); border-radius: 4px; padding: 12px 16px; font-size: 13px; color: var(--muted); text-decoration: none; }
+.help b { color: var(--accent); font-weight: 500; }
+.voice { border-left: 2px solid var(--line); padding-left: 14px; font-size: 13.5px; }
+.voice small { display: block; color: var(--muted); margin-top: 6px; }
+.footer { background: var(--accent); color: var(--paper); padding: 40px 64px; font-size: 12.5px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; }
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.footer .logo { color: var(--paper); border-color: var(--paper); align-self: flex-start; justify-self: start; }
+
+/* 区分（商品詳細） */
+.ztag { position: absolute; top: 10px; right: 10px; z-index: 2; font-size: 10.5px; font-weight: 700; padding: 1px 8px; border-radius: 3px; color: var(--paper); background: var(--zc); }
+.z { border-left: 4px solid var(--zc); }
+.z.common { --zc: var(--z-common); } .z.item { --zc: var(--z-item); } .z.auto { --zc: var(--z-auto); border-left-style: dashed; }
+.z.auto .ztag { background: var(--paper); color: var(--zc); border: 1px dashed var(--zc); }
+.zbox { position: relative; border: 2px solid var(--zc); border-radius: 6px; padding: 26px 16px 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.zbox.common { --zc: var(--z-common); } .zbox.item { --zc: var(--z-item); } .zbox.auto { --zc: var(--z-auto); border-style: dashed; }
+.zbox > .ztag { top: 6px; right: 6px; }
+.zbox.auto > .ztag { background: var(--paper); color: var(--zc); border: 1px dashed var(--zc); }
+.note .who { display: inline-block; font-size: 11px; font-weight: 700; color: var(--zc); margin-bottom: 4px; }
+.note.common { --zc: var(--z-common); } .note.item { --zc: var(--z-item); } .note.auto { --zc: var(--z-auto); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<style>
+.hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); padding: 0; gap: 0; }
+.hero > .photo { border-radius: 0; border: 0; border-right: 1px solid var(--line); aspect-ratio: auto; min-height: 440px; }
+.hero-copy { padding: 56px 48px; display: flex; flex-direction: column; gap: 18px; justify-content: center; }
+.catch { font-family: var(--mincho); font-size: 30px; line-height: 1.6; margin: 0; letter-spacing: .07em; }
+.alt { display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; background: var(--warm-bg); border: 1px dashed var(--warm); border-radius: 4px; padding: 10px 14px; color: var(--muted); }
+.alt b { color: var(--warm); font-weight: 500; }
+.narrow { max-width: 680px; margin: 0 auto; align-items: center; text-align: center; }
+.quote { font-family: var(--mincho); font-size: 22px; line-height: 1.9; margin: 0; padding: 4px 0 4px 18px; border-left: 2px solid var(--accent); text-align: left; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.facts div { background: var(--fill); border-radius: 4px; padding: 14px 16px; font-size: 13px; line-height: 1.7; }
+.facts b { display: block; font-size: 14px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; counter-reset: st; }
+.steps li { counter-increment: st; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: var(--muted); }
+.steps li::before { content: counter(st); width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+.steps b { font-family: var(--mincho); font-weight: 600; font-size: 16px; color: var(--ink); }
+.photos2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.facts4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+</style>
+
+<div class="wrap">
+  <header class="doc-head">
+    <div class="eyebrow">kukusini ECリニューアル ／ ワイヤーフレーム PC v0.1 ／ 2026.11.24</div>
+    <h1>Aboutページ（PC）</h1>
+    <p>スマホ版と同じ中身・同じ文言です。PCでは、はじまりを写真と文字の左右分割、淡路どりを2列、つくり方の5工程を横一列に並べています。</p>
+    <div class="legend">
+      <span><i class="sw photo"></i>写真枠</span>
+      <span><i class="sw tbd"></i>未決・南さん確認待ち</span>
+      <span><a class="link" href="about-sp.html">スマホ版を見る</a></span>
+    </div>
+  </header>
+
+  <div class="rows">
+
+    <div class="pc first">
+      <div class="header">
+        <span class="logo">ロゴ（ブランド名 未定）</span>
+        <nav class="gnav"><span>選び方</span><span>商品一覧</span><span>kukusiniについて</span><span>よくある質問</span><span>お問い合わせ</span></nav>
+        <span class="cart">カート</span>
+      </div>
+    </div>
+    <aside class="note first">
+      <h3><span class="n">0</span>ヘッダー</h3>
+      <ul><li>トップと共通</li></ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s hero">
+        <div class="photo"><div><b>淡路島の風景</b>淡路島フォルダから選定</div></div>
+        <div class="hero-copy">
+          <div class="eyebrow">About kukusini</div>
+          <p class="catch">はじまりは、<br>祖父の鶏から。</p>
+          <p class="lead">kukusiniのはじまりは、祖父が淡路島で始めた鶏づくりにあります。</p>
+          <p class="lead">食べものをつくる家として、ずっと大切にしてきた素材への思い。それをそのまま、家族の一員であるうちの子が口にするものへ。安心で、おいしいものを届けたい。その思いから生まれたのが kukusini です。</p>
+          <div class="alt"><b>「第一次産業」の言い方 候補</b><span>A：食べものをつくる家として ／ B：島の食卓を支える鶏をつくってきた家として ／ C：生きものと向き合い、食べものを育ててきた家として</span></div>
+        </div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">1</span>はじまり</h3>
+      <ul>
+        <li>写真と文章を左右に分割</li>
+        <li><span class="tag tbd">要確認</span>「祖父から受け継いだ養鶏場」の言い方、社名を出すか</li>
+      </ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s narrow">
+        <div class="eyebrow">Our Belief</div>
+        <h2 class="h2">家族の幸せが、わたしたちの幸せ。</h2>
+        <p class="lead">おじいちゃんやおばあちゃんが孫に何かを買ってあげて、孫が喜ぶと自分もうれしい。kukusiniがつくりたいのは、そんな気持ちになれるおやつです。</p>
+        <p class="quote">「とりあえず食べられる」ではなく、<br>「食べて豊かになるもの」を。</p>
+        <p class="lead">自分の子どもにもあげられる素材だけを使うこと。うちの子にあげる鶏肉なら kukusini を選べば間違いない、と思ってもらえるブランドを目指しています。</p>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">2</span>想い・理念</h3>
+      <ul><li>文章だけのセクションなので、中央寄せで幅を狭く（1行が長くなりすぎないように）</li></ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s" id="awajidori">
+        <div class="two">
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div class="eyebrow">Awaji-dori</div>
+            <h2 class="h2">淡路どりのこと</h2>
+            <p class="lead">淡路どりは、淡路島で育ち、淡路島で処理された鶏です。</p>
+            <div class="photo"><div><b>鶏・飼育の様子</b>「鶏そのもの」の写真のみ（工場・鶏舎は使わない）</div></div>
+          </div>
+          <div class="facts" style="align-self:end">
+            <div><b>少し長く育てる</b>一般より2〜3日長く育て、身が大きくコクのある味に。</div>
+            <div><b>専用の飼料</b>淡路どりのために配合した飼料を、成長に合わせて与えます。</div>
+            <div><b>平飼い</b>ウインドレス鶏舎の中で、平飼いで育てています。</div>
+            <div><b>外はぎ方式</b>手さばきに近い方法で処理。内臓面が水にさらされず、うまみが逃げにくい。</div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">3</span>淡路どりのこと</h3>
+      <ul>
+        <li>左に見出し・写真、右に4つの特長</li>
+        <li><span class="tag tbd">NG</span>「地鶏」と書かない ／ 工場・鶏舎の写真</li>
+      </ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s" id="craft">
+        <div class="eyebrow">How We Make</div>
+        <h2 class="h2">その日の朝の鶏肉を、その日のうちに。</h2>
+        <div class="photos2">
+          <div class="photo"><div><b>生肉を手で切っている手元</b>撮影リスト No.8</div></div>
+          <div class="photo"><div><b>乾燥・検品の様子</b>撮影リスト No.9</div></div>
+        </div>
+        <ol class="steps">
+          <li><b>仕入れ</b>その日の朝に処理された鶏肉から選びます。</li>
+          <li><b>洗浄</b>加工場に持ち帰り、ていねいに洗います。</li>
+          <li><b>手切り</b>冷凍せず生のまま。手で割れる薄さに一枚ずつ切ります。</li>
+          <li><b>乾燥</b>鶏肉以外は何も加えずに乾燥させます。</li>
+          <li><b>検品・梱包</b>仕上がりを確かめ、袋に詰めます。</li>
+        </ol>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">4</span>つくり方</h3>
+      <ul>
+        <li>写真2枚の下に、5工程を横一列。スマホは縦に並ぶ</li>
+        <li><span class="tag tbd">要確認</span>「朝引き」「無添加」の表現、検品の方法</li>
+      </ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s">
+        <div class="eyebrow">Safety</div>
+        <h2 class="h2">安心してあげられるように</h2>
+        <div class="facts facts4">
+          <div><b>原材料は鶏肉だけ</b>添加物は使っていません。</div>
+          <div><b>HACCP</b>鶏肉の処理工場はHACCPを取得しています。</div>
+          <div><b>有資格者がつくる</b>製造者は食鳥処理衛生管理者の資格をもっています。</div>
+          <div><b>与えるときは</b>鶏アレルギーの子には与えず、食べている間は目を離さないでください。</div>
+        </div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">5</span>安心・衛生</h3>
+      <ul><li>4つを横一列</li><li><span class="tag tbd">要確認</span> HACCP・資格の書き方</li></ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s narrow">
+        <h2 class="h2">まずは、定番のささみから。</h2>
+        <div class="cta"><a class="btn pri" href="top-pc.html">はじめての方へ</a><a class="btn sec" href="top-pc.html">商品一覧を見る</a></div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">6</span>商品への導線</h3>
+      <ul><li>ボタン2つを横並び</li></ul>
+    </aside>
+
+    <div class="pc last">
+      <footer class="footer">
+        <span class="logo">ロゴ（未定）</span>
+        <ul>
+          <li>kukusiniについて</li><li>商品一覧</li><li>よくある質問</li><li>お問い合わせ</li>
+          <li>特定商取引法に基づく表記</li><li>プライバシーポリシー</li><li>ブログ</li><li>Instagram</li>
+        </ul>
+      </footer>
+    </div>
+    <aside class="note last">
+      <h3><span class="n">7</span>フッター・実装メモ</h3>
+      <ul><li>この内容はテンプレートの <span class="tag base">{block:AboutPage}</span> に直接書く（今は <span class="tag base">{ShopIntroduction}</span> のみ）</li></ul>
+    </aside>
+
+  </div>
+</div>
+</body>
+</html>
