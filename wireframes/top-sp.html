@@ -115,6 +115,10 @@ body {
 /* こだわり */
 .point { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: start; }
 .point .photo { aspect-ratio: 1; font-size: 10px; padding: 4px; }
+.kw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; text-align: center; }
+.kw > div { display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; line-height: 1.5; }
+.kw .photo { font-size: 10px; padding: 4px; }
+.kw b { font-weight: 500; }
 .point h4 { margin: 0 0 2px; font-family: var(--mincho); font-weight: 600; font-size: 15px; }
 .point p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.7; }
 
@@ -159,9 +163,9 @@ tr[hidden] { display: none; }
 
 <div class="wrap">
   <header class="doc-head">
-    <div class="eyebrow">kukusini ECリニューアル ／ ワイヤーフレーム v0.1 ／ 2026.11.19</div>
+    <div class="eyebrow">kukusini ECリニューアル ／ ワイヤーフレーム v0.2 ／ 2026.11.24</div>
     <h1>トップページ（スマホ）</h1>
-    <p>提案書の構成（想い → はじめての方へ → こだわり → 選び方 → 商品 → 声・FAQ）に、卸・メディア向けの案内を加えた縦長1ページです。BASEではページを増やせないため、サイトの中身はほぼすべてここに置きます。文章はヒアリング内容から起こした仮原稿です。</p>
+    <p>v0.2：「想い」と「こだわり」を1つにまとめ、淡路どり・つくり方の説明はAboutページに移しました。トップは「選ぶ・買う」ための情報を中心にしています。文章はヒアリング内容から起こした仮原稿です。</p>
     <div class="legend">
       <span><i class="sw photo"></i>写真枠（撮影リストNo.）</span>
       <span><i class="sw tbd"></i>未決・南さん確認待ち</span>
@@ -194,7 +198,7 @@ tr[hidden] { display: none; }
         <div class="photo"><div><b>愛犬がおやつを食べている様子</b>手からもらう瞬間／食べている顔のアップ<br>撮影リスト No.1（未撮影・12/5）</div></div>
         <div class="hero-copy">
           <p class="catch">愛犬のために、<br>素材からつくり方まで。</p>
-          <p class="lead">淡路島で朝に処理された鶏肉を、生のまま一枚ずつ手で切って仕上げた、無添加のジャーキーです。</p>
+          <p class="lead">家族の一員である愛犬に、安心して「おいしいよ」と渡せるものを。淡路どりのジャーキーです。</p>
           <a class="btn pri" href="#first">はじめての方へ</a>
           <a class="btn sec" href="#items">商品を見る</a>
         </div>
@@ -205,7 +209,7 @@ tr[hidden] { display: none; }
       <ul>
         <li>主役は「愛犬」。写真は犬が食べている実写（生成AI不可）。撮影までは商品写真で仮置き</li>
         <li>キャッチは提案書のコンセプトをそのまま採用</li>
-        <li><span class="tag tbd">要確認</span>「無添加」「朝引き」の表現（掲載前に南さん確認）</li>
+        <li>リードはこだわりの説明を入れず短く（素材の話は次の節とAboutに任せる）</li>
         <li>ヒーローは画面いっぱいにせず、ボタンが1画面目に見える高さに</li>
       </ul>
     </aside>
@@ -215,18 +219,23 @@ tr[hidden] { display: none; }
       <section class="s" id="story">
         <div class="eyebrow">Our Story</div>
         <h2 class="h2">買うのは飼い主さま。<br>食べるのは、愛犬。</h2>
-        <p class="lead">kukusiniは、自分の犬に自信をもってあげられるおやつをつくりたい、という思いから始まりました。「とりあえず食べられる」ではなく「食べて豊かになるもの」を。自分の子どもにもあげられる素材だけを使っています。</p>
+        <p class="lead">淡路島で鶏とともに歩んできた家族が、愛犬のためにつくるおやつです。自分の子どもにもあげられる素材で、「食べて豊かになるもの」を届けます。</p>
         <div class="photo"><div><b>作り手の手元・後ろ姿</b>撮影リスト No.11（既存 No.47 流用可）</div></div>
-        <a class="link" href="#about">kukusiniについて（Aboutページ）</a>
+        <div class="kw">
+          <div><span class="photo sq"><span>鶏・飼育</span></span><b>淡路どり</b></div>
+          <div><span class="photo sq"><span>朝の生肉</span></span><b>その日の朝に<br>処理した鶏肉</b></div>
+          <div><span class="photo sq"><span>手切り</span></span><b>生のまま<br>一枚ずつ手切り</b></div>
+        </div>
+        <a class="btn sec" href="https://claude.ai/artifact/5SXqEhevABpoKvj5iTiT93">kukusiniについて ／ 素材とつくり方</a>
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">2</span>ブランドの想い</h3>
+      <h3><span class="n">2</span>想い（＋こだわりの入口）</h3>
       <ul>
+        <li>旧「想い」と「こだわり」を1つに統合。トップは<b>キーワード3つだけ</b>見せ、説明はAboutに集約</li>
         <li>いちばん伝えたいこと＝「愛犬のことを考えた商品づくり」（ヒアリング06-②で確定）</li>
-        <li>詳しい話は <span class="tag base">{block:AboutPage}</span> へ。本文は管理画面の「ショップ紹介」</li>
-        <li>理念「家族の幸せが私の幸せ」をここかAboutのどちらに置くかは原稿段階で判断</li>
-        <li>祖父のお名前は掲載不可</li>
+        <li>はじまり・淡路どり・つくり方の詳しい話は About（<span class="tag base">{block:AboutPage}</span>）へ</li>
+        <li>3つの写真は About の各節と同じものを使い、見た目でつながりを出す</li>
       </ul>
     </aside>
 
@@ -256,37 +265,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 4 こだわり -->
-    <div class="sp">
-      <section class="s" id="craft">
-        <div class="eyebrow">Material &amp; Craft</div>
-        <h2 class="h2">素材とつくり方の、<br>3つのこと。</h2>
-        <div class="point">
-          <div class="photo"><div>鶏・飼育の様子<br>（淡路島フォルダ）</div></div>
-          <div><h4>淡路どり</h4><p>淡路島で育ち、淡路島で処理された鶏。一般より2〜3日長く育てるので、身が大きくコクがあります。</p></div>
-        </div>
-        <div class="point">
-          <div class="photo"><div>朝の生肉<br>No.8</div></div>
-          <div><h4>その日の朝に処理した鶏肉</h4><p>スーパーに並ぶより早い、人が食べるより新鮮な鶏肉を使います。</p></div>
-        </div>
-        <div class="point">
-          <div class="photo"><div>手切りの手元<br>No.8／No.47</div></div>
-          <div><h4>冷凍せず、生のまま手で切る</h4><p>解凍で旨味が抜けないよう生肉を使用。やわらかい生肉は機械で薄く切れないため、すべて手作業です。</p></div>
-        </div>
-        <div class="photo" style="aspect-ratio: 16 / 9"><div><b>乾燥・検品の様子</b>撮影リスト No.9（未撮影・12/8）</div></div>
-      </section>
-    </div>
-    <aside class="note">
-      <h3><span class="n">4</span>素材・製法へのこだわり</h3>
-      <ul>
-        <li>独立ページは作れないので、トップのこの節が「淡路どりのこと」の受け皿</li>
-        <li>掲載可：飼育方法・専用飼料・飼育日数・外はぎ方式（もっと詳しく出す場合はブログ記事に）</li>
-        <li><span class="tag tbd">NG</span> 「地鶏」と書かない ／ 淡路フーズの工場・鶏舎写真は使わない</li>
-        <li>HACCP・資格の記載は表現確認後に追加するか判断</li>
-      </ul>
-    </aside>
-
-    <!-- 5 選び方 -->
+    <!-- 4 選び方 -->
     <div class="sp">
       <section class="s" id="guide">
         <div class="eyebrow">How to Choose</div>
@@ -318,7 +297,7 @@ tr[hidden] { display: none; }
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">5</span>選び方（比較早見表）</h3>
+      <h3><span class="n">4</span>選び方（比較早見表）</h3>
       <ul>
         <li>比較の軸は南さん指定の「硬さ・風味・おすすめ犬種」。値は南さんの実感値（☆評価）</li>
         <li>各行から商品ページへリンク。絞り込みはJSでの表示切替のみ（BASEにサーバー処理はない）</li>
@@ -327,7 +306,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 6 商品一覧 -->
+    <!-- 5 商品一覧 -->
     <div class="sp">
       <section class="s" id="items">
         <div class="eyebrow">Items</div>
@@ -345,7 +324,7 @@ tr[hidden] { display: none; }
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">6</span>商品一覧</h3>
+      <h3><span class="n">5</span>商品一覧</h3>
       <ul>
         <li><span class="tag base">{block:Items}</span> で自動表示（商品名・価格・画像・SOLD OUT）</li>
         <li>上のチップはBASEの「カテゴリ」へのリンク。リピーター向けに「大容量 500g」を目立つ位置に</li>
@@ -354,7 +333,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 7 お客様の声 -->
+    <!-- 6 お客様の声 -->
     <div class="sp">
       <section class="s" id="voice">
         <div class="eyebrow">Voices</div>
@@ -366,7 +345,7 @@ tr[hidden] { display: none; }
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">7</span>お客様の声</h3>
+      <h3><span class="n">6</span>お客様の声</h3>
       <ul>
         <li>文章はヒアリングで聞いたエピソードを仮に要約したもの。実際の声と掲載許可に差し替える</li>
         <li><span class="tag base">レビュー App</span> を入れるなら商品ページ側にも表示できる</li>
@@ -374,7 +353,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 8 FAQ -->
+    <!-- 7 FAQ -->
     <div class="sp">
       <section class="s faq" id="faq">
         <div class="eyebrow">FAQ</div>
@@ -390,7 +369,7 @@ tr[hidden] { display: none; }
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">8</span>よくある質問</h3>
+      <h3><span class="n">7</span>よくある質問</h3>
       <ul>
         <li>FAQページは作れないので、トップの <span class="tag base">#faq</span> にアコーディオンで置く</li>
         <li>ヒアリングで「FAQ・保存方法・商品ごとの注意事項」が必要と回答済み</li>
@@ -398,7 +377,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 9 卸・メディア -->
+    <!-- 8 卸・メディア -->
     <div class="sp">
       <section class="s biz" id="biz">
         <div class="eyebrow">For Business</div>
@@ -410,7 +389,7 @@ tr[hidden] { display: none; }
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">9</span>卸・メディア向け</h3>
+      <h3><span class="n">8</span>卸・メディア向け</h3>
       <ul>
         <li>方針どおり「目立たせすぎない」位置（フッター直前）</li>
         <li>BASEのお問い合わせフォームは項目を足せないため、本文冒頭の【卸】【取材】で振り分け</li>
@@ -418,7 +397,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 10 フッター -->
+    <!-- 9 フッター -->
     <div class="sp last">
       <footer class="footer">
         <span class="logo">ロゴ（未定）</span>
@@ -430,7 +409,7 @@ tr[hidden] { display: none; }
       </footer>
     </div>
     <aside class="note last">
-      <h3><span class="n">10</span>フッター</h3>
+      <h3><span class="n">9</span>フッター</h3>
       <ul>
         <li>特商法・プライバシー・ブログは共通枠に本文が入る（個別デザイン不可）</li>
         <li>必須タグ <span class="tag base">{IllegalReportTag}</span> などは消さずに残す</li>
