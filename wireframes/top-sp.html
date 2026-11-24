@@ -133,6 +133,13 @@ body {
 .grp-items li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; font-size: 12.5px; }
 .grp-items a { color: var(--ink); text-decoration: none; }
 .grp-items .badge { font-size: 9.5px; }
+.help { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--fill); border-radius: 4px; padding: 10px 12px; font-size: 12px; color: var(--muted); text-decoration: none; }
+.help b { color: var(--accent); font-weight: 500; }
+.chip.on { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.lbls { display: flex; flex-wrap: wrap; gap: 4px; }
+.lbl { font-size: 10px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; padding: 0 5px; }
+.lbl.pop { background: var(--accent); color: var(--paper); }
+.more { align-self: flex-end; font-size: 12px; color: var(--accent); text-decoration: none; }
 .kw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; text-align: center; }
 .kw > div { display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; line-height: 1.5; }
 .kw .photo { font-size: 10px; padding: 4px; }
@@ -280,34 +287,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 3 商品一覧 -->
-    <div class="sp">
-      <section class="s" id="items">
-        <div class="eyebrow">Items</div>
-        <h2 class="h2">商品一覧</h2>
-        <div class="chips">
-          <span class="chip">すべて</span><span class="chip">ジャーキー</span><span class="chip">ふりかけ</span><span class="chip">大容量 500g</span>
-        </div>
-        <div class="grid2">
-          <div class="item"><div class="photo"><div>商品画像</div></div>ささみジャーキー<span class="price">770円〜</span></div>
-          <div class="item"><div class="photo"><div>商品画像</div></div>むねジャーキー<span class="price">770円〜</span></div>
-          <div class="item"><div class="photo"><div>商品画像</div></div>きもジャーキー<span class="price">770円〜</span></div>
-          <div class="item"><div class="photo"><div>商品画像</div></div>ささみふりかけ<span class="price">825円〜</span></div>
-        </div>
-        <a class="btn sec" href="#items">もっと見る</a>
-      </section>
-    </div>
-    <aside class="note">
-      <h3><span class="n">3</span>商品一覧</h3>
-      <ul>
-        <li><span class="tag base">{block:Items}</span> で自動表示（商品名・価格・画像・SOLD OUT）</li>
-        <li>上のチップはBASEの「カテゴリ」へのリンク。リピーター向けに「大容量 500g」を目立つ位置に</li>
-        <li>商品画像の背景・構図を揃える（木のテーブル・白い器・窓の光）</li>
-        <li><span class="tag tbd">要確認</span> 頭・きも・砂肝の写真が不足（撮影リスト No.3・4・6・7）</li>
-      </ul>
-    </aside>
-
-    <!-- 4 選び方 -->
+    <!-- 3 選び方 -->
     <div class="sp">
       <section class="s" id="guide">
         <div class="eyebrow">How to Choose</div>
@@ -321,6 +301,7 @@ tr[hidden] { display: none; }
             <li><a href="#">きも（レバー）</a></li>
             <li><a href="#">鶏頭</a></li>
           </ul>
+          <a class="more" href="#">このグループをすべて見る ›</a>
         </div>
         <div class="grp">
           <div class="grp-head"><b>噛みごたえ</b><span>噛むのが好きな子に</span></div>
@@ -330,26 +311,60 @@ tr[hidden] { display: none; }
             <li><a href="#">手羽先</a></li>
             <li><a href="#">鶏足</a></li>
           </ul>
+          <a class="more" href="#">このグループをすべて見る ›</a>
         </div>
         <div class="grp">
           <div class="grp-head"><b>ごはんにかける</b><span>食が細い子・水分補給に</span></div>
           <ul class="grp-items">
             <li><a href="#">ささみふりかけ</a></li>
           </ul>
+          <a class="more" href="#">このグループをすべて見る ›</a>
         </div>
         <a class="btn sec" href="#">詳しい選び方・比較表（ブログ）</a>
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">4</span>選び方（3グループ）</h3>
+      <h3><span class="n">3</span>選び方（3グループ）</h3>
       <ul>
         <li>9種類の比較表はブログ記事へ移し、トップは3グループの短い版に（谷さん案）</li>
         <li>グループ分けは南さんの硬さ評価から：☆1〜2＝やわらかめ、☆3〜5＝噛みごたえ</li>
+        <li>「このグループをすべて見る」は同名のBASEカテゴリページへ（商品一覧のチップと同じ行き先）</li>
         <li>各商品名は商品ページ <span class="tag base">/items/商品ID</span> への手書きリンク。バナー②の飛び先はここ</li>
         <li>ブログ記事：比較表（画像。Instagram・マルシェと共用）＋部位ごとの説明・骨の有無・与え方の注意</li>
         <li><span class="tag tbd">要確認</span> BASEのブログで表がそのまま書けるか（無理なら画像）</li>
         <li><span class="tag tbd">未決</span> 名称変更（ずり→砂肝／ネック→軟骨入りセセリ／もみじ→鶏足）</li>
         <li>鶏頭はやわらかめ（☆2）だが骨入り。注意は商品ページとブログで明記</li>
+      </ul>
+    </aside>
+
+    <!-- 4 商品一覧 -->
+    <div class="sp">
+      <section class="s" id="items">
+        <div class="eyebrow">Items</div>
+        <h2 class="h2">商品一覧</h2>
+        <a class="help" href="#guide">どれがいいか迷ったら<b>選び方を見る ›</b></a>
+        <div class="chips">
+          <span class="chip on">すべて</span><span class="chip">やわらかめ</span><span class="chip">噛みごたえ</span><span class="chip">ごはんにかける</span><span class="chip">大容量 500g</span><span class="chip">お試しセット</span>
+        </div>
+        <div class="grid2">
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl pop">いちばん人気</span><span class="lbl">やわらかめ</span></span>ささみジャーキー<span class="price">770円〜</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl">やわらかめ</span></span>むねジャーキー<span class="price">770円〜</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl">噛みごたえ</span></span>砂肝ジャーキー<span class="price">770円〜</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl">ごはんにかける</span></span>ささみふりかけ<span class="price">825円〜</span></div>
+        </div>
+        <a class="btn sec" href="#items">もっと見る</a>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">4</span>商品一覧</h3>
+      <ul>
+        <li><span class="tag base">{block:Items}</span> で自動表示（商品名・価格・画像・SOLD OUT）</li>
+        <li><b>直接来た人への手当て①</b> 先頭に「迷ったら選び方を見る」→ 上の選び方（#guide）へ戻る</li>
+        <li><b>手当て②</b> チップ＝BASEの「カテゴリ」へのリンク。カテゴリを選び方の3グループ＋大容量500g＋お試しセットにそろえる（管理画面で南さんが更新可）</li>
+        <li><b>手当て③</b> カードのラベル（いちばん人気／やわらかめ…）はテーマのJSで商品名に応じて付与。商品が増えたらJSの対応表を更新</li>
+        <li>カテゴリページ（<span class="tag base">{block:IndexPageCategory}</span>）も同じ枠なので、①③はそこでも効く</li>
+        <li><span class="tag tbd">要確認</span> 1商品を複数カテゴリに入れられるか（ささみ＝やわらかめ＋大容量 など）</li>
+        <li><span class="tag tbd">要確認</span> 頭・きも・砂肝の写真が不足（撮影リスト No.3・4・6・7）</li>
       </ul>
     </aside>
 
