@@ -1,0 +1,225 @@
+<title>kukusini 商品詳細 仮組み</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+.crumb { font-size: 12px; color: var(--muted); padding-block: 20px 0; }
+.crumb a { text-decoration: none; }
+.upper { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; padding-block: 24px 72px; align-items: start; }
+.gal { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px; }
+.gal .thumbs { display: flex; flex-direction: column; gap: 10px; }
+.gal .thumbs button { padding: 0; border: 1px solid var(--line); background: none; cursor: pointer; border-radius: 2px; overflow: hidden; }
+.gal .thumbs button[aria-pressed="true"] { outline: 2px solid var(--green); outline-offset: 1px; }
+.gal .thumbs button:focus-visible { outline: 2px solid var(--kraft); outline-offset: 2px; }
+.gal .thumbs img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.gal .main img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
+@media (max-width: 860px) {
+  .upper { grid-template-columns: 1fr; gap: 28px; }
+  .gal { grid-template-columns: 1fr; }
+  .gal .thumbs { flex-direction: row; order: 2; overflow-x: auto; }
+  .gal .thumbs button { flex: 0 0 64px; }
+}
+.desc { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.pname { font-family: var(--mincho); font-weight: 500; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.6; letter-spacing: .06em; margin: 0; }
+.price { font-size: 24px; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.price small { font-size: 12px; color: var(--muted); margin-left: 6px; }
+.buy { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 20px; display: flex; flex-direction: column; gap: 14px; }
+.qty { display: flex; align-items: center; justify-content: space-between; font-size: 13.5px; }
+.qty select { font: inherit; padding: 6px 28px 6px 12px; border: 1px solid var(--line); border-radius: 2px; background: var(--paper); color: var(--ink); }
+.buy .btn { text-align: center; font-size: 15px; padding: 15px; border: 0; cursor: pointer; font-family: inherit; }
+.lead2 { font-size: 15px; line-height: 2.1; }
+.sizes { display: flex; flex-direction: column; gap: 8px; }
+.sizes .h { font-size: 12px; color: var(--muted); letter-spacing: .1em; }
+.sizes .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.sizes a { border: 1px solid var(--line); border-radius: 2px; padding: 10px 6px; text-align: center; text-decoration: none; font-size: 13px; line-height: 1.5; background: var(--paper); font-variant-numeric: tabular-nums; }
+.sizes a small { display: block; color: var(--muted); font-size: 12px; }
+.sizes a[aria-current="page"] { border-color: var(--green); outline: 1px solid var(--green); }
+
+.spec { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.spec div { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 18px 10px; text-align: center; display: flex; flex-direction: column; gap: 4px; }
+.spec span { font-size: 12px; color: var(--muted); letter-spacing: .1em; }
+.spec i { font-style: normal; color: var(--green); letter-spacing: 3px; font-size: 13px; }
+.spec b { font-family: var(--mincho); font-weight: 600; font-size: 17px; }
+.lower { background: var(--green-soft); }
+.lower .grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+.lower h3 { font-family: var(--mincho); font-weight: 600; font-size: 19px; letter-spacing: .06em; margin: 0 0 16px; }
+.uses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 36px; }
+.uses figure { margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 13px; text-align: center; }
+.uses img, .uses .noimg { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
+.info { width: 100%; border-collapse: collapse; font-size: 14px; }
+.info th, .info td { border-bottom: 1px solid var(--line); padding: 12px 4px; text-align: left; vertical-align: top; }
+.info th { width: 32%; font-weight: 400; color: var(--muted); }
+.caution { margin-top: 28px; background: var(--paper); border-radius: 4px; padding: 18px 20px; font-size: 14px; }
+.caution b { display: block; font-family: var(--mincho); font-weight: 600; font-size: 16px; margin-bottom: 6px; }
+.caution ul { margin: 0; padding-left: 1.2em; }
+@media (max-width: 860px) { .lower .grid2 { grid-template-columns: 1fr; gap: 40px; } }
+.links2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.links2 .help { margin: 0; }
+@media (max-width: 600px) { .links2 { grid-template-columns: 1fr; } }
+
+.review .r { border-top: 1px solid var(--line); padding-block: 18px; display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 20px; font-size: 14px; }
+.review .stars { color: var(--kraft); letter-spacing: 2px; }
+@media (max-width: 600px) { .review .r { grid-template-columns: 1fr; gap: 4px; } }
+.rel .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 860px) { .rel .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.about-bn { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: stretch; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; text-decoration: none; }
+.about-bn img { width: 100%; height: 100%; max-height: 360px; object-fit: cover; }
+.about-bn .t { padding: 32px 36px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+.about-bn b { font-family: var(--mincho); font-weight: 500; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.7; letter-spacing: .06em; }
+.about-bn small { color: var(--muted); font-size: 13px; }
+.about-bn .go { color: var(--green); font-size: 13.5px; }
+@media (max-width: 700px) { .about-bn { grid-template-columns: 1fr; } .about-bn img { aspect-ratio: 16 / 9; min-height: 0; } .about-bn .t { padding: 22px; } }
+</style>
+
+<div class="mock-bar">仮組み：Google ドライブの写真で作った見本です（例：ささみ 60g。文章は仮原稿。<span class="tbd">オレンジ</span>は未決・確認待ち）</div>
+<header class="site">
+  <div class="in hbar">
+    <a class="logo" href="top.html"><img src="img/logo.png" alt="kukusini" width="455" height="348"></a>
+    <button class="menu-btn" id="menu-btn" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="gnav"><span></span></button>
+    <nav class="gnav" id="gnav" hidden>
+      <ul>
+        <li><a href="top.html#guide">選び方</a></li>
+        <li><a href="top.html#items">商品一覧</a></li>
+        <li><a href="about.html">kukusiniについて</a></li>
+        <li><a href="top.html#faq">よくある質問</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul>
+    </nav>
+    <a class="cart" href="#">カート</a>
+  </div>
+</header>
+
+<main>
+  <div class="in crumb"><a href="top.html">トップ</a> ／ <a href="top.html#items">やわらかめ</a> ／ ささみジャーキー</div>
+
+  <section class="in upper">
+    <div class="gal">
+      <div class="thumbs" id="thumbs">
+        <button type="button" aria-pressed="true" data-src="img/sasami.jpg" aria-label="パッケージと中身"><img src="img/sasami.jpg" alt="" width="900" height="900"></button>
+        <button type="button" aria-pressed="false" data-src="img/break.jpg" aria-label="手で割ったところ"><img src="img/break.jpg" alt="" width="1000" height="746"></button>
+        <button type="button" aria-pressed="false" data-src="img/handcut.jpg" aria-label="手切りの様子"><img src="img/handcut.jpg" alt="" width="964" height="1280"></button>
+        <button type="button" aria-pressed="false" data-src="img/sasami-500.jpg" aria-label="大容量500g"><img src="img/sasami-500.jpg" alt="" width="900" height="900"></button>
+      </div>
+      <div class="main"><img id="main-img" src="img/sasami.jpg" alt="淡路どり ささみジャーキーのパッケージと中身" width="900" height="900"></div>
+    </div>
+
+    <div class="desc">
+      <span class="lbls"><span class="lbl pop">いちばん人気</span><span class="lbl">やわらかめ</span></span>
+      <h1 class="pname">淡路どり ささみジャーキー 60g</h1>
+      <div class="price">990円<small>（税込）</small></div>
+      <div class="buy">
+        <div class="qty"><label for="qty">数量</label><select id="qty"><option>1</option><option>2</option><option>3</option></select></div>
+        <button class="btn fill" type="button">カートに入れる</button>
+      </div>
+      <p class="lead2">手でさくっと割れるやわらかさと、鶏の香りの強さが特長。ベビーからシニアまで、どんな子にも使える定番です。</p>
+      <div class="sizes">
+        <span class="h">ほかのサイズ</span>
+        <div class="row">
+          <a href="#">35g<small>770円</small></a>
+          <a href="#" aria-current="page">60g<small>990円</small></a>
+          <a href="#">500g<small>5,940円</small></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec lower">
+    <div class="in">
+      <div class="spec">
+        <div><span>かたさ</span><i>●○○○○</i><b>やわらかめ</b></div>
+        <div><span>香り</span><i>●●●●○</i><b>強め</b></div>
+        <div><span>おすすめ</span><i>&nbsp;</i><b>全犬種</b></div>
+      </div>
+      <div class="uses">
+        <figure><img src="img/break.jpg" alt="" width="1000" height="746"><figcaption>おやつ・ごほうびに</figcaption></figure>
+        <figure><div class="noimg">写真 撮影待ち</div><figcaption>フードのトッピングに</figcaption></figure>
+        <figure><div class="noimg">写真 撮影待ち</div><figcaption>ふやかしてシニアにも</figcaption></figure>
+      </div>
+      <div class="grid2" style="margin-top:56px">
+        <div>
+          <h3>商品情報</h3>
+          <table class="info">
+            <tr><th>原材料</th><td>鶏ささみ（淡路どり）</td></tr>
+            <tr><th>内容量</th><td>60g</td></tr>
+            <tr><th>大きさ</th><td>4cm前後・薄め</td></tr>
+            <tr><th>保存方法</th><td><span class="tbd">確認待ち</span></td></tr>
+            <tr><th>賞味期限</th><td><span class="tbd">確認待ち</span></td></tr>
+          </table>
+        </div>
+        <div>
+          <h3>与えるときの注意</h3>
+          <div class="caution" style="margin-top:0">
+            <ul>
+              <li>鶏アレルギーのある子には与えないでください。</li>
+              <li>食べている間は、目を離さないでください。</li>
+            </ul>
+          </div>
+          <div class="links2">
+            <a class="help" href="top.html#guide">迷ったら<b>選び方を見る ›</b></a>
+            <a class="help" href="top.html#faq">保存・送料など<b>よくある質問 ›</b></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec review">
+    <div class="in">
+      <p class="eyebrow">Review</p>
+      <h2>レビュー</h2>
+      <div class="r"><span class="stars">★★★★★</span><p>ほかのおやつは食べないけれど、これだけは食べます。 <span class="tbd">表示例</span></p></div>
+      <div class="r"><span class="stars">★★★★★</span><p>シニアの子にも、ふやかしてあげています。 <span class="tbd">表示例</span></p></div>
+    </div>
+  </section>
+
+  <section class="sec rel" style="padding-top:24px">
+    <div class="in">
+      <h2>ほかの部位も、くらべてみる</h2>
+      <div class="grid">
+        <a class="item" href="#"><img src="img/mune-500.jpg" alt="" width="900" height="900"><span class="lbls"><span class="lbl">やわらかめ</span></span><span class="nm">淡路どり むねジャーキー</span><span class="pr">770円〜</span></a>
+        <a class="item" href="#"><img src="img/neck.jpg" alt="" width="900" height="900"><span class="lbls"><span class="lbl">噛みごたえ</span></span><span class="nm">淡路どり ネックジャーキー</span><span class="pr">770円〜</span></a>
+        <a class="item" href="#"><div class="noimg">写真 撮影待ち</div><span class="lbls"><span class="lbl">ごはんにかける</span></span><span class="nm">淡路どり ささみふりかけ</span><span class="pr">825円〜</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="in">
+      <a class="about-bn" href="about.html#craft">
+        <img src="img/handcut.jpg" alt="生の鶏肉を包丁で切っている手元" width="964" height="1280">
+        <span class="t"><span class="eyebrow" style="margin:0">Material &amp; Craft</span><b>その日の朝の鶏肉を、<br>その日のうちに。</b><small>淡路どりのこと・手切りのこと</small><span class="go">素材とつくり方を見る ›</span></span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="in">
+    <div class="frow">
+      <img class="flogo" src="img/logo.png" alt="kukusini" width="455" height="348">
+      <ul>
+        <li><a href="about.html">kukusiniについて</a></li><li><a href="top.html#items">商品一覧</a></li><li><a href="top.html#faq">よくある質問</a></li><li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">特定商取引法に基づく表記</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">ブログ</a></li><li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+    <p class="copy">© kukusini</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var b = document.getElementById('menu-btn'), n = document.getElementById('gnav');
+  b.addEventListener('click', function () {
+    var open = b.getAttribute('aria-expanded') === 'true';
+    b.setAttribute('aria-expanded', open ? 'false' : 'true');
+    n.hidden = open;
+  });
+  var main = document.getElementById('main-img');
+  document.querySelectorAll('#thumbs button').forEach(function (t) {
+    t.addEventListener('click', function () {
+      main.src = t.getAttribute('data-src');
+      document.querySelectorAll('#thumbs button').forEach(function (x) { x.setAttribute('aria-pressed', x === t ? 'true' : 'false'); });
+    });
+  });
+})();
+</script>

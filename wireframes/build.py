@@ -21,6 +21,7 @@ PAGES = [
     ("item-pc.html", "ワイヤー：商品詳細", "PC"),
     ("mock/top.html", "仮組み（写真入り）", "トップ"),
     ("mock/about.html", "仮組み（写真入り）", "About"),
+    ("mock/item.html", "仮組み（写真入り）", "商品詳細"),
 ]
 
 # claude.ai で共有していたときのリンクを、同じサイト内の相対リンクに置き換える
