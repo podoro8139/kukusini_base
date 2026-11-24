@@ -58,12 +58,17 @@ const stars = n => n === 0 ? '<span class="pw">粉末</span>' :
 const STAR_CSS = `.st { letter-spacing: -2px; color: #e2dbcd; } .st i { font-style: normal; } .st .on { color: #e0a526; }
   .pw { color: var(--muted); }`;
 
-// ⓪' 商品ごとの小さな画像（各商品の説明の頭に置く。写真は直後の商品カードに任せる）
+// ⓪' 商品ごとの画像（各商品の説明の頭に置く）。写真は photo/<id>.jpg（ショップの商品ページのメイン写真）。無い商品は写真なし
+const photo = it => { const f = path.join(DIR, 'photo', it.id + '.jpg'); return fs.existsSync(f) ? dataUri(f) : ''; };
 function specHtml(it) {
   const G = GROUPS[it.g];
   return `<style>${BASE_CSS}${STAR_CSS}
   body { background: transparent; }
-  .card { margin: 0; background: var(--paper); border: 2px solid var(--cs); border-top: 10px solid var(--c); border-radius: 20px; padding: 30px 40px 32px; }
+  .card { margin: 0; background: var(--paper); border: 2px solid var(--cs); border-top: 10px solid var(--c); border-radius: 20px; padding: 30px 36px 32px;
+    display: flex; gap: 32px; align-items: center; }
+  .card > img { width: 250px; height: 250px; object-fit: cover; border-radius: 14px; flex: none; }
+  .main { flex: 1; min-width: 0; }
+  .card:has(> img) .rate { grid-template-columns: 1fr; gap: 10px; }
   .top { display: flex; gap: 12px; align-items: center; }
   .grp { background: var(--cs); color: var(--c); font-weight: 700; font-size: 22px; padding: 4px 16px; border-radius: 999px; }
   .tag { font-size: 22px; color: var(--muted); }
@@ -74,12 +79,12 @@ function specHtml(it) {
   .rate b { font-size: 24px; } .st { font-size: 34px; } .pw { font-size: 24px; }
   .who { margin-top: 16px; font-size: 25px; } .who b { color: var(--c); margin-right: 10px; }
   </style>
-  <div class="card c-${it.g}">
+  <div class="card c-${it.g}">${photo(it) ? `<img src="${photo(it)}" alt="">` : ''}<div class="main">
     <div class="top"><span class="grp">${G.label}</span><span class="tag">${it.tag}</span></div>
     <h2>${it.name}${it.pop ? '<em>人気No.1</em>' : ''}</h2>
     <div class="rate"><div><b>かたさ</b>${stars(it.hard)}</div><div><b>香り</b>${stars(it.aroma)}</div></div>
     <p class="who"><b>こんな子に</b>${it.who}</p>
-  </div>`;
+  </div></div>`;
 }
 
 // ① かたさ × 香り のマップ
