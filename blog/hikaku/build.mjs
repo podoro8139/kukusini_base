@@ -52,50 +52,11 @@ h1 { font-family: MC, serif; font-weight: 700; font-size: 54px; letter-spacing: 
 const dots = (n, c = 'var(--c)') => n === 0 ? '<span class="na">粉末</span>' :
   '<span class="dots">' + [1,2,3,4,5].map(i => `<i style="background:${i <= n ? c : 'transparent'};border-color:${c}"></i>`).join('') + '</span>';
 
-// ⓪ 記事の最初に置く画像（シンプル版）：タイトル＋見方＋迷ったときの早見
+// ★の表示（商品ごとの画像で使う）
 const stars = n => n === 0 ? '<span class="pw">粉末</span>' :
   '<span class="st">' + [1,2,3,4,5].map(i => `<i class="${i <= n ? 'on' : ''}">★</i>`).join('') + '</span>';
 const STAR_CSS = `.st { letter-spacing: -2px; color: #e2dbcd; } .st i { font-style: normal; } .st .on { color: #e0a526; }
   .pw { color: var(--muted); }`;
-
-function heroHtml() {
-  return `<style>${BASE_CSS}${STAR_CSS}
-  body { background: #f4efe6; }
-  .wrap { padding: 56px 48px 52px; }
-  .logo { display: block; height: 58px; margin: 0 auto; }
-  .kicker { text-align: center; font-size: 30px; font-weight: 700; color: var(--kraft); margin-top: 26px; letter-spacing: .1em; }
-  h1 { text-align: center; font-size: 60px; margin-top: 4px; }
-  h1 span { background: linear-gradient(transparent 68%, #f6dc8a 68%); padding: 0 6px; }
-  .lead { text-align: center; margin-top: 10px; }
-  .how { display: flex; align-items: center; gap: 24px; background: var(--paper); border-radius: 18px; padding: 20px 28px; margin-top: 34px; }
-  .how b { background: #f1e2d0; color: #8a5a2b; font-size: 22px; padding: 12px 18px; border-radius: 10px; white-space: nowrap; }
-  .how p { font-size: 22px; line-height: 1.6; flex: 1; } .how p strong { font-size: 25px; }
-  .how p + p { border-left: 1px solid var(--line); padding-left: 24px; }
-  .pick { margin-top: 28px; background: #ebe0cf; border-radius: 22px; padding: 26px 24px 24px; }
-  .pick h3 { text-align: center; font-size: 32px; color: #6b4a2a; letter-spacing: .1em; }
-  .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px; }
-  .tiles p { background: var(--paper); border-radius: 14px; padding: 16px 22px; font-size: 23px; line-height: 1.5; }
-  .tiles b { display: block; font-size: 30px; color: var(--green); }
-  </style>
-  <div class="wrap">
-    <img class="logo" src="${dataUri(path.join(DIR, '../../wireframes/mock/img/logo.png'))}" alt="kukusini">
-    <p class="kicker">どれにする？</p>
-    <h1><span>淡路どりジャーキーの選び方</span></h1>
-    <p class="lead">かたさと香りで、うちの子に合う1袋を。</p>
-    <div class="how"><b>見方</b>
-      <p><strong>★ かたさ</strong><br>多いほどかたく、噛みごたえあり</p>
-      <p><strong>★ 香り</strong><br>多いほど鶏の香りが強い</p>
-    </div>
-    <div class="pick"><h3>迷ったら、これ</h3>
-      <div class="tiles">
-        <p>はじめてなら<b>→ ささみ</b></p>
-        <p>噛むのが好きなら<b>→ 手羽先</b></p>
-        <p>食が細くなってきたら<b>→ ささみふりかけ</b></p>
-        <p>香りの強いものが好きなら<b>→ きも（レバー）</b></p>
-      </div>
-    </div>
-  </div>`;
-}
 
 // ⓪' 商品ごとの小さな画像（各商品の説明の頭に置く。写真は直後の商品カードに任せる）
 function specHtml(it) {
@@ -142,11 +103,15 @@ function mapHtml() {
   .ax b { color: var(--ink); font-weight: 700; }
   .legend { display: flex; gap: 28px; margin-top: 26px; font-size: 23px; }
   .legend span::before { content: ""; display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: var(--c); margin-right: 8px; vertical-align: -2px; }
+  .logo { display: block; height: 52px; margin: 0 auto 22px; }
+  .eyebrow, h1, .lead { text-align: center; } .eyebrow { font-weight: 700; font-size: 26px; letter-spacing: .1em; }
+  h1 { font-size: 58px; } h1 span { background: linear-gradient(transparent 68%, #f6dc8a 68%); padding: 0 6px; }
   .meal { margin-top: 22px; background: var(--cs); border-left: 6px solid var(--c); padding: 16px 22px; font-size: 24px; line-height: 1.6; border-radius: 4px; }
   </style>
   <div class="wrap">
-    <p class="eyebrow">CHART</p>
-    <h1>かたさと香りで見る、全9種</h1>
+    <img class="logo" src="${dataUri(path.join(DIR, '../../wireframes/mock/img/logo.png'))}" alt="kukusini">
+    <p class="eyebrow">どれにする？ 全9種</p>
+    <h1><span>淡路どりジャーキーの選び方</span></h1>
     <p class="lead">右へいくほどかたく、上へいくほど香りが強い。</p>
     <div class="map">${grid}${pts}
       <div class="ax" style="left:${pad.l}px;bottom:18px">← <b>やわらかい</b></div>
@@ -157,7 +122,6 @@ function mapHtml() {
     <div class="legend"><span class="c-soft">やわらかめ</span><span class="c-chew">噛みごたえ</span></div>
     <div class="meal c-meal"><b>${meal.name}</b>（香り ${'★'.repeat(meal.aroma)}）はフードにかける粉末タイプです。</div>
     <p class="foot">※かたさ・香りは作り手の実感による5段階です。</p>
-    <p class="brand">kukusini</p>
   </div>`;
 }
 
@@ -196,7 +160,7 @@ function tableHtml() {
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1080, height: 800 }, deviceScaleFactor: 1 });
-const PAGES = [['00_hero.png', heroHtml()], ['01_map.png', mapHtml()], ['02_table.png', tableHtml()],
+const PAGES = [['01_map.png', mapHtml()], ['02_table.png', tableHtml()],
   ...ITEMS.map((it, k) => [`1${k}_${it.id}.png`, specHtml(it)])];
 for (const [file, html] of PAGES) {
   await page.setContent(`<!doctype html><meta charset="utf-8"><body>${html}</body>`, { waitUntil: 'networkidle' });
