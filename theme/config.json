@@ -1,0 +1,33 @@
+{
+  "_説明": "BASEのファイルアップローダーに画像を上げたら、そのURLを images に貼る。カテゴリを作ったら categories にURLを貼る。空欄のままだと、画像は表示されず、カテゴリは「商品一覧」に飛ぶ。",
+  "images": {
+    "LOGO": "",
+    "LINEUP": "",
+    "SASAMI": "",
+    "BREAK": "",
+    "HANDCUT": "",
+    "TRAY": "",
+    "AWAJI": "",
+    "CHEW": ""
+  },
+  "categories": {
+    "ALL": "https://kukusini.base.shop/categories/5732586",
+    "SOFT": "",
+    "CHEW": "",
+    "FURIKAKE": "",
+    "BULK": "",
+    "TRIAL": ""
+  },
+  "urls": {
+    "TRIAL": "",
+    "BLOG_GUIDE": "",
+    "INSTAGRAM": "https://www.instagram.com/kukusini193/"
+  },
+  "sizes": {
+    "_例": [
+      { "id": 0, "label": "35g 770円" },
+      { "id": 0, "label": "60g 990円" },
+      { "id": 0, "label": "500g 5,940円" }
+    ]
+  }
+}

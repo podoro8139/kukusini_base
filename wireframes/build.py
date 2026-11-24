@@ -158,6 +158,9 @@ a:hover, a:focus-visible { border-color:var(--accent); outline:none; }
 <h1>kukusini ECサイトリニューアル<br>ワイヤーフレーム</h1>
 <p>打ち合わせ用の検討資料です。ワイヤーは文章が仮原稿・写真は枠のみ、仮組みはGoogleドライブの写真を当てはめた見本です。どのページも、上のバーか右下の「ページ一覧」で行き来できます。</p>
 {blocks}
+<section><h2>BASE用テンプレート（試作）のプレビュー</h2><ul>
+<li><a href="theme-preview/top.html">トップ</a></li><li><a href="theme-preview/category.html">カテゴリ</a></li>
+<li><a href="theme-preview/item.html">商品詳細</a></li><li><a href="theme-preview/about.html">About</a></li></ul></section>
 </main>""")
 
 
@@ -174,6 +177,9 @@ def main():
     shutil.copytree(SRC / "mock" / "img", OUT / "mock" / "img")
     (OUT / "index.html").write_text(index(), encoding="utf-8")
     print(f"wrote {len(PAGES) + 1} pages to {OUT}")
+    # BASE 用テンプレートのプレビューも同じサイトに載せる
+    import subprocess, sys
+    subprocess.run([sys.executable, str(SRC.parent / "theme" / "build.py")], check=True)
 
 
 if __name__ == "__main__":
