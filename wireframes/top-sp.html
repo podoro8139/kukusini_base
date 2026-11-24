@@ -217,7 +217,7 @@ tr[hidden] { display: none; }
         <div class="hero-copy">
           <p class="catch">うちの子のために、<br>素材からつくり方まで。</p>
           <p class="lead">うちの子に、安心して「おいしいよ」と渡せるものを。淡路どりのジャーキーです。</p>
-          <a class="bn bn-trial" href="#first">
+          <a class="bn bn-trial" href="#">
             <span class="photo sq"><span>セット<br>写真</span></span>
             <span class="bn-body">
               <span class="bn-tag">初回限定 ／ 送料無料</span>
@@ -248,7 +248,7 @@ tr[hidden] { display: none; }
         <li>リードはこだわりの説明を入れず短く（素材の話は次の節とAboutに任せる）</li>
         <li>ボタン2つをバナー2枚に変更（谷さん案）：①お試しセット＝新規購入の入口 ②比較表＝「何を買えばいいか分からない」の解消</li>
         <li>バナー②の文言候補：「うちの子の『好き』はどれ？」／「部位で変わる、食いつき。」／「かたい？やわらかい？ 9種類の比べ方」。「たべやすさ・風味」は表の項目に合わせて「かたさ・香り」に</li>
-        <li><span class="tag tbd">未決</span> お試しセットの中身（仮にA案を表示）・送料無料（議題①⑤）。セットが間に合わなければバナー①は「まずはささみ」に差し替え</li>
+        <li><span class="tag tbd">未決</span> お試しセットの中身（仮にA案を表示）・送料無料（議題①⑤）。バナー①はセットの商品ページへ直接リンク。セットが間に合わなければ「まずはささみから」にしてささみの商品ページへ</li>
         <li><span class="tag tbd">要確認</span>「初回限定・送料無料」をBASEの機能でどう実現するか（送料設定・クーポン等）</li>
         <li>ヒーローは画面いっぱいにせず、バナー1枚目が1画面目に見える高さに</li>
       </ul>
@@ -280,29 +280,30 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 3 はじめての方へ -->
+    <!-- 3 商品一覧 -->
     <div class="sp">
-      <section class="s" id="first">
-        <div class="eyebrow">For Beginners</div>
-        <h2 class="h2">はじめての方は、<br>まずささみから。</h2>
-        <div class="card">
-          <span class="badge">いちばん人気</span>
-          <div class="photo"><div><b>ささみ：パッケージ＋中身</b>既存の商品写真から選定</div></div>
-          <div class="name">淡路どり ささみジャーキー</div>
-          <p class="lead" style="font-size:12.5px">手でさくっと割れるやわらかさ。おやつにも、フードのトッピングにも。「ほかのおやつは食べないけれど、これだけは食べる」という声がいちばん多い商品です。</p>
-          <div class="price">35g 770円 ／ 60g 990円 ／ 500g 5,940円</div>
-          <a class="btn pri" href="#items">ささみを見る</a>
+      <section class="s" id="items">
+        <div class="eyebrow">Items</div>
+        <h2 class="h2">商品一覧</h2>
+        <div class="chips">
+          <span class="chip">すべて</span><span class="chip">ジャーキー</span><span class="chip">ふりかけ</span><span class="chip">大容量 500g</span>
         </div>
-        <div class="tbd"><b>お試しセット（未決）</b><br>A：ささみ・むね・ふりかけの3種 ／ B：ささみ中心の初回限定 ／ C：食べ比べ<br>内容・価格・専用パッケージは次回打ち合わせで決定</div>
+        <div class="grid2">
+          <div class="item"><div class="photo"><div>商品画像</div></div>ささみジャーキー<span class="price">770円〜</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div>むねジャーキー<span class="price">770円〜</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div>きもジャーキー<span class="price">770円〜</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div>ささみふりかけ<span class="price">825円〜</span></div>
+        </div>
+        <a class="btn sec" href="#items">もっと見る</a>
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">3</span>はじめての方へ</h3>
+      <h3><span class="n">3</span>商品一覧</h3>
       <ul>
-        <li>目的：「何を買えばいいか分からない」を減らす（新規購入）</li>
-        <li>ささみカードは商品ページ <span class="tag base">/items/商品ID</span> への手書きリンク</li>
-        <li><span class="tag tbd">未決</span> お試しセット（議題①・最優先）。決まらなければささみカードのみで公開</li>
-        <li>セット写真は撮影リスト No.13（構成決定後）</li>
+        <li><span class="tag base">{block:Items}</span> で自動表示（商品名・価格・画像・SOLD OUT）</li>
+        <li>上のチップはBASEの「カテゴリ」へのリンク。リピーター向けに「大容量 500g」を目立つ位置に</li>
+        <li>商品画像の背景・構図を揃える（木のテーブル・白い器・窓の光）</li>
+        <li><span class="tag tbd">要確認</span> 頭・きも・砂肝の写真が不足（撮影リスト No.3・4・6・7）</li>
       </ul>
     </aside>
 
@@ -352,34 +353,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 5 商品一覧 -->
-    <div class="sp">
-      <section class="s" id="items">
-        <div class="eyebrow">Items</div>
-        <h2 class="h2">商品一覧</h2>
-        <div class="chips">
-          <span class="chip">すべて</span><span class="chip">ジャーキー</span><span class="chip">ふりかけ</span><span class="chip">大容量 500g</span>
-        </div>
-        <div class="grid2">
-          <div class="item"><div class="photo"><div>商品画像</div></div>ささみジャーキー<span class="price">770円〜</span></div>
-          <div class="item"><div class="photo"><div>商品画像</div></div>むねジャーキー<span class="price">770円〜</span></div>
-          <div class="item"><div class="photo"><div>商品画像</div></div>きもジャーキー<span class="price">770円〜</span></div>
-          <div class="item"><div class="photo"><div>商品画像</div></div>ささみふりかけ<span class="price">825円〜</span></div>
-        </div>
-        <a class="btn sec" href="#items">もっと見る</a>
-      </section>
-    </div>
-    <aside class="note">
-      <h3><span class="n">5</span>商品一覧</h3>
-      <ul>
-        <li><span class="tag base">{block:Items}</span> で自動表示（商品名・価格・画像・SOLD OUT）</li>
-        <li>上のチップはBASEの「カテゴリ」へのリンク。リピーター向けに「大容量 500g」を目立つ位置に</li>
-        <li>商品画像の背景・構図を揃える（木のテーブル・白い器・窓の光）</li>
-        <li><span class="tag tbd">要確認</span> 頭・きも・砂肝の写真が不足（撮影リスト No.3・4・6・7）</li>
-      </ul>
-    </aside>
-
-    <!-- 6 お客様の声 -->
+    <!-- 5 お客様の声 -->
     <div class="sp">
       <section class="s" id="voice">
         <div class="eyebrow">Voices</div>
@@ -391,7 +365,7 @@ tr[hidden] { display: none; }
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">6</span>お客様の声</h3>
+      <h3><span class="n">5</span>お客様の声</h3>
       <ul>
         <li>文章はヒアリングで聞いたエピソードを仮に要約したもの。実際の声と掲載許可に差し替える</li>
         <li><span class="tag base">レビュー App</span> を入れるなら商品ページ側にも表示できる</li>
@@ -399,7 +373,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 7 FAQ -->
+    <!-- 6 FAQ -->
     <div class="sp">
       <section class="s faq" id="faq">
         <div class="eyebrow">FAQ</div>
@@ -415,7 +389,7 @@ tr[hidden] { display: none; }
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">7</span>よくある質問</h3>
+      <h3><span class="n">6</span>よくある質問</h3>
       <ul>
         <li>FAQページは作れないので、トップの <span class="tag base">#faq</span> にアコーディオンで置く</li>
         <li>ヒアリングで「FAQ・保存方法・商品ごとの注意事項」が必要と回答済み</li>
@@ -423,7 +397,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 8 卸・メディア -->
+    <!-- 7 卸・メディア -->
     <div class="sp">
       <section class="s biz" id="biz">
         <div class="eyebrow">For Business</div>
@@ -435,7 +409,7 @@ tr[hidden] { display: none; }
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">8</span>卸・メディア向け</h3>
+      <h3><span class="n">7</span>卸・メディア向け</h3>
       <ul>
         <li>方針どおり「目立たせすぎない」位置（フッター直前）</li>
         <li>BASEのお問い合わせフォームは項目を足せないため、本文冒頭の【卸】【取材】で振り分け</li>
@@ -443,7 +417,7 @@ tr[hidden] { display: none; }
       </ul>
     </aside>
 
-    <!-- 9 フッター -->
+    <!-- 8 フッター -->
     <div class="sp last">
       <footer class="footer">
         <span class="logo">ロゴ（未定）</span>
@@ -455,7 +429,7 @@ tr[hidden] { display: none; }
       </footer>
     </div>
     <aside class="note last">
-      <h3><span class="n">9</span>フッター</h3>
+      <h3><span class="n">8</span>フッター</h3>
       <ul>
         <li>特商法・プライバシー・ブログは共通枠に本文が入る（個別デザイン不可）</li>
         <li>必須タグ <span class="tag base">{IllegalReportTag}</span> などは消さずに残す</li>
