@@ -1,0 +1,363 @@
+<title>kukusini トップ PC ワイヤー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600&display=swap">
+<style>
+/* レイアウト：中央に PC 画面（幅 960px 相当）を縦に積み、右に各セクションの注記。狭い画面では注記が下に回る */
+:root {
+  --bg: #f3f4f1; --paper: #ffffff; --ink: #2b332d; --muted: #6b746d; --line: #cfd5cf;
+  --fill: #e6e9e4; --hatch: #d7dcd5; --accent: #2f4a3a; --warm: #b26a3c; --warm-bg: #f6e9df;
+  --z-common: #2f4a3a; --z-item: #b26a3c; --z-auto: #8a938c;
+  --mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #171b18; --paper: #222823; --ink: #e4e8e3; --muted: #9aa49c; --line: #3b443d; --fill: #2c332d; --hatch: #343c36;
+  --accent: #9cc2a8; --warm: #e0a07a; --warm-bg: #3a2c22; --z-common: #9cc2a8; --z-item: #e0a07a; --z-auto: #7d877f; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #171b18; --paper: #222823; --ink: #e4e8e3; --muted: #9aa49c; --line: #3b443d; --fill: #2c332d; --hatch: #343c36;
+  --accent: #9cc2a8; --warm: #e0a07a; --warm-bg: #3a2c22; --z-common: #9cc2a8; --z-item: #e0a07a; --z-auto: #7d877f; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.7;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px; }
+.wrap { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+.doc-head { display: flex; flex-direction: column; gap: 10px; }
+.doc-head h1 { font-family: var(--mincho); font-weight: 600; font-size: 26px; margin: 0; letter-spacing: .04em; }
+.doc-head p { margin: 0; color: var(--muted); max-width: 72ch; }
+.eyebrow { font-size: 11px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 18px; height: 12px; border-radius: 2px; display: inline-block; }
+.sw.photo { background: repeating-linear-gradient(45deg, var(--hatch) 0 4px, var(--fill) 4px 8px); border: 1px solid var(--line); }
+.sw.tbd { background: var(--warm-bg); border: 1px dashed var(--warm); }
+.sw.common { background: var(--z-common); } .sw.item { background: var(--z-item); } .sw.auto { background: var(--paper); border: 1px dashed var(--z-auto); }
+
+.rows { display: grid; grid-template-columns: minmax(0, 960px) minmax(0, 1fr); column-gap: 28px; }
+.pc { background: var(--paper); border-left: 1px solid var(--line); border-right: 1px solid var(--line); min-width: 0; position: relative; }
+.pc.first { border-top: 1px solid var(--line); border-radius: 10px 10px 0 0; overflow: hidden; }
+.pc.last { border-bottom: 1px solid var(--line); border-radius: 0 0 10px 10px; overflow: hidden; }
+.note { padding-block: 20px; border-top: 1px solid var(--line); min-width: 0; font-size: 13px; }
+.note.first { border-top: 0; }
+.note h3 { margin: 0 0 6px; font-size: 13px; display: flex; gap: 8px; align-items: baseline; }
+.note h3 .n { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 700; }
+.note ul { margin: 0; padding-left: 1.2em; color: var(--muted); }
+.tag { display: inline-block; font-size: 11px; padding: 0 6px; border-radius: 3px; margin-right: 4px; }
+.tag.base { background: var(--fill); color: var(--ink); font-family: ui-monospace, Menlo, monospace; }
+.tag.tbd { background: var(--warm-bg); color: var(--warm); }
+@media (max-width: 1100px) {
+  .rows { grid-template-columns: minmax(0, 1fr); }
+  .note { border-top: 0; padding: 10px 16px 18px; background: var(--fill); border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .note.last { border-radius: 0 0 10px 10px; border-bottom: 1px solid var(--line); }
+  .pc.last { border-radius: 0; border-bottom: 0; }
+}
+
+/* PC 画面の中身 */
+.s { padding: 56px 64px; display: flex; flex-direction: column; gap: 20px; }
+.s + .s { border-top: 1px solid var(--line); }
+.h2 { font-family: var(--mincho); font-weight: 400; font-size: 28px; line-height: 1.6; margin: 0; letter-spacing: .05em; text-wrap: balance; }
+.lead { margin: 0; font-size: 14.5px; line-height: 2; max-width: 40em; }
+.center { align-items: center; text-align: center; }
+.photo { background: repeating-linear-gradient(45deg, var(--hatch) 0 7px, var(--fill) 7px 14px); border: 1px solid var(--line); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; color: var(--muted); padding: 10px; aspect-ratio: 4 / 3; max-width: 100%; min-width: 0; }
+.photo b { display: block; color: var(--ink); font-weight: 500; font-size: 13px; }
+.photo.sq { aspect-ratio: 1; }
+.btn { display: inline-block; text-align: center; padding: 12px 32px; border-radius: 999px; font-size: 14px; font-weight: 500; text-decoration: none; }
+.btn.pri { background: var(--accent); color: var(--paper); }
+.btn.sec { border: 1px solid var(--accent); color: var(--accent); }
+.link { color: var(--accent); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
+.tbd { background: var(--warm-bg); border: 1px dashed var(--warm); color: var(--warm); border-radius: 4px; padding: 2px 8px; font-size: 12px; display: inline-block; }
+.badge { align-self: flex-start; font-size: 11px; background: var(--accent); color: var(--paper); padding: 1px 8px; border-radius: 999px; }
+.price { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.bar-notice { background: var(--accent); color: var(--paper); font-size: 12px; text-align: center; padding: 7px 10px; }
+.header { display: flex; align-items: center; gap: 28px; padding: 18px 40px; border-bottom: 1px solid var(--line); }
+.logo { border: 1px dashed var(--warm); color: var(--warm); font-size: 12px; padding: 6px 14px; border-radius: 3px; }
+.gnav { display: flex; gap: 22px; font-size: 13px; margin-left: auto; flex-wrap: wrap; }
+.cart { border: 1px solid var(--ink); border-radius: 999px; padding: 6px 16px; font-size: 12px; }
+
+.bn { display: grid; grid-template-columns: 96px minmax(0, 1fr) 18px; gap: 16px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: 6px; text-decoration: none; color: var(--ink); background: var(--paper); }
+.bn-trial { border: 1.5px solid var(--accent); background: var(--fill); }
+.bn .photo { font-size: 10.5px; padding: 4px; }
+.bn-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.bn-body b { font-family: var(--mincho); font-weight: 600; font-size: 18px; line-height: 1.4; }
+.bn-tag { align-self: flex-start; font-size: 11px; font-weight: 700; background: var(--warm); color: var(--paper); padding: 1px 8px; border-radius: 3px; }
+.bn-tag-line { background: transparent; color: var(--accent); border: 1px solid var(--accent); font-weight: 500; }
+.bn-sub { font-size: 12px; color: var(--muted); }
+.bn-arrow { font-size: 22px; color: var(--muted); }
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { font-size: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; }
+.chip.on { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.lbls { display: flex; flex-wrap: wrap; gap: 4px; }
+.lbl { font-size: 10.5px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; padding: 0 6px; }
+.lbl.pop { background: var(--accent); color: var(--paper); }
+.help { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--fill); border-radius: 4px; padding: 12px 16px; font-size: 13px; color: var(--muted); text-decoration: none; }
+.help b { color: var(--accent); font-weight: 500; }
+.voice { border-left: 2px solid var(--line); padding-left: 14px; font-size: 13.5px; }
+.voice small { display: block; color: var(--muted); margin-top: 6px; }
+.footer { background: var(--accent); color: var(--paper); padding: 40px 64px; font-size: 12.5px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; }
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.footer .logo { color: var(--paper); border-color: var(--paper); align-self: flex-start; justify-self: start; }
+
+/* 区分（商品詳細） */
+.ztag { position: absolute; top: 10px; right: 10px; z-index: 2; font-size: 10.5px; font-weight: 700; padding: 1px 8px; border-radius: 3px; color: var(--paper); background: var(--zc); }
+.z { border-left: 4px solid var(--zc); }
+.z.common { --zc: var(--z-common); } .z.item { --zc: var(--z-item); } .z.auto { --zc: var(--z-auto); border-left-style: dashed; }
+.z.auto .ztag { background: var(--paper); color: var(--zc); border: 1px dashed var(--zc); }
+.zbox { position: relative; border: 2px solid var(--zc); border-radius: 6px; padding: 26px 16px 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.zbox.common { --zc: var(--z-common); } .zbox.item { --zc: var(--z-item); } .zbox.auto { --zc: var(--z-auto); border-style: dashed; }
+.zbox > .ztag { top: 6px; right: 6px; }
+.zbox.auto > .ztag { background: var(--paper); color: var(--zc); border: 1px dashed var(--zc); }
+.note .who { display: inline-block; font-size: 11px; font-weight: 700; color: var(--zc); margin-bottom: 4px; }
+.note.common { --zc: var(--z-common); } .note.item { --zc: var(--z-item); } .note.auto { --zc: var(--z-auto); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<style>
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 0; padding: 0; }
+.hero > .photo { border-radius: 0; border: 0; border-right: 1px solid var(--line); aspect-ratio: auto; min-height: 460px; }
+.hero-copy { padding: 56px 48px; display: flex; flex-direction: column; gap: 18px; justify-content: center; }
+.catch { font-family: var(--mincho); font-size: 32px; line-height: 1.6; margin: 0; letter-spacing: .07em; }
+.banners { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.story-text { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.kw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; text-align: center; font-size: 12.5px; }
+.kw > div { display: flex; flex-direction: column; gap: 6px; }
+.kw .photo { font-size: 10.5px; padding: 4px; }
+.groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.grp { border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.grp b { font-family: var(--mincho); font-weight: 600; font-size: 19px; }
+.grp .sub { font-size: 12px; color: var(--muted); margin-top: -6px; }
+.grp ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; }
+.grp li { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.grp .more { margin-top: auto; font-size: 12.5px; color: var(--accent); text-decoration: none; }
+.grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.item { display: flex; flex-direction: column; gap: 5px; font-size: 13px; min-width: 0; }
+.item .photo { aspect-ratio: 1; }
+.voices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 40px; }
+.faq details { border-bottom: 1px solid var(--line); padding: 14px 0; }
+.faq summary { font-size: 14px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 10px; }
+.faq summary::after { content: "+"; color: var(--muted); }
+.faq details[open] summary::after { content: "−"; }
+.faq summary:focus-visible { outline: 2px solid var(--warm); outline-offset: 2px; }
+.faq p { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+.biz { background: var(--fill); }
+.biz-row { display: grid; grid-template-columns: 1fr 1fr 220px; gap: 16px; align-items: center; }
+.biz-row div { background: var(--paper); border-radius: 4px; padding: 14px 16px; font-size: 13px; }
+.biz-row b { display: block; font-size: 14px; margin-bottom: 2px; }
+.split { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; align-items: start; }
+.split-head { display: flex; flex-direction: column; gap: 10px; }
+</style>
+
+<div class="wrap">
+  <header class="doc-head">
+    <div class="eyebrow">kukusini ECリニューアル ／ ワイヤーフレーム PC v0.1 ／ 2026.11.24</div>
+    <h1>トップページ（PC）</h1>
+    <p>スマホ版 v0.2 と同じ並び・同じ文言です。PCでは横幅を使って、ファーストビューを写真と文字の左右分割、選び方を3列、商品一覧を4列にしています。</p>
+    <div class="legend">
+      <span><i class="sw photo"></i>写真枠</span>
+      <span><i class="sw tbd"></i>未決・南さん確認待ち</span>
+      <span><a class="link" href="top-sp.html">スマホ版を見る</a></span>
+    </div>
+  </header>
+
+  <div class="rows">
+
+    <div class="pc first">
+      <div class="bar-notice">【未定】送料無料ライン／初回キャンペーンのお知らせ</div>
+      <div class="header">
+        <span class="logo">ロゴ（ブランド名 未定）</span>
+        <nav class="gnav"><span>選び方</span><span>商品一覧</span><span>kukusiniについて</span><span>よくある質問</span><span>お問い合わせ</span></nav>
+        <span class="cart">カート</span>
+      </div>
+    </div>
+    <aside class="note first">
+      <h3><span class="n">0</span>ヘッダー</h3>
+      <ul>
+        <li>PCはメニューを横に並べる（スマホはハンバーガー）</li>
+        <li>Instagramのアイコンは今のテンプレートどおりヘッダー右に残す</li>
+      </ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s hero">
+        <div class="photo"><div><b>犬がおやつを食べている様子</b>撮影リスト No.1（横向きのカットを使う）</div></div>
+        <div class="hero-copy">
+          <p class="catch">うちの子のために、<br>素材からつくり方まで。</p>
+          <p class="lead">うちの子に、安心して「おいしいよ」と渡せるものを。淡路どりのジャーキーです。</p>
+        </div>
+      </section>
+      <section class="s" style="padding-top:24px">
+        <div class="banners">
+          <a class="bn bn-trial" href="#">
+            <span class="photo sq"><span>セット<br>写真</span></span>
+            <span class="bn-body"><span class="bn-tag">初回限定 ／ 送料無料</span><b>3種類お試しセット</b><span class="bn-sub">ささみ・むね・ささみふりかけ</span></span>
+            <span class="bn-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="bn" href="#guide">
+            <span class="photo sq"><span>部位<br>並び</span></span>
+            <span class="bn-body"><span class="bn-tag bn-tag-line">選び方</span><b>うちの子の「好き」はどれ？</b><span class="bn-sub">9種類を、かたさ・香りで比べる</span></span>
+            <span class="bn-arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">1</span>ファーストビュー</h3>
+      <ul>
+        <li>写真とキャッチを左右に分割。バナー2枚は写真のすぐ下に横並び</li>
+        <li>犬の写真は横長が必要。撮影時に横向きも撮ってもらう（撮影リストの共通ルールどおり）</li>
+        <li><span class="tag tbd">未決</span> お試しセットの中身・送料無料（議題①⑤）</li>
+      </ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s">
+        <div class="story">
+          <div class="photo"><div><b>作り手の手元・後ろ姿</b>撮影リスト No.11</div></div>
+          <div class="story-text">
+            <div class="eyebrow">Our Story</div>
+            <h2 class="h2">ペットではなく、家族だから。<br>食べるものに、こだわりを。</h2>
+            <p class="lead">うちの子は、ペットではなく家族の一員。だからこそ、毎日口にするものには妥協したくありません。kukusiniは、自分の子どもにもあげられる素材だけで、「食べて豊かになるもの」をつくっています。</p>
+            <div class="kw">
+              <div><span class="photo sq"><span>鶏・飼育</span></span>淡路どり</div>
+              <div><span class="photo sq"><span>朝の生肉</span></span>その日の朝に処理した鶏肉</div>
+              <div><span class="photo sq"><span>手切り</span></span>生のまま一枚ずつ手切り</div>
+            </div>
+            <div><a class="btn sec" href="about-sp.html">kukusiniについて ／ 素材とつくり方</a></div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">2</span>想い</h3>
+      <ul>
+        <li>写真と文章を左右に。キーワード3つは文章の下に小さく</li>
+        <li>詳しい話は About へ</li>
+      </ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s" id="guide">
+        <div class="eyebrow">How to Choose</div>
+        <h2 class="h2">うちの子に合う、おやつの選び方。</h2>
+        <div class="groups">
+          <div class="grp"><b>やわらかめ</b><span class="sub">手で割れる。はじめてやシニアにも</span>
+            <ul><li>ささみ <span class="badge">いちばん人気</span></li><li>むね</li><li>きも（レバー）</li><li>鶏頭</li></ul>
+            <a class="more" href="#">このグループをすべて見る ›</a></div>
+          <div class="grp"><b>噛みごたえ</b><span class="sub">噛むのが好きな子に</span>
+            <ul><li>砂肝</li><li>軟骨入りセセリ</li><li>手羽先</li><li>鶏足</li></ul>
+            <a class="more" href="#">このグループをすべて見る ›</a></div>
+          <div class="grp"><b>ごはんにかける</b><span class="sub">食が細い子・水分補給に</span>
+            <ul><li>ささみふりかけ</li></ul>
+            <a class="more" href="#">このグループをすべて見る ›</a></div>
+        </div>
+        <div><a class="btn sec" href="#">詳しい選び方・比較表（ブログ）</a></div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">3</span>選び方</h3>
+      <ul>
+        <li>3グループを横並びの3列</li>
+        <li>「すべて見る」は同名のBASEカテゴリへ。比較表はブログ</li>
+      </ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s" id="items">
+        <div class="eyebrow">Items</div>
+        <h2 class="h2">商品一覧</h2>
+        <a class="help" href="#guide">どれがいいか迷ったら<b>選び方を見る ›</b></a>
+        <div class="chips"><span class="chip on">すべて</span><span class="chip">やわらかめ</span><span class="chip">噛みごたえ</span><span class="chip">ごはんにかける</span><span class="chip">大容量 500g</span><span class="chip">お試しセット</span></div>
+        <div class="grid4">
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl pop">いちばん人気</span><span class="lbl">やわらかめ</span></span>ささみジャーキー 60g<span class="price">990円</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl">やわらかめ</span></span>むねジャーキー 60g<span class="price">990円</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl">噛みごたえ</span></span>砂肝ジャーキー 35g<span class="price">990円</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl">ごはんにかける</span></span>ささみふりかけ 60g<span class="price">1,100円</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl">やわらかめ</span></span>きもジャーキー 35g<span class="price">990円</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl">噛みごたえ</span></span>手羽先ジャーキー 60g<span class="price">990円</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl">噛みごたえ</span></span>軟骨入りセセリ 60g<span class="price">990円</span></div>
+          <div class="item"><div class="photo"><div>商品画像</div></div><span class="lbls"><span class="lbl">噛みごたえ</span></span>鶏足ジャーキー 60g<span class="price">990円</span></div>
+        </div>
+        <div style="text-align:center"><a class="btn sec" href="#">もっと見る</a></div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">4</span>商品一覧</h3>
+      <ul>
+        <li>PCは4列（今のテンプレートは3列）。<span class="tag base">{block:Items}</span> の自動表示</li>
+        <li>サイズ違いは別商品なので、トップには代表サイズだけを出すカテゴリを使う案（35g・500gは商品ページと大容量カテゴリから）</li>
+        <li>「迷ったら選び方へ」・カテゴリチップ・ラベルはスマホ版と同じ</li>
+      </ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s">
+        <div class="eyebrow">Voices</div>
+        <h2 class="h2">お客さまの声</h2>
+        <div class="voices">
+          <div class="voice">何も食べられなくなった老犬が、ささみだけは最後まで食べてくれました。<small>ささみ ／ 掲載許可 確認中</small></div>
+          <div class="voice">腎臓の関係でささみをあげられなくなりましたが、むねなら食べられます。<small>むね ／ 掲載許可 確認中</small></div>
+          <div class="voice">硬いものをあげたいけれど歯が心配で。砂肝なら安心してあげられます。<small>砂肝 ／ 掲載許可 確認中</small></div>
+        </div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">5</span>お客様の声</h3>
+      <ul><li>3列。仮の要約文なので、実際の声と掲載許可に差し替え</li></ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s" id="faq">
+        <div class="split">
+          <div class="split-head"><div class="eyebrow">FAQ</div><h2 class="h2">よくある<br>ご質問</h2></div>
+          <div class="faq">
+            <div>
+              <details><summary>どれから選べばいいですか？</summary><p>はじめての方には、やわらかくて香りのよい「ささみ」をおすすめしています。</p></details>
+              <details><summary>原材料は何ですか？</summary><p>淡路どりの鶏肉のみです。<span class="tbd">表現は確認待ち</span></p></details>
+              <details><summary>骨が入っている商品はありますか？</summary><p><span class="tbd">骨の有無は確認待ち</span></p></details>
+            </div>
+            <div>
+              <details><summary>保存方法と賞味期限は？</summary><p><span class="tbd">確認待ち</span></p></details>
+              <details><summary>与えるときの注意は？</summary><p>鶏アレルギーのある子には与えないでください。食べている間は目を離さないでください。</p></details>
+              <details><summary>送料はいくらですか？</summary><p><span class="tbd">未決（議題⑤）</span></p></details>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">6</span>よくある質問</h3>
+      <ul><li>見出しを左、質問を2列に。スマホは1列</li></ul>
+    </aside>
+
+    <div class="pc">
+      <section class="s biz">
+        <div class="biz-row">
+          <div><b>卸販売のご相談</b>お問い合わせ本文の最初に【卸】とご記入ください。</div>
+          <div><b>取材・メディアの方</b>お問い合わせ本文の最初に【取材】とご記入ください。</div>
+          <a class="btn sec" href="#">お問い合わせ</a>
+        </div>
+      </section>
+    </div>
+    <aside class="note">
+      <h3><span class="n">7</span>卸・メディア向け</h3>
+      <ul><li>1行に収めて控えめに</li></ul>
+    </aside>
+
+    <div class="pc last">
+      <footer class="footer">
+        <span class="logo">ロゴ（未定）</span>
+        <ul>
+          <li>kukusiniについて</li><li>商品一覧</li><li>よくある質問</li><li>お問い合わせ</li>
+          <li>特定商取引法に基づく表記</li><li>プライバシーポリシー</li><li>ブログ</li><li>Instagram</li>
+        </ul>
+      </footer>
+    </div>
+    <aside class="note last">
+      <h3><span class="n">8</span>フッター</h3>
+      <ul><li>全ページ共通</li></ul>
+    </aside>
+
+  </div>
+</div>

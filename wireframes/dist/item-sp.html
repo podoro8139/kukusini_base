@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>kukusini 商品詳細 ワイヤー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600&display=swap">
+</head>
+<body>
+<style>
+/* レイアウト：左にスマホ画面（375px）を縦に積み、右に各セクションの注記を横並び。狭い画面では注記が下に回る */
+:root {
+  --bg: #f3f4f1;
+  --paper: #ffffff;
+  --ink: #2b332d;
+  --muted: #6b746d;
+  --line: #cfd5cf;
+  --fill: #e6e9e4;
+  --hatch: #d7dcd5;
+  --accent: #2f4a3a;      /* 提案書の深緑 */
+  --warm: #b26a3c;        /* 提案書のテラコッタ：未決・要確認の印 */
+  --warm-bg: #f6e9df;
+  --mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171b18; --paper: #222823; --ink: #e4e8e3; --muted: #9aa49c; --line: #3b443d;
+    --fill: #2c332d; --hatch: #343c36; --accent: #9cc2a8; --warm: #e0a07a; --warm-bg: #3a2c22;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171b18; --paper: #222823; --ink: #e4e8e3; --muted: #9aa49c; --line: #3b443d;
+  --fill: #2c332d; --hatch: #343c36; --accent: #9cc2a8; --warm: #e0a07a; --warm-bg: #3a2c22;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.7;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+
+/* ページ見出し */
+.doc-head { display: flex; flex-direction: column; gap: 10px; }
+.doc-head h1 { font-family: var(--mincho); font-weight: 600; font-size: 26px; margin: 0; letter-spacing: .04em; text-wrap: balance; }
+.doc-head p { margin: 0; color: var(--muted); max-width: 64ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 18px; height: 12px; border-radius: 2px; display: inline-block; }
+.sw.photo { background: repeating-linear-gradient(45deg, var(--hatch) 0 4px, var(--fill) 4px 8px); border: 1px solid var(--line); }
+.sw.tbd { background: var(--warm-bg); border: 1px dashed var(--warm); }
+
+/* 本体：セクション行 */
+.rows { display: grid; grid-template-columns: 375px minmax(0, 1fr); column-gap: 32px; }
+.sp { background: var(--paper); border-left: 1px solid var(--line); border-right: 1px solid var(--line); min-width: 0; }
+.sp.first { border-top: 1px solid var(--line); border-radius: 22px 22px 0 0; overflow: hidden; }
+.sp.last { border-bottom: 1px solid var(--line); border-radius: 0 0 22px 22px; overflow: hidden; }
+.note { padding-block: 20px; border-top: 1px solid var(--line); min-width: 0; font-size: 13px; }
+.note.first { border-top: 0; }
+.note h3 { margin: 0 0 6px; font-size: 13px; display: flex; gap: 8px; align-items: baseline; }
+.note h3 .n { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 700; }
+.note ul { margin: 0; padding-left: 1.2em; color: var(--muted); }
+.note li + li { margin-top: 2px; }
+.note .tag { display: inline-block; font-size: 11px; padding: 0 6px; border-radius: 3px; margin-right: 4px; }
+.tag.base { background: var(--fill); color: var(--ink); font-family: ui-monospace, Menlo, monospace; }
+.tag.tbd { background: var(--warm-bg); color: var(--warm); }
+
+@media (max-width: 760px) {
+  .rows { grid-template-columns: minmax(0, 1fr); max-width: 375px; margin: 0 auto; width: 100%; }
+  .note { border-top: 0; padding: 10px 14px 18px; background: var(--fill); margin-bottom: 0; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .note.last { border-radius: 0 0 22px 22px; border-bottom: 1px solid var(--line); }
+  .sp.last { border-radius: 0; border-bottom: 0; }
+}
+
+/* --- スマホ画面の中身 --- */
+.s { padding: 36px 20px; display: flex; flex-direction: column; gap: 16px; }
+.s + .s { border-top: 1px solid var(--line); }
+.eyebrow { font-size: 11px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+.h2 { font-family: var(--mincho); font-weight: 400; font-size: 21px; line-height: 1.6; margin: 0; letter-spacing: .04em; text-wrap: balance; }
+.lead { margin: 0; color: var(--ink); font-size: 13.5px; line-height: 1.9; }
+.photo {
+  background: repeating-linear-gradient(45deg, var(--hatch) 0 6px, var(--fill) 6px 12px);
+  border: 1px solid var(--line); border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  text-align: center; font-size: 11px; color: var(--muted); padding: 10px; aspect-ratio: 4 / 3; max-width: 100%;
+}
+.photo b { display: block; color: var(--ink); font-weight: 500; font-size: 12px; }
+.photo.tall { aspect-ratio: 4 / 5; }
+.photo.sq { aspect-ratio: 1; }
+.btn { display: block; text-align: center; padding: 12px; border-radius: 999px; font-size: 13px; font-weight: 500; text-decoration: none; }
+.btn.pri { background: var(--accent); color: var(--paper); }
+.btn.sec { border: 1px solid var(--accent); color: var(--accent); }
+.tbd { background: var(--warm-bg); border: 1px dashed var(--warm); color: var(--warm); border-radius: 4px; padding: 10px 12px; font-size: 12px; }
+.link { color: var(--accent); font-size: 12.5px; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ヘッダー */
+.bar-notice { background: var(--accent); color: var(--paper); font-size: 11px; text-align: center; padding: 6px 10px; }
+.header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.logo { border: 1px dashed var(--warm); color: var(--warm); font-size: 11px; padding: 4px 10px; border-radius: 3px; }
+.icons { display: flex; gap: 14px; }
+.ic { width: 22px; height: 22px; border: 1.5px solid var(--ink); border-radius: 4px; position: relative; }
+.ic.menu { border: 0; background: linear-gradient(var(--ink) 0 0) 0 4px / 100% 1.5px no-repeat, linear-gradient(var(--ink) 0 0) 0 10px / 100% 1.5px no-repeat, linear-gradient(var(--ink) 0 0) 0 16px / 100% 1.5px no-repeat; }
+
+/* ヒーロー */
+.hero { padding: 0; gap: 0; }
+.hero .photo { border-radius: 0; border-left: 0; border-right: 0; aspect-ratio: 4 / 5; }
+.hero-copy { padding: 26px 20px 32px; display: flex; flex-direction: column; gap: 14px; }
+.hero-copy .catch { font-family: var(--mincho); font-size: 24px; line-height: 1.6; margin: 0; letter-spacing: .06em; }
+
+/* カード */
+.card { border: 1px solid var(--line); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.card .name { font-weight: 700; font-size: 14px; }
+.price { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.badge { align-self: flex-start; font-size: 10.5px; background: var(--accent); color: var(--paper); padding: 1px 8px; border-radius: 999px; }
+
+/* こだわり */
+.point { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: start; }
+.point .photo { aspect-ratio: 1; font-size: 10px; padding: 4px; }
+.bn { display: grid; grid-template-columns: 72px minmax(0, 1fr) 16px; gap: 12px; align-items: center; padding: 10px; border: 1px solid var(--line); border-radius: 6px; text-decoration: none; color: var(--ink); background: var(--paper); }
+.bn-trial { border: 1.5px solid var(--accent); background: var(--fill); }
+.bn .photo { font-size: 10px; padding: 4px; }
+.bn-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.bn-body b { font-family: var(--mincho); font-weight: 600; font-size: 16px; line-height: 1.4; }
+.bn-tag { align-self: flex-start; font-size: 10.5px; font-weight: 700; background: var(--warm); color: var(--paper); padding: 1px 8px; border-radius: 3px; letter-spacing: .04em; }
+.bn-tag-line { background: transparent; color: var(--accent); border: 1px solid var(--accent); font-weight: 500; }
+.bn-sub { font-size: 11.5px; color: var(--muted); }
+.bn-arrow { font-size: 20px; color: var(--muted); }
+.bn:focus-visible { outline: 2px solid var(--warm); outline-offset: 2px; }
+.grp { border-top: 1px solid var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.grp-head { display: flex; flex-direction: column; gap: 0; }
+.grp-head b { font-family: var(--mincho); font-weight: 600; font-size: 16px; }
+.grp-head span { font-size: 11.5px; color: var(--muted); }
+.grp-items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.grp-items li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; font-size: 12.5px; }
+.grp-items a { color: var(--ink); text-decoration: none; }
+.grp-items .badge { font-size: 9.5px; }
+.help { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--fill); border-radius: 4px; padding: 10px 12px; font-size: 12px; color: var(--muted); text-decoration: none; }
+.help b { color: var(--accent); font-weight: 500; }
+.chip.on { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.lbls { display: flex; flex-wrap: wrap; gap: 4px; }
+.lbl { font-size: 10px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; padding: 0 5px; }
+.lbl.pop { background: var(--accent); color: var(--paper); }
+.more { align-self: flex-end; font-size: 12px; color: var(--accent); text-decoration: none; }
+.kw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; text-align: center; }
+.kw > div { display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; line-height: 1.5; }
+.kw .photo { font-size: 10px; padding: 4px; }
+.kw b { font-weight: 500; }
+.point h4 { margin: 0 0 2px; font-family: var(--mincho); font-weight: 600; font-size: 15px; }
+.point p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+
+/* 早見表 */
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { font-size: 11.5px; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; background: var(--paper); color: var(--ink); cursor: pointer; font-family: inherit; }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.chip:focus-visible, .faq summary:focus-visible { outline: 2px solid var(--warm); outline-offset: 2px; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 12px; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 4px; text-align: left; white-space: nowrap; }
+th { font-weight: 500; color: var(--muted); font-size: 11px; }
+td.stars { letter-spacing: 1px; color: var(--accent); font-variant-numeric: tabular-nums; }
+td .sub { display: block; font-size: 10px; color: var(--warm); }
+tr[hidden] { display: none; }
+
+/* 商品グリッド */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.item { display: flex; flex-direction: column; gap: 4px; font-size: 12px; }
+.item .photo { aspect-ratio: 1; }
+
+/* 声・FAQ */
+.voice { border-left: 2px solid var(--line); padding-left: 12px; font-size: 12.5px; color: var(--ink); }
+.voice small { display: block; color: var(--muted); margin-top: 4px; }
+.faq details { border-bottom: 1px solid var(--line); padding: 10px 0; }
+.faq summary { font-size: 13px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 10px; }
+.faq summary::after { content: "+"; color: var(--muted); }
+.faq details[open] summary::after { content: "−"; }
+.faq p { margin: 8px 0 0; font-size: 12.5px; color: var(--muted); }
+
+/* 卸・メディア・フッター */
+.biz { background: var(--fill); }
+.biz-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.biz-row div { background: var(--paper); border-radius: 4px; padding: 10px; font-size: 12px; }
+.biz-row b { display: block; font-size: 13px; margin-bottom: 2px; }
+.footer { background: var(--accent); color: var(--paper); padding: 28px 20px 36px; font-size: 12px; display: flex; flex-direction: column; gap: 14px; }
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.footer .logo { color: var(--paper); border-color: var(--paper); align-self: flex-start; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<style>
+.gallery { display: flex; flex-direction: column; gap: 8px; padding: 0 0 4px; }
+.gallery > .photo { border-radius: 0; border-left: 0; border-right: 0; aspect-ratio: 1; }
+.thumbs { display: flex; gap: 6px; padding: 0 20px; overflow-x: auto; }
+.thumbs .photo { flex: 0 0 56px; aspect-ratio: 1; font-size: 9px; padding: 2px; }
+.thumbs .photo.cur { outline: 2px solid var(--accent); outline-offset: 1px; }
+.pname { font-family: var(--mincho); font-weight: 600; font-size: 20px; line-height: 1.5; margin: 0; letter-spacing: .03em; }
+.pprice { font-size: 18px; font-variant-numeric: tabular-nums; }
+.pprice small { font-size: 11px; color: var(--muted); margin-left: 4px; }
+.form { border: 1px dashed var(--line); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.form-label { font-size: 10.5px; color: var(--muted); letter-spacing: .06em; }
+.sizes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.sizes span { border: 1px solid var(--line); border-radius: 4px; padding: 8px 4px; text-align: center; font-size: 12px; line-height: 1.4; font-variant-numeric: tabular-nums; }
+.sizes span.on { border-color: var(--accent); outline: 1px solid var(--accent); }
+.sizes small { display: block; color: var(--muted); font-size: 10.5px; }
+.qty { display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+.qty span:last-child { border: 1px solid var(--line); border-radius: 4px; padding: 4px 14px; }
+.spec { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; text-align: center; }
+.spec div { background: var(--fill); border-radius: 4px; padding: 10px 4px; display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: var(--muted); }
+.spec b { font-size: 12.5px; color: var(--ink); font-weight: 500; }
+.spec .dots { color: var(--accent); letter-spacing: 1px; font-size: 12px; }
+.uses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; text-align: center; font-size: 11.5px; }
+.uses .photo { aspect-ratio: 1; font-size: 9.5px; padding: 3px; }
+.uses div { display: flex; flex-direction: column; gap: 4px; }
+.caution { border: 1px solid var(--line); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; }
+.caution b { font-size: 13px; }
+.caution ul { margin: 0; padding-left: 1.2em; }
+.caution.bone { border: 1.5px solid var(--warm); background: var(--warm-bg); }
+.caution.bone b { color: var(--warm); }
+.info { width: 100%; border-collapse: collapse; font-size: 12px; }
+.info th, .info td { border-bottom: 1px solid var(--line); padding: 8px 4px; text-align: left; vertical-align: top; white-space: normal; }
+.info th { width: 34%; color: var(--muted); font-weight: 400; font-size: 11.5px; }
+.sim { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; font-size: 11.5px; }
+.sim > div { display: flex; flex-direction: column; gap: 3px; }
+.sim .photo { aspect-ratio: 1; font-size: 9.5px; }
+.sim .lbl { align-self: flex-start; }
+.mini { display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: var(--muted); }
+.mini-tag { align-self: flex-start; font-size: 10px; color: var(--muted); border: 1px solid var(--line); border-radius: 3px; padding: 0 6px; }
+</style>
+
+<style>
+:root { --z-common: #2f4a3a; --z-item: #b26a3c; --z-auto: #8a938c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --z-common: #9cc2a8; --z-item: #e0a07a; --z-auto: #7d877f; } }
+:root[data-theme="dark"] { --z-common: #9cc2a8; --z-item: #e0a07a; --z-auto: #7d877f; }
+.z { position: relative; border-left: 4px solid var(--zc); }
+.z.common { --zc: var(--z-common); }
+.z.item { --zc: var(--z-item); }
+.z.auto { --zc: var(--z-auto); border-left-style: dashed; }
+.ztag { position: absolute; top: 8px; right: 8px; z-index: 2; font-size: 10px; font-weight: 700; letter-spacing: .04em; padding: 1px 7px; border-radius: 3px; color: var(--paper); background: var(--zc); }
+.z.auto .ztag { background: var(--paper); color: var(--zc); border: 1px dashed var(--zc); }
+.zone-head { display: flex; align-items: center; gap: 8px; padding: 10px 16px; font-size: 11px; letter-spacing: .1em; color: var(--muted); background: var(--fill); border-bottom: 1px solid var(--line); }
+.sw.common { background: var(--z-common); }
+.sw.item { background: var(--z-item); }
+.sw.auto { background: var(--paper); border: 1px dashed var(--z-auto); }
+.sum { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.sum > div { background: var(--paper); border: 1px solid var(--line); border-top: 4px solid var(--zc); border-radius: 6px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.sum > div.auto { border-top-style: dashed; }
+.sum h2 { margin: 0; font-size: 14px; }
+.sum .who { font-size: 11.5px; color: var(--muted); }
+.sum ul { margin: 0; padding-left: 1.1em; font-size: 12.5px; }
+@media (max-width: 760px) { .sum { grid-template-columns: minmax(0, 1fr); } }
+.note .who { display: inline-block; font-size: 11px; font-weight: 700; color: var(--zc); margin-bottom: 4px; }
+.note.common { --zc: var(--z-common); } .note.item { --zc: var(--z-item); } .note.auto { --zc: var(--z-auto); }
+.sizelinks { display: flex; gap: 6px; flex-wrap: wrap; font-size: 12px; }
+.sizelinks span { border: 1px solid var(--line); border-radius: 4px; padding: 4px 10px; }
+.sizelinks span.on { border-color: var(--accent); color: var(--accent); }
+.fold { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 4px; display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; }
+</style>
+
+<div class="wrap">
+  <header class="doc-head">
+    <div class="eyebrow">kukusini ECリニューアル ／ ワイヤーフレーム v0.2 ／ 2026.11.24</div>
+    <h1>商品詳細ページ（スマホ）</h1>
+    <p>どこを全商品で共通にして、どこを商品ごとに入れるかを色で分けました。例は「ささみ 60g」。今のテンプレート（上段＝画像・購入、下段＝追加の商品説明・レビュー・関連商品）の組み立てに合わせています。サイズ違いは別商品として登録する前提です。</p>
+    <div class="legend">
+      <span><i class="sw common"></i>共通（テンプレートに1回書けば全商品に出る）</span>
+      <span><i class="sw item"></i>商品ごと（管理画面で南さんが入れる）</span>
+      <span><i class="sw auto"></i>自動（BASEが出す）</span>
+    </div>
+  </header>
+
+  <div class="sum">
+    <div class="common" style="--zc: var(--z-common)">
+      <h2>共通</h2>
+      <span class="who">テンプレート ／ 変更は依頼</span>
+      <ul>
+        <li>ページの枠（画像の並べ方、文字の大きさ・色）</li>
+        <li>与えるときの共通の注意</li>
+        <li>「選び方を見る」「よくある質問」への案内</li>
+        <li>About「つくり方」へのバナー</li>
+        <li>関連商品の見出し・並べ方</li>
+        <li>ヘッダー・フッター</li>
+      </ul>
+    </div>
+    <div class="item" style="--zc: var(--z-item)">
+      <h2>商品ごと</h2>
+      <span class="who">管理画面 ／ 南さんが更新できる</span>
+      <ul>
+        <li>商品名・価格・画像（最大20枚）・カテゴリ</li>
+        <li>商品説明（ひとこと＋サイズ違いへのリンク）</li>
+        <li>追加の商品説明のパーツ：かたさ・香り・おすすめ／使い方／骨・丸のみの注意／商品情報</li>
+      </ul>
+    </div>
+    <div class="auto" style="--zc: var(--z-auto)">
+      <h2>自動</h2>
+      <span class="who">BASE ／ 中身は変えられない</span>
+      <ul>
+        <li>購入フォーム（数量・カートボタン）</li>
+        <li>SOLD OUT・販売前の表示</li>
+        <li>レビュー（App）</li>
+        <li>関連商品の中身</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rows">
+
+    <!-- 0 ヘッダー -->
+    <div class="sp first z common">
+      <span class="ztag">共通</span>
+      <div class="bar-notice">【お知らせバナー App】送料・キャンペーンの告知</div>
+      <div class="header">
+        <span class="ic menu" aria-label="メニュー"></span>
+        <span class="logo">ロゴ（ブランド名 未定）</span>
+        <span class="icons"><span class="ic" aria-label="カート"></span></span>
+      </div>
+    </div>
+    <aside class="note first common">
+      <span class="who">共通</span>
+      <h3><span class="n">0</span>ヘッダー・お知らせ帯</h3>
+      <ul>
+        <li>ヘッダーは全ページ共通</li>
+        <li>お知らせ帯は <span class="tag base">お知らせバナー App</span>。管理画面から南さんが文言を変えられるので、変わりやすい告知はここに寄せる</li>
+      </ul>
+    </aside>
+
+    <!-- 1 画像 -->
+    <div class="sp z item">
+      <span class="ztag">商品ごと</span>
+      <section class="s gallery" style="padding-top:0">
+        <div class="photo"><div><b>ささみ：パッケージ＋中身</b>商品画像 1枚目</div></div>
+        <div class="thumbs">
+          <span class="photo cur"><span>袋</span></span>
+          <span class="photo"><span>中身<br>真上</span></span>
+          <span class="photo"><span>割れ方</span></span>
+          <span class="photo"><span>犬が<br>食べる</span></span>
+          <span class="photo"><span>サイズ<br>比較</span></span>
+        </div>
+      </section>
+    </div>
+    <aside class="note item">
+      <span class="who">商品ごと（並べ方は共通）</span>
+      <h3><span class="n">1</span>商品画像</h3>
+      <ul>
+        <li>画像は商品ごとに管理画面で登録（最大20枚）。スライドの見せ方はテンプレート共通</li>
+        <li>9商品とも同じ順にそろえる：①パッケージ ②中身（真上）③割れ方 ④犬が食べている ⑤サイズ比較</li>
+      </ul>
+    </aside>
+
+    <!-- 2 商品名・価格 -->
+    <div class="sp z item">
+      <span class="ztag">商品ごと</span>
+      <section class="s">
+        <span class="lbls"><span class="lbl pop">いちばん人気</span><span class="lbl">やわらかめ</span></span>
+        <h1 class="pname">淡路どり ささみジャーキー 60g</h1>
+        <div class="pprice">990円<small>（税込）</small></div>
+      </section>
+    </div>
+    <aside class="note item">
+      <span class="who">商品ごと</span>
+      <h3><span class="n">2</span>商品名・価格・ラベル</h3>
+      <ul>
+        <li>商品名・価格は管理画面</li>
+        <li>ラベルは <span class="tag base">商品ラベル App</span>（導入済み）で商品ごとに付ける想定</li>
+        <li><span class="tag tbd">要確認</span> 商品ラベル App で「やわらかめ」など好きな文字が設定できるか</li>
+      </ul>
+    </aside>
+
+    <!-- 3 購入フォーム -->
+    <div class="sp z auto">
+      <span class="ztag">自動</span>
+      <section class="s">
+        <div class="form">
+          <div class="form-label">BASEの購入フォーム</div>
+          <div class="qty"><span>数量</span><span>1</span></div>
+          <span class="btn pri">カートに入れる</span>
+        </div>
+      </section>
+    </div>
+    <aside class="note auto">
+      <span class="who">自動</span>
+      <h3><span class="n">3</span>購入フォーム</h3>
+      <ul>
+        <li><span class="tag base">{ItemSelectTag}</span> <span class="tag base">{PurchaseButton}</span> をBASEが出力。中身は変えられない</li>
+        <li>サイズ違いは別商品なので、サイズの選択欄はここには出ない</li>
+      </ul>
+    </aside>
+
+    <!-- 4 商品説明 -->
+    <div class="sp z item">
+      <span class="ztag">商品ごと</span>
+      <section class="s">
+        <p class="lead">手でさくっと割れるやわらかさと、鶏の香りの強さが特長。ベビーからシニアまで、どんな子にも使える定番です。</p>
+        <div class="sizelinks"><span>35g 770円</span><span class="on">60g 990円</span><span>500g 5,940円</span></div>
+      </section>
+    </div>
+    <aside class="note item">
+      <span class="who">商品ごと</span>
+      <h3><span class="n">4</span>商品説明（ひとこと・サイズ違い）</h3>
+      <ul>
+        <li>管理画面の「商品説明」（<span class="tag base">{ItemDetail}</span>）。2〜3行のひとこと</li>
+        <li>サイズ違いは、ほかのサイズの商品ページへのリンクをここに書く</li>
+        <li><span class="tag tbd">要確認</span> 商品説明に書いたURLがリンクになるか。ならなければ追加の商品説明のパーツで作る</li>
+      </ul>
+    </aside>
+
+    <!-- 5 追加の商品説明 -->
+    <div class="sp z item">
+      <span class="ztag">商品ごと</span>
+      <div class="zone-head">追加の商品説明（パーツ）</div>
+      <section class="s">
+        <div class="spec">
+          <div>かたさ<span class="dots">●○○○○</span><b>やわらかめ</b></div>
+          <div>香り<span class="dots">●●●●○</span><b>強め</b></div>
+          <div>おすすめ<span class="dots">&nbsp;</span><b>全犬種</b></div>
+        </div>
+        <h2 class="h2" style="font-size:17px">こんなふうに</h2>
+        <div class="uses">
+          <div><span class="photo"><span>手から<br>おやつ</span></span>おやつ・ごほうびに</div>
+          <div><span class="photo"><span>フードに<br>のせる</span></span>トッピングに</div>
+          <div><span class="photo"><span>水で<br>ふやかす</span></span>シニアにも</div>
+        </div>
+        <div class="mini">
+          <span class="mini-tag">骨入り・丸のみ注意の商品だけ入れる（例：手羽先）</span>
+          <div class="caution bone">
+            <b>骨が入っています</b>
+            <ul>
+              <li>必ず手に持ったまま、奥歯で噛ませてください。</li>
+              <li>噛む力が弱い子、骨に慣れていない子、消化が弱い子には向きません。</li>
+            </ul>
+          </div>
+        </div>
+        <h2 class="h2" style="font-size:17px">商品情報</h2>
+        <table class="info">
+          <tr><th>原材料</th><td>鶏ささみ（淡路どり）</td></tr>
+          <tr><th>内容量</th><td>60g</td></tr>
+          <tr><th>大きさ</th><td>4cm前後・薄め</td></tr>
+          <tr><th>保存方法</th><td><span class="tbd" style="display:inline-block;padding:2px 8px">確認待ち</span></td></tr>
+          <tr><th>賞味期限</th><td><span class="tbd" style="display:inline-block;padding:2px 8px">確認待ち</span></td></tr>
+        </table>
+      </section>
+    </div>
+    <aside class="note item">
+      <span class="who">商品ごと</span>
+      <h3><span class="n">5</span>追加の商品説明</h3>
+      <ul>
+        <li><span class="tag base">追加の商品説明 App</span>（<span class="tag base">{AdditionalItemDetail}</span>）。南さんが管理画面のパーツで入れる</li>
+        <li>9商品で同じ順番にそろえる：①かたさ・香り・おすすめ ②使い方 ③骨・丸のみの注意（該当商品のみ）④商品情報</li>
+        <li>かたさ・香りと注意は<b>文字のパーツ</b>で作る（文字のない画像は、今のスクリプトが下の折りたたみへ移してしまうため）</li>
+        <li><span class="tag tbd">要確認</span> 選べるパーツの種類（見出し・文章・画像・表など）、別の商品へのコピー機能の有無</li>
+        <li><span class="tag tbd">要確認</span> 保存方法・賞味期限・骨の有無</li>
+      </ul>
+    </aside>
+
+    <!-- 6 共通の注意・案内 -->
+    <div class="sp z common">
+      <span class="ztag">共通</span>
+      <section class="s">
+        <div class="caution">
+          <b>与えるときの注意</b>
+          <ul>
+            <li>鶏アレルギーのある子には与えないでください。</li>
+            <li>食べている間は、目を離さないでください。</li>
+          </ul>
+        </div>
+        <a class="help" href="#">どれがいいか迷ったら<b>選び方を見る ›</b></a>
+        <a class="help" href="#">保存方法・送料など<b>よくある質問 ›</b></a>
+      </section>
+    </div>
+    <aside class="note common">
+      <span class="who">共通</span>
+      <h3><span class="n">6</span>共通の注意・案内</h3>
+      <ul>
+        <li>全商品に同じものを出すので、テンプレートに1回だけ書く（商品ごとに入れなくてよい）</li>
+        <li>「選び方」はトップの選び方（#guide）またはブログ、「よくある質問」はトップの #faq へ</li>
+      </ul>
+    </aside>
+
+    <!-- 7 レビュー -->
+    <div class="sp z auto">
+      <span class="ztag">自動</span>
+      <section class="s">
+        <h2 class="h2" style="font-size:17px">レビュー</h2>
+        <div class="voice">★★★★★ ほかのおやつは食べないけれど、これだけは食べます。<small>レビュー App の表示例</small></div>
+      </section>
+    </div>
+    <aside class="note auto">
+      <span class="who">自動</span>
+      <h3><span class="n">7</span>レビュー</h3>
+      <ul>
+        <li><span class="tag base">レビュー App</span>（導入済み）。購入者の投稿が自動で出る</li>
+        <li>今のテンプレートどおり、関連商品より上に置く</li>
+      </ul>
+    </aside>
+
+    <!-- 8 関連商品 -->
+    <div class="sp z auto">
+      <span class="ztag">自動（見出しは共通）</span>
+      <section class="s">
+        <h2 class="h2">ほかの部位も、くらべてみる</h2>
+        <div class="sim">
+          <div><span class="photo"><span>商品画像</span></span>むね<span class="price">990円</span></div>
+          <div><span class="photo"><span>商品画像</span></span>きも<span class="price">990円</span></div>
+          <div><span class="photo"><span>商品画像</span></span>ささみふりかけ<span class="price">1,100円</span></div>
+        </div>
+        <a class="link" href="#">すべての商品を見る</a>
+      </section>
+    </div>
+    <aside class="note auto">
+      <span class="who">自動（見出し・並べ方は共通）</span>
+      <h3><span class="n">8</span>関連商品</h3>
+      <ul>
+        <li>今のテンプレートの「こちらの商品もおすすめ」（<span class="tag base">{block:RelatedItems}</span>）を使う。見出しだけ変更</li>
+        <li>中身はBASEが自動で選ぶ。同じ商品のサイズ違いばかり並ぶようなら、手で選ぶ方式（テンプレート）を検討</li>
+      </ul>
+    </aside>
+
+    <!-- 9 こだわりへ -->
+    <div class="sp z common">
+      <span class="ztag">共通</span>
+      <section class="s">
+        <a class="bn" href="#">
+          <span class="photo sq"><span>手切り</span></span>
+          <span class="bn-body">
+            <span class="bn-tag bn-tag-line">素材とつくり方</span>
+            <b>その日の朝の鶏肉を、<br>その日のうちに。</b>
+            <span class="bn-sub">淡路どりのこと・手切りのこと</span>
+          </span>
+          <span class="bn-arrow" aria-hidden="true">›</span>
+        </a>
+      </section>
+    </div>
+    <aside class="note common">
+      <span class="who">共通</span>
+      <h3><span class="n">9</span>About「つくり方」へのバナー</h3>
+      <ul>
+        <li>全商品に同じバナー。画像はファイルアップローダーに上げてテンプレートに書く</li>
+        <li>今ある「淡路どり・素材や製法へのこだわりを見る」の折りたたみ（商品ごとの画像を自動で集める仕組み）は、このバナーに置き換える案。こだわりの画像を9商品それぞれに入れなくて済む</li>
+        <li>お試しセットのバナーは商品ページには出さない（11/24 決定）</li>
+      </ul>
+    </aside>
+
+    <!-- 10 フッター -->
+    <div class="sp last z common">
+      <span class="ztag">共通</span>
+      <footer class="footer">
+        <span class="logo">ロゴ（未定）</span>
+        <ul>
+          <li>kukusiniについて</li><li>商品一覧</li><li>よくある質問</li><li>お問い合わせ</li>
+          <li>特定商取引法に基づく表記</li><li>プライバシーポリシー</li><li>ブログ</li><li>Instagram</li>
+        </ul>
+        <div style="opacity:.75">© kukusini</div>
+      </footer>
+    </div>
+    <aside class="note last common">
+      <span class="who">共通</span>
+      <h3><span class="n">10</span>フッター</h3>
+      <ul><li>全ページ共通</li></ul>
+    </aside>
+
+  </div>
+</div>
+</body>
+</html>
