@@ -351,6 +351,10 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
 /* お問い合わせ */
 .kk-contact-note { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
 .kk-contact-note div { background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; padding: 12px 16px; }
+/* ブログ記事：比較表などの縦長画像がPCで大きくなりすぎないよう、幅640pxまでにして中央に置く（スマホは画面幅いっぱい） */
+.blog_body img { max-width: min(100%, 640px); height: auto; }
+.blog_body img:only-child { display: block; margin-left: auto; margin-right: auto; }
+
 .kk a:focus-visible, .kk button:focus-visible, .kk summary:focus-visible { outline: 2px solid var(--kk-kraft); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .kk * { transition: none !important; } }
 </style>
