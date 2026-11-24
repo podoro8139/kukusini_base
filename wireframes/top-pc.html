@@ -110,6 +110,13 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-
 .note .who { display: inline-block; font-size: 11px; font-weight: 700; color: var(--zc); margin-bottom: 4px; }
 .note.common { --zc: var(--z-common); } .note.item { --zc: var(--z-item); } .note.auto { --zc: var(--z-auto); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width: 700px) {
+  .s { padding: 32px 18px; }
+  .hero, .story, .banners, .groups, .grid4, .voices, .faq, .split, .biz-row, .craft3, .upper, .lower, .sim, .two, .photos2, .steps, .facts, .facts4, .footer, .footer ul, .gal { grid-template-columns: minmax(0, 1fr) !important; }
+  .header { flex-wrap: wrap; padding: 14px 18px; gap: 10px; }
+  .gnav { margin-left: 0; gap: 12px; }
+  .hero > .photo { min-height: 240px; border-right: 0; }
+}
 </style>
 
 <style>
@@ -123,6 +130,14 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-
 .kw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; text-align: center; font-size: 12.5px; }
 .kw > div { display: flex; flex-direction: column; gap: 6px; }
 .kw .photo { font-size: 10.5px; padding: 4px; }
+.story3-head { text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center; max-width: 720px; margin: 0 auto; }
+.craft3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.c3 { display: flex; flex-direction: column; gap: 4px; text-align: center; min-width: 0; }
+.c3 .photo { aspect-ratio: 4 / 3; margin-bottom: 8px; }
+.c3 .cat { font-size: 11px; letter-spacing: .14em; color: var(--muted); }
+.c3 b { font-family: var(--mincho); font-weight: 600; font-size: 17px; }
+.c3 .d { font-size: 13px; color: var(--muted); text-align: left; }
+.more-bar { display: block; border-radius: 6px; }
 .groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .grp { border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .grp b { font-family: var(--mincho); font-weight: 600; font-size: 19px; }
@@ -213,26 +228,23 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-
 
     <div class="pc">
       <section class="s">
-        <div class="story">
-          <div class="photo"><div><b>作り手の手元・後ろ姿</b>撮影リスト No.11</div></div>
-          <div class="story-text">
-            <div class="eyebrow">Our Story</div>
-            <h2 class="h2">ペットではなく、家族だから。<br>食べるものに、こだわりを。</h2>
-            <p class="lead">うちの子は、ペットではなく家族の一員。だからこそ、毎日口にするものには妥協したくありません。kukusiniは、自分の子どもにもあげられる素材だけで、「食べて豊かになるもの」をつくっています。</p>
-            <div class="kw">
-              <div><span class="photo sq"><span>鶏・飼育</span></span>淡路どり</div>
-              <div><span class="photo sq"><span>朝の生肉</span></span>その日の朝に処理した鶏肉</div>
-              <div><span class="photo sq"><span>手切り</span></span>生のまま一枚ずつ手切り</div>
-            </div>
-            <div><a class="btn sec" href="about-sp.html">kukusiniについて ／ 素材とつくり方</a></div>
-          </div>
+        <div class="story3-head">
+          <div class="eyebrow">Our Story</div>
+          <h2 class="h2">ペットではなく、家族だから。<br>食べるものに、こだわりを。</h2>
+          <p class="lead">うちの子は、ペットではなく家族の一員。だからこそ、毎日口にするものには妥協したくありません。kukusiniは、自分の子どもにもあげられる素材だけで、「食べて豊かになるもの」をつくっています。</p>
         </div>
+        <div class="craft3">
+          <div class="c3"><span class="photo"><span>鶏・淡路島</span></span><span class="cat">素材へのこだわり</span><b>淡路島で育った淡路どり</b><span class="d">淡路島で育ち、淡路島で処理された「淡路どり」を使っています。素材本来のおいしさを大切にしています。</span></div>
+          <div class="c3"><span class="photo"><span>朝の生肉</span></span><span class="cat">鮮度へのこだわり</span><b>その日の朝に処理した鶏肉</b><span class="d">朝に処理された新鮮な鶏肉を、その日のうちにおやつに仕上げています。</span></div>
+          <div class="c3"><span class="photo"><span>手切り</span></span><span class="cat">製法へのこだわり</span><b>生のまま、一枚ずつ手切り</b><span class="d">冷凍せず生のまま、手で割れる薄さに一枚ずつ切っています。鶏肉以外は何も加えていません。</span></div>
+        </div>
+        <a class="btn sec more-bar" href="about-pc.html">kukusiniの想いとこだわりを、もっと知る →</a>
       </section>
     </div>
     <aside class="note">
       <h3><span class="n">2</span>想い</h3>
       <ul>
-        <li>写真と文章を左右に。キーワード3つは文章の下に小さく</li>
+        <li>見出しと文章を中央に、その下に「素材・鮮度・製法」3つのこだわりを3列（写真＋見出し＋2行の説明）</li>
         <li>詳しい話は About へ</li>
       </ul>
     </aside>

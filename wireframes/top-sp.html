@@ -140,6 +140,14 @@ body {
 .lbl { font-size: 10px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; padding: 0 5px; }
 .lbl.pop { background: var(--accent); color: var(--paper); }
 .more { align-self: flex-end; font-size: 12px; color: var(--accent); text-decoration: none; }
+.craft3 { display: flex; flex-direction: column; gap: 18px; }
+.c3 { display: flex; flex-direction: column; gap: 4px; text-align: center; }
+.c3 .photo { aspect-ratio: 16 / 9; margin-bottom: 6px; }
+.c3 .cat { font-size: 10.5px; letter-spacing: .14em; color: var(--muted); }
+.c3 b { font-family: var(--mincho); font-weight: 600; font-size: 15px; }
+.c3 .d { font-size: 12px; color: var(--muted); line-height: 1.7; text-align: left; }
+#story { text-align: center; }
+#story .lead { text-align: left; }
 .kw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; text-align: center; }
 .kw > div { display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; line-height: 1.5; }
 .kw .photo { font-size: 10px; padding: 4px; }
@@ -267,20 +275,19 @@ tr[hidden] { display: none; }
         <div class="eyebrow">Our Story</div>
         <h2 class="h2">ペットではなく、家族だから。<br>食べるものに、こだわりを。</h2>
         <p class="lead">うちの子は、ペットではなく家族の一員。だからこそ、毎日口にするものには妥協したくありません。kukusiniは、自分の子どもにもあげられる素材だけで、「食べて豊かになるもの」をつくっています。</p>
-        <div class="photo"><div><b>作り手の手元・後ろ姿</b>撮影リスト No.11（既存 No.47 流用可）</div></div>
-        <div class="kw">
-          <div><span class="photo sq"><span>鶏・飼育</span></span><b>淡路どり</b></div>
-          <div><span class="photo sq"><span>朝の生肉</span></span><b>その日の朝に<br>処理した鶏肉</b></div>
-          <div><span class="photo sq"><span>手切り</span></span><b>生のまま<br>一枚ずつ手切り</b></div>
+        <div class="craft3">
+          <div class="c3"><span class="photo"><span>鶏・淡路島</span></span><span class="cat">素材へのこだわり</span><b>淡路島で育った淡路どり</b><span class="d">淡路島で育ち、淡路島で処理された「淡路どり」を使っています。素材本来のおいしさを大切にしています。</span></div>
+          <div class="c3"><span class="photo"><span>朝の生肉</span></span><span class="cat">鮮度へのこだわり</span><b>その日の朝に処理した鶏肉</b><span class="d">朝に処理された新鮮な鶏肉を、その日のうちにおやつに仕上げています。</span></div>
+          <div class="c3"><span class="photo"><span>手切り</span></span><span class="cat">製法へのこだわり</span><b>生のまま、一枚ずつ手切り</b><span class="d">冷凍せず生のまま、手で割れる薄さに一枚ずつ切っています。鶏肉以外は何も加えていません。</span></div>
         </div>
-        <a class="btn sec" href="https://claude.ai/artifact/5SXqEhevABpoKvj5iTiT93">kukusiniについて ／ 素材とつくり方</a>
+        <a class="btn sec" href="https://claude.ai/artifact/5SXqEhevABpoKvj5iTiT93">kukusiniの想いとこだわりを、もっと知る →</a>
       </section>
     </div>
     <aside class="note">
       <h3><span class="n">2</span>想い（＋こだわりの入口）</h3>
       <ul>
         <li>見出し案：ほかに「家族だから、食べるものは妥協しない。」「家族のごはんと、同じ目線で。」も候補</li>
-        <li>旧「想い」と「こだわり」を1つに統合。トップは<b>キーワード3つだけ</b>見せ、説明はAboutに集約</li>
+        <li>想いの下に「素材・鮮度・製法」3つのこだわりを、写真＋見出し＋2行の説明で（11/24 谷さん案）。詳しい話はAboutへ</li>
         <li>いちばん伝えたいこと＝「愛犬のことを考えた商品づくり」（ヒアリング06-②で確定）</li>
         <li>はじまり・淡路どり・つくり方の詳しい話は About（<span class="tag base">{block:AboutPage}</span>）へ</li>
         <li>3つの写真は About の各節と同じものを使い、見た目でつながりを出す</li>

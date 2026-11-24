@@ -152,6 +152,13 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-
 .note .who { display: inline-block; font-size: 11px; font-weight: 700; color: var(--zc); margin-bottom: 4px; }
 .note.common { --zc: var(--z-common); } .note.item { --zc: var(--z-item); } .note.auto { --zc: var(--z-auto); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width: 700px) {
+  .s { padding: 32px 18px; }
+  .hero, .story, .banners, .groups, .grid4, .voices, .faq, .split, .biz-row, .craft3, .upper, .lower, .sim, .two, .photos2, .steps, .facts, .facts4, .footer, .footer ul, .gal { grid-template-columns: minmax(0, 1fr) !important; }
+  .header { flex-wrap: wrap; padding: 14px 18px; gap: 10px; }
+  .gnav { margin-left: 0; gap: 12px; }
+  .hero > .photo { min-height: 240px; border-right: 0; }
+}
 </style>
 
 <style>
