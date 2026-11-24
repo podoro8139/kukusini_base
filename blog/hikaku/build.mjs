@@ -13,15 +13,15 @@ const dataUri = f => 'data:image/' + (f.endsWith('.png') ? 'png' : 'jpeg') + ';b
 
 // 出典：data/products.csv（硬さ・香りは南さんの実感値 ☆1〜5）。表示名はサイトの「選び方」と同じ
 const ITEMS = [
-  { g: 'soft',  name: 'ささみ',        hard: 1, aroma: 4, who: '全犬種。迷ったらまずこれ', pop: true },
-  { g: 'soft',  name: 'むね',          hard: 2, aroma: 2, who: '全犬種。ささみが合わない子にも' },
-  { g: 'soft',  name: 'きも（レバー）', hard: 1, aroma: 5, who: '小型犬・食いムラのある子' },
-  { g: 'soft',  name: '鶏頭',          hard: 2, aroma: 1, who: '噛むのが好きな子（小型犬も）' },
-  { g: 'chew',  name: '砂肝',          hard: 3, aroma: 3, who: '噛みごたえ好き・ダイエット中' },
-  { g: 'chew',  name: '軟骨入りセセリ', hard: 3, aroma: 2, who: '小型犬・カルシウムを摂りたい子', dx: 24 },
-  { g: 'chew',  name: '手羽先',        hard: 4, aroma: 1, who: '骨が好きな5kg以上の子' },
-  { g: 'chew',  name: '鶏足',          hard: 5, aroma: 1, who: '硬いもの好きの大型犬' },
-  { g: 'meal',  name: 'ささみふりかけ', hard: 0, aroma: 5, who: 'シニア・食の細い子' },
+  { g: 'soft',  id: 'sasami', name: 'ささみ', tag: '初めての1袋に',        hard: 1, aroma: 4, who: '全犬種。迷ったらまずこれ', pop: true },
+  { g: 'soft',  id: 'mune', name: 'むね', tag: 'やさしい味わい',          hard: 2, aroma: 2, who: '全犬種。ささみが合わない子にも' },
+  { g: 'soft',  id: 'kimo', name: 'きも（レバー）', tag: '香りがいちばん強い', hard: 1, aroma: 5, who: '小型犬・食いムラのある子' },
+  { g: 'soft',  id: 'atama', name: '鶏頭', tag: '砕けやすい噛みごたえ',          hard: 2, aroma: 1, who: '噛むのが好きな子（小型犬も）' },
+  { g: 'chew',  id: 'zuri', name: '砂肝', tag: '低脂肪で噛みごたえ',          hard: 3, aroma: 3, who: '噛みごたえ好き・ダイエット中' },
+  { g: 'chew',  id: 'neck', name: '軟骨入りセセリ', tag: 'ザクザク食感', hard: 3, aroma: 2, who: '小型犬・カルシウムを摂りたい子', dx: 24 },
+  { g: 'chew',  id: 'tebasaki', name: '手羽先', tag: '骨が好きな子に',        hard: 4, aroma: 1, who: '骨が好きな5kg以上の子' },
+  { g: 'chew',  id: 'momiji', name: '鶏足', tag: 'いちばんかたい',          hard: 5, aroma: 1, who: '硬いもの好きの大型犬' },
+  { g: 'meal',  id: 'furikake', name: 'ささみふりかけ', tag: 'ごはんにプラス', hard: 0, aroma: 5, who: 'シニア・食の細い子' },
 ];
 const GROUPS = {
   soft: { label: 'やわらかめ', sub: '手で割れる。はじめてやシニアにも' },
@@ -52,35 +52,16 @@ h1 { font-family: MC, serif; font-weight: 700; font-size: 54px; letter-spacing: 
 const dots = (n, c = 'var(--c)') => n === 0 ? '<span class="na">粉末</span>' :
   '<span class="dots">' + [1,2,3,4,5].map(i => `<i style="background:${i <= n ? c : 'transparent'};border-color:${c}"></i>`).join('') + '</span>';
 
-// ⓪ 記事の最初に置く「選び方」画像（パッケージ写真入り）
-// 写真は wireframes/mock/img/lineup.jpg から切り出したもの（blog/hikaku/src/pkg_*.jpg）
-const FEATURED = [
-  { id: 'sasami',   name: 'ささみ',        tag: '初めての1袋に',   accent: '#f2c230', bar: '全犬種 / トッピングにも' },
-  { id: 'mune',     name: 'むね',          tag: 'やさしい味わい',   accent: '#ec8fa3', bar: 'ささみが合わない子にも' },
-  { id: 'tebasaki', name: '手羽先',        tag: '骨が好きな子に',   accent: '#c5d93a', bar: '5kg以上 / パリパリ食感' },
-  { id: 'neck',     name: '軟骨入りセセリ', sub: 'ネック', tag: 'ザクザク食感', accent: '#8cc37e', bar: '小型犬 / カルシウム / しつけ用にも' },
-  { id: 'furikake', name: 'ささみふりかけ', tag: 'ごはんにプラス',   accent: '#f07a45', bar: 'シニア / 食の細い子 / 水分補給に' },
-];
-const PKG = { sasami: 'ささみ', mune: 'むね', tebasaki: '手羽先', neck: '軟骨入りセセリ', furikake: 'ささみふりかけ' };
+// ⓪ 記事の最初に置く画像（シンプル版）：タイトル＋見方＋迷ったときの早見
 const stars = n => n === 0 ? '<span class="pw">粉末</span>' :
   '<span class="st">' + [1,2,3,4,5].map(i => `<i class="${i <= n ? 'on' : ''}">★</i>`).join('') + '</span>';
+const STAR_CSS = `.st { letter-spacing: -2px; color: #e2dbcd; } .st i { font-style: normal; } .st .on { color: #e0a526; }
+  .pw { color: var(--muted); }`;
 
 function heroHtml() {
-  const card = f => {
-    const it = ITEMS.find(i => i.name === PKG[f.id]);
-    return `<div class="card" style="--a:${f.accent}">
-      <p class="tag">${f.tag}</p>
-      <h2>${f.name}${f.sub ? `<small>（${f.sub}）</small>` : ''}${it.pop ? '<em>人気No.1</em>' : ''}</h2>
-      <div class="body">
-        <img src="${dataUri(path.join(DIR, 'src', 'pkg_' + f.id + '.jpg'))}" alt="">
-        <dl><dt>かたさ</dt><dd>${stars(it.hard)}</dd><dt>香り</dt><dd>${stars(it.aroma)}</dd></dl>
-      </div>
-      <p class="bar">${f.bar}</p>
-    </div>`;
-  };
-  return `<style>${BASE_CSS}
+  return `<style>${BASE_CSS}${STAR_CSS}
   body { background: #f4efe6; }
-  .wrap { padding: 56px 48px 48px; }
+  .wrap { padding: 56px 48px 52px; }
   .logo { display: block; height: 58px; margin: 0 auto; }
   .kicker { text-align: center; font-size: 30px; font-weight: 700; color: var(--kraft); margin-top: 26px; letter-spacing: .1em; }
   h1 { text-align: center; font-size: 60px; margin-top: 4px; }
@@ -90,30 +71,11 @@ function heroHtml() {
   .how b { background: #f1e2d0; color: #8a5a2b; font-size: 22px; padding: 12px 18px; border-radius: 10px; white-space: nowrap; }
   .how p { font-size: 22px; line-height: 1.6; flex: 1; } .how p strong { font-size: 25px; }
   .how p + p { border-left: 1px solid var(--line); padding-left: 24px; }
-  .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; margin-top: 28px; }
-  .card { grid-column: span 2; background: var(--paper); border-radius: 22px; padding: 22px 20px 20px; display: flex; flex-direction: column; align-items: center;
-    box-shadow: 0 3px 0 rgba(120, 90, 50, .08); }
-  .card:nth-child(n+4) { grid-column: span 3; }
-  .tag { background: color-mix(in srgb, var(--a) 35%, #fff); font-weight: 700; font-size: 22px; padding: 5px 20px; border-radius: 999px; }
-  .card h2 { font-size: 40px; font-weight: 700; margin-top: 10px; letter-spacing: .04em; white-space: nowrap; text-align: center; line-height: 1.3; }
-  .card h2 small { font-size: 20px; font-weight: 400; color: var(--muted); }
-  .card h2 em { display: block; font-style: normal; font-size: 18px; color: #8a5a2b; letter-spacing: .1em; }
-  .body { display: flex; gap: 14px; align-items: center; margin-top: 12px; width: 100%; justify-content: center; }
-  .body img { width: 132px; border-radius: 6px; }
-  .card:nth-child(n+4) .body img { width: 150px; }
-  dl { font-size: 22px; } dt { font-weight: 700; } dd { margin: 2px 0 12px; }
-  .st { font-size: 27px; letter-spacing: -2px; color: #e2dbcd; } .st .on { color: #e0a526; font-style: normal; } .st i { font-style: normal; }
-  .pw { font-size: 21px; color: var(--muted); }
-  .bar { margin-top: auto; width: 100%; text-align: center; background: color-mix(in srgb, var(--a) 22%, #fff); border-radius: 12px; padding: 12px 10px; font-size: 21px; line-height: 1.5; font-weight: 700; }
-  .body { margin-bottom: 14px; }
-  .pick { margin-top: 30px; background: #ebe0cf; border-radius: 22px; padding: 26px 24px 24px; }
+  .pick { margin-top: 28px; background: #ebe0cf; border-radius: 22px; padding: 26px 24px 24px; }
   .pick h3 { text-align: center; font-size: 32px; color: #6b4a2a; letter-spacing: .1em; }
   .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px; }
   .tiles p { background: var(--paper); border-radius: 14px; padding: 16px 22px; font-size: 23px; line-height: 1.5; }
   .tiles b { display: block; font-size: 30px; color: var(--green); }
-  .more { text-align: center; font-size: 22px; margin-top: 24px; line-height: 1.7; }
-  .more b { color: var(--green); }
-  .foot { text-align: center; font-size: 19px; margin-top: 10px; }
   </style>
   <div class="wrap">
     <img class="logo" src="${dataUri(path.join(DIR, '../../wireframes/mock/img/logo.png'))}" alt="kukusini">
@@ -124,8 +86,7 @@ function heroHtml() {
       <p><strong>★ かたさ</strong><br>多いほどかたく、噛みごたえあり</p>
       <p><strong>★ 香り</strong><br>多いほど鶏の香りが強い</p>
     </div>
-    <div class="grid">${FEATURED.map(card).join('')}</div>
-    <div class="pick"><h3>こんな子には、これ</h3>
+    <div class="pick"><h3>迷ったら、これ</h3>
       <div class="tiles">
         <p>はじめてなら<b>→ ささみ</b></p>
         <p>噛むのが好きなら<b>→ 手羽先</b></p>
@@ -133,8 +94,30 @@ function heroHtml() {
         <p>香りの強いものが好きなら<b>→ きも（レバー）</b></p>
       </div>
     </div>
-    <p class="more">このほか <b>きも（レバー）・砂肝・鶏足・鶏頭</b> も。<br>全9種の比較は、記事の下の早見表で。</p>
-    <p class="foot">※★の数は作り手の実感による5段階です。</p>
+  </div>`;
+}
+
+// ⓪' 商品ごとの小さな画像（各商品の説明の頭に置く。写真は直後の商品カードに任せる）
+function specHtml(it) {
+  const G = GROUPS[it.g];
+  return `<style>${BASE_CSS}${STAR_CSS}
+  body { background: transparent; }
+  .card { margin: 0; background: var(--paper); border: 2px solid var(--cs); border-top: 10px solid var(--c); border-radius: 20px; padding: 30px 40px 32px; }
+  .top { display: flex; gap: 12px; align-items: center; }
+  .grp { background: var(--cs); color: var(--c); font-weight: 700; font-size: 22px; padding: 4px 16px; border-radius: 999px; }
+  .tag { font-size: 22px; color: var(--muted); }
+  h2 { font-size: 50px; font-weight: 700; margin-top: 10px; letter-spacing: .04em; }
+  h2 em { font-style: normal; font-size: 20px; color: #fff; background: var(--c); padding: 3px 12px; border-radius: 4px; margin-left: 14px; vertical-align: 10px; letter-spacing: .05em; }
+  .rate { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .rate div { background: var(--bg); border-radius: 12px; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .rate b { font-size: 24px; } .st { font-size: 34px; } .pw { font-size: 24px; }
+  .who { margin-top: 16px; font-size: 25px; } .who b { color: var(--c); margin-right: 10px; }
+  </style>
+  <div class="card c-${it.g}">
+    <div class="top"><span class="grp">${G.label}</span><span class="tag">${it.tag}</span></div>
+    <h2>${it.name}${it.pop ? '<em>人気No.1</em>' : ''}</h2>
+    <div class="rate"><div><b>かたさ</b>${stars(it.hard)}</div><div><b>香り</b>${stars(it.aroma)}</div></div>
+    <p class="who"><b>こんな子に</b>${it.who}</p>
   </div>`;
 }
 
@@ -213,10 +196,14 @@ function tableHtml() {
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1080, height: 800 }, deviceScaleFactor: 1 });
-for (const [file, html] of [['00_hero.png', heroHtml()], ['01_map.png', mapHtml()], ['02_table.png', tableHtml()]]) {
+const PAGES = [['00_hero.png', heroHtml()], ['01_map.png', mapHtml()], ['02_table.png', tableHtml()],
+  ...ITEMS.map((it, k) => [`1${k}_${it.id}.png`, specHtml(it)])];
+for (const [file, html] of PAGES) {
   await page.setContent(`<!doctype html><meta charset="utf-8"><body>${html}</body>`, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
-  await page.screenshot({ path: path.join(OUT, file), fullPage: true });
+  const card = await page.$('body > .card');
+  if (card) await card.screenshot({ path: path.join(OUT, file), omitBackground: true });
+  else await page.screenshot({ path: path.join(OUT, file), fullPage: true });
   console.log('wrote', file);
 }
 await browser.close();
