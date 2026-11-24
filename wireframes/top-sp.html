@@ -125,6 +125,14 @@ body {
 .bn-sub { font-size: 11.5px; color: var(--muted); }
 .bn-arrow { font-size: 20px; color: var(--muted); }
 .bn:focus-visible { outline: 2px solid var(--warm); outline-offset: 2px; }
+.grp { border-top: 1px solid var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.grp-head { display: flex; flex-direction: column; gap: 0; }
+.grp-head b { font-family: var(--mincho); font-weight: 600; font-size: 16px; }
+.grp-head span { font-size: 11.5px; color: var(--muted); }
+.grp-items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.grp-items li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; font-size: 12.5px; }
+.grp-items a { color: var(--ink); text-decoration: none; }
+.grp-items .badge { font-size: 9.5px; }
 .kw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; text-align: center; }
 .kw > div { display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; line-height: 1.5; }
 .kw .photo { font-size: 10px; padding: 4px; }
@@ -303,39 +311,44 @@ tr[hidden] { display: none; }
       <section class="s" id="guide">
         <div class="eyebrow">How to Choose</div>
         <h2 class="h2">うちの子に合う、<br>おやつの選び方。</h2>
-        <p class="lead" style="font-size:12.5px">硬さ・風味・おすすめの犬で比べられます。</p>
-        <div class="chips" role="group" aria-label="絞り込み">
-          <button class="chip" type="button" id="f-all" data-f="all" aria-pressed="true">すべて</button>
-          <button class="chip" type="button" id="f-soft" data-f="soft" aria-pressed="false">やわらかめ</button>
-          <button class="chip" type="button" id="f-hard" data-f="hard" aria-pressed="false">噛みごたえ</button>
-          <button class="chip" type="button" id="f-senior" data-f="senior" aria-pressed="false">シニア・食が細い</button>
+        <p class="lead" style="font-size:12.5px">部位によって、かたさも香りも変わります。</p>
+        <div class="grp">
+          <div class="grp-head"><b>やわらかめ</b><span>手で割れる。はじめてやシニアにも</span></div>
+          <ul class="grp-items">
+            <li><a href="#">ささみ</a><span class="badge">いちばん人気</span></li>
+            <li><a href="#">むね</a></li>
+            <li><a href="#">きも（レバー）</a></li>
+            <li><a href="#">鶏頭</a></li>
+          </ul>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>商品</th><th>硬さ</th><th>風味</th><th>おすすめ</th></tr></thead>
-            <tbody id="guide-body">
-              <tr data-t="soft"><td>ささみ</td><td class="stars">●○○○○</td><td class="stars">●●●●○</td><td>全犬種</td></tr>
-              <tr data-t="soft"><td>むね</td><td class="stars">●●○○○</td><td class="stars">●●○○○</td><td>全犬種</td></tr>
-              <tr data-t="soft"><td>きも（レバー）</td><td class="stars">●○○○○</td><td class="stars">●●●●●</td><td>小型犬・食いムラ</td></tr>
-              <tr data-t="soft"><td>鶏頭</td><td class="stars">●●○○○</td><td class="stars">●○○○○</td><td>噛むのが好きな子</td></tr>
-              <tr data-t="hard"><td>砂肝<span class="sub">名称変更案（旧：ずり）</span></td><td class="stars">●●●○○</td><td class="stars">●●●○○</td><td>ダイエット中</td></tr>
-              <tr data-t="hard"><td>軟骨入りセセリ<span class="sub">名称変更案（旧：ネック）</span></td><td class="stars">●●●○○</td><td class="stars">●●○○○</td><td>小型犬</td></tr>
-              <tr data-t="hard"><td>手羽先</td><td class="stars">●●●●○</td><td class="stars">●○○○○</td><td>5kg以上・骨好き</td></tr>
-              <tr data-t="hard"><td>鶏足<span class="sub">名称変更案（旧：もみじ）</span></td><td class="stars">●●●●●</td><td class="stars">●○○○○</td><td>大型犬</td></tr>
-              <tr data-t="senior"><td>ささみふりかけ</td><td class="stars">—</td><td class="stars">●●●●●</td><td>シニア・食が細い</td></tr>
-            </tbody>
-          </table>
+        <div class="grp">
+          <div class="grp-head"><b>噛みごたえ</b><span>噛むのが好きな子に</span></div>
+          <ul class="grp-items">
+            <li><a href="#">砂肝</a></li>
+            <li><a href="#">軟骨入りセセリ</a></li>
+            <li><a href="#">手羽先</a></li>
+            <li><a href="#">鶏足</a></li>
+          </ul>
         </div>
-        <a class="link" href="#items">すべての商品を見る</a>
+        <div class="grp">
+          <div class="grp-head"><b>ごはんにかける</b><span>食が細い子・水分補給に</span></div>
+          <ul class="grp-items">
+            <li><a href="#">ささみふりかけ</a></li>
+          </ul>
+        </div>
+        <a class="btn sec" href="#">詳しい選び方・比較表（ブログ）</a>
       </section>
     </div>
     <aside class="note">
-      <h3><span class="n">4</span>選び方（比較早見表）</h3>
+      <h3><span class="n">4</span>選び方（3グループ）</h3>
       <ul>
-        <li>比較の軸は南さん指定の「硬さ・風味・おすすめ犬種」。値は南さんの実感値（☆評価）</li>
-        <li>各行から商品ページへリンク。絞り込みはJSでの表示切替のみ（BASEにサーバー処理はない）</li>
-        <li><span class="tag tbd">未決</span> 名称変更（ずり／ネック／もみじ）を採用するか</li>
-        <li>硬い商品は「骨入り・手に持って与える」注意を商品ページ側で明記</li>
+        <li>9種類の比較表はブログ記事へ移し、トップは3グループの短い版に（谷さん案）</li>
+        <li>グループ分けは南さんの硬さ評価から：☆1〜2＝やわらかめ、☆3〜5＝噛みごたえ</li>
+        <li>各商品名は商品ページ <span class="tag base">/items/商品ID</span> への手書きリンク。バナー②の飛び先はここ</li>
+        <li>ブログ記事：比較表（画像。Instagram・マルシェと共用）＋部位ごとの説明・骨の有無・与え方の注意</li>
+        <li><span class="tag tbd">要確認</span> BASEのブログで表がそのまま書けるか（無理なら画像）</li>
+        <li><span class="tag tbd">未決</span> 名称変更（ずり→砂肝／ネック→軟骨入りセセリ／もみじ→鶏足）</li>
+        <li>鶏頭はやわらかめ（☆2）だが骨入り。注意は商品ページとブログで明記</li>
       </ul>
     </aside>
 
@@ -453,16 +466,3 @@ tr[hidden] { display: none; }
   </div>
 </div>
 
-<script>
-(function () {
-  var chips = document.querySelectorAll('#guide .chip');
-  var rows = document.querySelectorAll('#guide-body tr');
-  chips.forEach(function (c) {
-    c.addEventListener('click', function () {
-      var f = c.getAttribute('data-f');
-      chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
-      rows.forEach(function (r) { r.hidden = !(f === 'all' || r.getAttribute('data-t') === f); });
-    });
-  });
-})();
-</script>
