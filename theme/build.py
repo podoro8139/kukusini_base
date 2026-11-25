@@ -62,7 +62,7 @@ SAMPLE_ITEMS = [
     ("淡路どり ネックジャーキー 60g", "990円", "neck.jpg"),
     ("淡路どり 手羽先ジャーキー 60g", "990円", "chew.jpg"),
     ("淡路どり ささみふりかけ 60g", "1,100円", "lineup.jpg"),
-    ("淡路どり 3種類お試しセット", "1,980円", "lineup.jpg"),
+    ("淡路どり 4種類お試しセット", "1,980円", "lineup.jpg"),
     ("淡路どり きもジャーキー 35g", "990円", "break.jpg"),
     ("淡路どり 砂肝ジャーキー 35g", "990円", "neck.jpg"),
 ]
@@ -81,9 +81,9 @@ ADDITIONAL = """<div id="appsItemDetailCustom"><div id="appsItemDetailCustomTag"
 <h3 class="appsItemDetailCustomTag_heading">内容量</h3>
 <p class="appsItemDetailCustomTag_description">60g</p>
 <h3 class="appsItemDetailCustomTag_heading">保存方法</h3>
-<p class="appsItemDetailCustomTag_description">（確認中）</p>
+<p class="appsItemDetailCustomTag_description">直射日光・高温多湿を避けて保存してください。</p>
 <h3 class="appsItemDetailCustomTag_heading">賞味期限</h3>
-<p class="appsItemDetailCustomTag_description">（確認中）</p>
+<p class="appsItemDetailCustomTag_description">製造月から5か月</p>
 </div></div>"""
 
 PURCHASE = """<form class="x_purchaseForm"><div id="itemSelect"><div id="amountSelectWrap"><label>数量</label>
