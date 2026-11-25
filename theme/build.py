@@ -26,6 +26,7 @@ BASE_CSS = HERE / "base-css"
 LOCAL_IMG = {
     "LOGO": "logo.png", "LINEUP": "lineup.jpg", "SASAMI": "sasami.jpg", "BREAK": "break.jpg",
     "HANDCUT": "handcut.jpg", "TRAY": "tray.jpg", "AWAJI": "awaji.jpg", "CHEW": "chew.jpg",
+    "HERO1": "hero-treat.jpg", "HERO2": "hero-beach.jpg", "HERO3": "hero-smile.jpg",
 }
 
 

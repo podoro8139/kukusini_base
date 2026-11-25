@@ -149,6 +149,17 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
 .kk-hero-lead { color: var(--kk-muted); font-size: 14.5px; }
 .kk-hero-img { margin-top: 40px; }
 .kk-hero-img img { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; object-position: center 70%; display: block; }
+/* トップ画のスライドショー：3枚を重ねて、6秒ごとにゆっくりフェードで切り替える（18秒で1周） */
+.kk-slides { position: relative; aspect-ratio: 2 / 1; overflow: hidden; background: var(--kk-green-soft); }
+.kk-hero-img.kk-slides img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; aspect-ratio: auto; opacity: 0; animation: kk-fade 18s linear infinite; }
+.kk-hero-img.kk-slides img:nth-child(1) { object-position: center 58%; animation-delay: -1.1s; }
+.kk-hero-img.kk-slides img:nth-child(2) { object-position: center 37%; animation-delay: 4.9s; }
+.kk-hero-img.kk-slides img:nth-child(3) { object-position: center 52%; animation-delay: 10.9s; }
+@keyframes kk-fade { 0% { opacity: 0; } 6% { opacity: 1; } 33% { opacity: 1; } 40% { opacity: 0; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .kk-hero-img.kk-slides img { animation: none; }
+  .kk-hero-img.kk-slides img:nth-child(1) { opacity: 1; }
+}
 .kk-banners { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: -36px; position: relative; }
 .kk-bn { display: grid; grid-template-columns: 88px minmax(0, 1fr) 16px; gap: 16px; align-items: center; padding: 12px; background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; text-decoration: none; box-shadow: 0 6px 24px rgba(40, 36, 28, .08); text-align: left; }
 .kk-bn img { width: 88px; height: 88px; object-fit: cover; border-radius: 2px; }
@@ -161,6 +172,7 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
 @media (max-width: 720px) {
   .kk-banners { grid-template-columns: 1fr; margin-top: 16px; }
   .kk-hero-img img { aspect-ratio: 4 / 3; }
+  .kk-slides { aspect-ratio: 4 / 3; }
 }
 
 /* トップ：想い＋3つのこだわり */
@@ -422,7 +434,11 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
             <p class="kk-catch">うちの子のために、<br>素材からつくり方まで。</p>
             <p class="kk-hero-lead">うちの子に、安心して「おいしいよ」と渡せるものを。淡路どりのジャーキーです。</p>
         </div>
-        <div class="kk-hero-img"><img src="https://radiant-sfogliatella-5a7754.netlify.app/mock/img/lineup.jpg" alt="淡路どりジャーキーのパッケージ" width="1600" height="800"></div>
+        <div class="kk-hero-img kk-slides">
+            <img src="https://radiant-sfogliatella-5a7754.netlify.app/mock/img/hero-treat.jpg" alt="ジャーキーを見て笑顔になる犬" width="962" height="1280">
+            <img src="https://radiant-sfogliatella-5a7754.netlify.app/mock/img/hero-beach.jpg" alt="淡路島の砂浜を歩く犬" width="959" height="1706" loading="lazy">
+            <img src="https://radiant-sfogliatella-5a7754.netlify.app/mock/img/hero-smile.jpg" alt="砂浜で笑う犬" width="959" height="1706" loading="lazy">
+        </div>
         <div class="kk-in">
             <div class="kk-banners">
                 <a class="kk-bn" href="https://kukusini.base.shop/categories/5732586">

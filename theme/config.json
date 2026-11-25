@@ -8,7 +8,10 @@
     "HANDCUT": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/handcut.jpg",
     "TRAY": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/tray.jpg",
     "AWAJI": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/awaji.jpg",
-    "CHEW": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/chew.jpg"
+    "CHEW": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/chew.jpg",
+    "HERO1": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/hero-treat.jpg",
+    "HERO2": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/hero-beach.jpg",
+    "HERO3": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/hero-smile.jpg"
   },
   "categories": {
     "ALL": "https://kukusini.base.shop/categories/5732586",
