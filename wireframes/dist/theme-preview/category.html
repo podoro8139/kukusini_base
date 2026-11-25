@@ -216,6 +216,9 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
 .kk-belief .kk-in { max-width: 720px; display: flex; flex-direction: column; gap: 22px; align-items: center; }
 .kk-belief blockquote { margin: 8px 0; font-family: var(--kk-mincho); font-size: clamp(19px, 2.4vw, 24px); line-height: 1.9; letter-spacing: .06em; color: var(--kk-green); }
 .kk-awaji { background: var(--kk-green-soft); }
+.kk-chickens { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+.kk-chickens img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 2px; display: block; }
+@media (max-width: 720px) { .kk-chickens { grid-template-columns: 1fr 1fr; } .kk-chickens img:first-child { grid-column: 1 / -1; } }
 .kk-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
 .kk-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .kk-facts div { background: var(--kk-paper); border-radius: 4px; padding: 16px 18px; font-size: 13.5px; line-height: 1.8; }
