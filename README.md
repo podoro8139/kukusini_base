@@ -22,6 +22,7 @@ Google Drive の共有フォルダにある資料（提案書・ヒアリング�
 | [docs/06_写真素材.md](docs/06_写真素材.md) | Drive 写真の棚卸しと撮影リストの状況 |
 | [docs/07_未決事項.md](docs/07_未決事項.md) | 次回打ち合わせの議題・回答待ち・資料間の食い違い |
 | [data/products.csv](data/products.csv) | 商品データ（CSV） |
+| [genko/README.md](genko/README.md) | **原稿と写真の受け渡し**（番号つき見本ページと、先方が書き込むシート） |
 
 ## Drive フォルダ構成（2026/11/18 時点）
 

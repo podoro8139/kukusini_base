@@ -106,6 +106,7 @@ PAGES = {
     "item.html": {"true": {"NotLoadItemsPage", "ItemPage", "ItemImage1", "ItemImage2", "ItemImage3", "ItemNowOnSale",
                            "NoItemProperPrice", "PurchaseForm", "AppsItemDetailCustom", "HasRelatedItems", "RelatedItems"}},
     "about.html": {"true": {"NotLoadItemsPage", "AboutPage", "NotItemPage"}},
+    "contact.html": {"true": {"NotLoadItemsPage", "ContactPage", "NotItemPage"}},
 }
 
 

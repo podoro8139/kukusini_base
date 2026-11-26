@@ -1,4 +1,4 @@
-"""ワイヤーフレームと仮組みページを、無料の静的ホスティング（Netlify など）に置ける形に書き出す。
+"""原稿確認用の見本ページとテンプレートのプレビューを、無料の静的ホスティング（Netlify など）に置ける形に書き出す。
 
 使い方:  python3 wireframes/build.py
 出力先:  wireframes/dist/
@@ -130,16 +130,7 @@ def wrap(text: str, current: str) -> str:
 
 
 def index() -> str:
-    groups = {}
-    for f, g, label in PAGES:
-        groups.setdefault(g, []).append((f, label))
-    blocks = "\n".join(
-        f"<section><h2>{html.escape(g)}</h2><ul>"
-        + "".join(f'<li><a href="{f}">{html.escape(l)}</a></li>' for f, l in items)
-        + "</ul></section>"
-        for g, items in groups.items()
-    )
-    return HEAD.format(body_head="""<title>kukusini ワイヤーフレーム</title>
+    return HEAD.format(body_head="""<title>kukusini 原稿と写真</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Shippori+Mincho:wght@600&display=swap">
 <style>
 :root { --bg:#f3f4f1; --paper:#fff; --ink:#2b332d; --muted:#6b746d; --line:#cfd5cf; --accent:#2f4a3a; }
@@ -154,11 +145,13 @@ p { margin:0; color:var(--muted); font-size:14px; }
 ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:8px; }
 a { display:block; background:var(--paper); border:1px solid var(--line); border-radius:6px; padding:12px 16px; color:var(--ink); text-decoration:none; }
 a:hover, a:focus-visible { border-color:var(--accent); outline:none; }
-</style>""", body=f"""<main>
-<h1>kukusini ECサイトリニューアル<br>ワイヤーフレーム</h1>
-<p>打ち合わせ用の検討資料です。ワイヤーは文章が仮原稿・写真は枠のみ、仮組みはGoogleドライブの写真を当てはめた見本です。どのページも、上のバーか右下の「ページ一覧」で行き来できます。</p>
-{blocks}
-<section><h2>BASE用テンプレート（試作）のプレビュー</h2><ul>
+</style>""", body="""<main>
+<h1>kukusini ECサイトリニューアル<br>原稿と写真の確認</h1>
+<p>見本ページの文章にはオレンジの番号、写真には青い写真名が付いています。文章はシート「文章」の同じ番号の行に、写真は写真名をファイル名にしてGoogleドライブの「サイト利用写真」フォルダへ入れてください。</p>
+<section><h2>原稿確認用の見本（番号つき）</h2><ul>
+<li><a href="genko/top.html">トップ</a></li><li><a href="genko/about.html">About</a></li>
+<li><a href="genko/item.html">商品ページ</a></li><li><a href="genko/contact.html">お問い合わせ</a></li></ul></section>
+<section><h2>番号なしの見本（BASE用テンプレートのプレビュー）</h2><ul>
 <li><a href="theme-preview/top.html">トップ</a></li><li><a href="theme-preview/category.html">カテゴリ</a></li>
 <li><a href="theme-preview/item.html">商品詳細</a></li><li><a href="theme-preview/about.html">About</a></li></ul></section>
 </main>""")
@@ -168,18 +161,15 @@ def main():
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir()
-    for f, _, _ in PAGES:
-        dst = OUT / f
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        dst.write_text(wrap((SRC / f).read_text(encoding="utf-8"), f), encoding="utf-8")
-    # 仮組みの CSS と写真
-    shutil.copy(SRC / "mock" / "site.css", OUT / "mock" / "site.css")
+    # ワイヤーフレームは 11/25 の打ち合わせで役目を終えたので、サイトには載せない（元ファイルは残す）。
+    # 写真だけは、テンプレートの試し表示が mock/img/ を参照しているので載せ続ける。
     shutil.copytree(SRC / "mock" / "img", OUT / "mock" / "img")
     (OUT / "index.html").write_text(index(), encoding="utf-8")
-    print(f"wrote {len(PAGES) + 1} pages to {OUT}")
-    # BASE 用テンプレートのプレビューも同じサイトに載せる
     import subprocess, sys
+    # BASE 用テンプレートのプレビュー → 原稿確認用の見本ページとシート
     subprocess.run([sys.executable, str(SRC.parent / "theme" / "build.py")], check=True)
+    subprocess.run([sys.executable, str(SRC.parent / "genko" / "build.py")], check=True)
+    print(f"wrote {OUT}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="copyright" content="BASE">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0">
+    <title>原稿確認用｜kukusini</title>
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jackmoore/colorbox@1.6.4/example1/colorbox.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+
+    
+
+    
+        
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jimyi/jquery_bottom@1b7e2204c9193647884581804011ceb5d1d95aac/jquery.bottom-1.0.min.js"></script>
+    <script src="/js/change_status.js?0"></script>
+
+    
+    
+
+    
+
+    
+
+    
+
+    <!-- 既存テーマのCSS（購入フォーム・お問い合わせ・特商法などBASEが出す部分の見た目に使う） -->
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+<!-- ============================================================
+     kukusini リニューアル v1（試作）
+     ・クラス名は kk- で始まるものが新デザイン
+     ・BASEのタグと混同しないよう、CSSの { } の内側は必ずスペースを入れ、各行を ; で終える
+     ============================================================ -->
+<style>
+:root {
+  --kk-bg: #f7f5f0;
+  --kk-paper: #fffdf9;
+  --kk-ink: #2a302b;
+  --kk-muted: #6f756f;
+  --kk-line: #ddd8cc;
+  --kk-green: #2f4a3a;
+  --kk-green-soft: #e8ece6;
+  --kk-kraft: #b98d5f;
+  --kk-mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --kk-sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-sans); font-size: 15px; line-height: 1.9; letter-spacing: .02em; }
+.kk img { max-width: 100%; height: auto; }
+.kk a { color: inherit; }
+.kk-in { max-width: 1120px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); box-sizing: border-box; }
+.kk-sec { padding-top: 88px; padding-bottom: 88px; }
+.kk-eyebrow { font-family: var(--kk-mincho); font-size: 12px; letter-spacing: .3em; color: var(--kk-kraft); text-transform: uppercase; margin: 0 0 10px; }
+.kk-h2 { font-family: var(--kk-mincho); font-weight: 500; font-size: clamp(24px, 3.2vw, 32px); line-height: 1.6; letter-spacing: .08em; margin: 0 0 24px; color: var(--kk-ink); }
+.kk p { margin: 0; }
+.kk-btn { display: inline-block; padding: 13px 36px; border-radius: 999px; font-size: 14px; letter-spacing: .08em; text-decoration: none; }
+.kk-btn--line { border: 1px solid var(--kk-green); color: var(--kk-green) !important; }
+.kk-btn--fill { background: var(--kk-green); color: var(--kk-paper) !important; }
+
+/* ヘッダー */
+.kk-header { background: var(--kk-bg); border-bottom: 1px solid var(--kk-line); position: relative; z-index: 50; }
+.kk-hbar { display: flex; align-items: center; gap: 24px; min-height: 68px; }
+.kk-logo { display: block; line-height: 0; }
+.kk-logo img { width: auto; height: 42px; }
+.kk-gnav { margin-left: auto; }
+.kk-gnav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 28px; font-size: 13px; letter-spacing: .08em; }
+.kk-gnav a { text-decoration: none; }
+.kk-gnav a:hover { color: var(--kk-green); }
+.kk-ig { display: block; width: 22px; line-height: 0; }
+.kk-ig img { width: 22px; height: 22px; }
+.kk-cart { font-size: 12.5px; border: 1px solid var(--kk-ink); border-radius: 999px; padding: 4px 16px; text-decoration: none; white-space: nowrap; }
+.kk-menu-btn { display: none; margin-left: auto; width: 40px; height: 40px; border: 0; background: none; cursor: pointer; position: relative; padding: 0; }
+.kk-menu-btn span, .kk-menu-btn::before, .kk-menu-btn::after { content: ""; position: absolute; left: 9px; right: 9px; height: 1.5px; background: var(--kk-ink); transition: transform .2s, opacity .2s; }
+.kk-menu-btn::before { top: 13px; }
+.kk-menu-btn span { top: 19px; }
+.kk-menu-btn::after { top: 25px; }
+.kk-menu-btn[aria-expanded="true"]::before { transform: translateY(6px) rotate(45deg); }
+.kk-menu-btn[aria-expanded="true"] span { opacity: 0; }
+.kk-menu-btn[aria-expanded="true"]::after { transform: translateY(-6px) rotate(-45deg); }
+@media (max-width: 860px) {
+  .kk-menu-btn { display: block; }
+  .kk-gnav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--kk-bg); border-bottom: 1px solid var(--kk-line); margin: 0; }
+  .kk-gnav.is-open { display: block; }
+  .kk-gnav ul { flex-direction: column; gap: 0; padding: 8px 20px 16px; }
+  .kk-gnav li a { display: block; padding: 12px 0; border-bottom: 1px solid var(--kk-line); font-size: 14px; }
+  .kk-cart { padding: 4px 12px; }
+}
+
+/* トップ：ヒーロー */
+.kk-hero { padding-top: 72px; text-align: center; }
+.kk-catch { font-family: var(--kk-mincho); font-weight: 500; font-size: clamp(26px, 4.4vw, 44px); line-height: 1.7; letter-spacing: .12em; margin: 0 0 20px !important; }
+.kk-hero-lead { color: var(--kk-muted); font-size: 14.5px; }
+.kk-hero-img { margin-top: 40px; }
+.kk-hero-img img { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; object-position: center 70%; display: block; }
+.kk-banners { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: -36px; position: relative; }
+.kk-bn { display: grid; grid-template-columns: 88px minmax(0, 1fr) 16px; gap: 16px; align-items: center; padding: 12px; background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; text-decoration: none; box-shadow: 0 6px 24px rgba(40, 36, 28, .08); text-align: left; }
+.kk-bn img { width: 88px; height: 88px; object-fit: cover; border-radius: 2px; }
+.kk-bn-t { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.kk-tag { align-self: flex-start; font-size: 11px; letter-spacing: .06em; padding: 0 8px; border-radius: 2px; background: var(--kk-green); color: var(--kk-paper); }
+.kk-tag--line { background: transparent; color: var(--kk-green); border: 1px solid var(--kk-green); }
+.kk-bn b { font-family: var(--kk-mincho); font-weight: 600; font-size: 18px; line-height: 1.5; }
+.kk-bn small { font-size: 12px; color: var(--kk-muted); }
+.kk-arr { color: var(--kk-muted); font-size: 20px; }
+@media (max-width: 720px) {
+  .kk-banners { grid-template-columns: 1fr; margin-top: 16px; }
+  .kk-hero-img img { aspect-ratio: 4 / 3; }
+}
+
+/* トップ：想い＋3つのこだわり */
+.kk-story-head { text-align: center; max-width: 760px; margin: 0 auto 44px; }
+.kk-craft3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.kk-craft-card { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.kk-craft-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; margin-bottom: 10px; display: block; }
+.kk-craft-card .kk-cat { font-size: 12px; letter-spacing: .2em; color: var(--kk-kraft); text-align: center; }
+.kk-craft-card h3 { font-family: var(--kk-mincho); font-weight: 600; font-size: 19px; letter-spacing: .06em; margin: 0; text-align: center; }
+.kk-craft-card .kk-d { font-size: 14px; line-height: 1.9; color: var(--kk-muted); }
+.kk-more-bar { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 40px; padding: 16px; border: 1px solid var(--kk-line); border-radius: 6px; background: var(--kk-paper); text-decoration: none; font-size: 14.5px; letter-spacing: .06em; }
+.kk-more-bar:hover { border-color: var(--kk-green); color: var(--kk-green); }
+@media (max-width: 800px) {
+  .kk-craft3 { grid-template-columns: 1fr; gap: 32px; }
+  .kk-craft-card img { aspect-ratio: 16 / 9; }
+}
+
+/* トップ：選び方 */
+.kk-guide { background: var(--kk-green-soft); }
+.kk-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.kk-grp { background: var(--kk-paper); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.kk-grp > img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+.kk-grp-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.kk-grp h3 { font-family: var(--kk-mincho); font-weight: 600; font-size: 20px; margin: 0; letter-spacing: .06em; }
+.kk-grp .kk-sub { font-size: 12.5px; color: var(--kk-muted); margin-top: -6px; }
+.kk-grp ul { list-style: none; margin: 0; padding: 0; font-size: 14px; }
+.kk-grp li { padding: 7px 0; border-bottom: 1px solid var(--kk-line); display: flex; justify-content: space-between; gap: 8px; }
+.kk-grp .kk-pop { font-size: 11px; color: var(--kk-green); }
+.kk-grp .kk-more { margin-top: auto; padding-top: 6px; font-size: 13px; color: var(--kk-green); text-decoration: none; }
+.kk-guide-foot { text-align: center; margin-top: 36px; }
+@media (max-width: 800px) { .kk-groups { grid-template-columns: 1fr; } }
+
+/* 商品一覧（トップ・カテゴリ・検索で共通） */
+.kk-help { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; padding: 12px 18px; font-size: 13.5px; text-decoration: none; margin-bottom: 20px; }
+.kk-help b { color: var(--kk-green); font-weight: 500; }
+.kk-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.kk-chips a { font-size: 12.5px; border: 1px solid var(--kk-line); border-radius: 999px; padding: 3px 14px; text-decoration: none; background: var(--kk-paper); }
+.kk-chips a:hover { border-color: var(--kk-green); }
+.kk-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 20px; }
+.kk-card { position: relative; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.kk-card a { text-decoration: none; display: flex; flex-direction: column; gap: 6px; }
+.kk-card img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; display: block; }
+.kk-card .kk-nm { font-size: 14px; line-height: 1.6; }
+.kk-card .kk-pr { font-size: 13px; color: var(--kk-muted); }
+.kk-soldout { position: absolute; top: 0; left: 0; right: 0; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; background: rgba(255, 253, 249, .7); font-size: 13px; letter-spacing: .2em; pointer-events: none; }
+.kk-lbls { display: flex; gap: 4px; flex-wrap: wrap; min-height: 18px; }
+.kk-lbl { font-size: 10.5px; line-height: 1.6; border: 1px solid var(--kk-green); color: var(--kk-green); padding: 0 6px; border-radius: 2px; }
+.kk-lbl--pop { background: var(--kk-green); color: var(--kk-paper); }
+.kk-items.is-top .kk-card:nth-child(n+9) { display: none; }
+.kk-items-foot { text-align: center; margin-top: 36px; }
+@media (max-width: 900px) { .kk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 14px; } }
+
+/* 声・FAQ・卸 */
+.kk-voices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.kk-voice { border-top: 1px solid var(--kk-kraft); padding-top: 18px; font-family: var(--kk-mincho); font-size: 15.5px; line-height: 2; }
+.kk-voice small { display: block; font-family: var(--kk-sans); font-size: 12px; color: var(--kk-muted); margin-top: 10px; }
+@media (max-width: 800px) { .kk-voices { grid-template-columns: 1fr; } }
+.kk-faq-wrap { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 48px; }
+.kk details { border-bottom: 1px solid var(--kk-line); padding: 16px 0; }
+.kk summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
+.kk summary::-webkit-details-marker { display: none; }
+.kk summary::after { content: "+"; color: var(--kk-muted); }
+.kk details[open] summary::after { content: "−"; }
+.kk details p { margin-top: 10px; font-size: 14px; color: var(--kk-muted); }
+@media (max-width: 800px) { .kk-faq-wrap { grid-template-columns: 1fr; gap: 8px; } }
+.kk-biz { border-top: 1px solid var(--kk-line); padding-top: 40px; padding-bottom: 40px; }
+.kk-biz-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 24px; align-items: center; font-size: 13.5px; }
+.kk-biz-row b { display: block; font-family: var(--kk-mincho); font-weight: 600; font-size: 16px; }
+@media (max-width: 800px) { .kk-biz-row { grid-template-columns: 1fr; gap: 16px; } }
+
+/* フッター */
+.kk-footer { background: var(--kk-green); color: var(--kk-paper); padding-top: 48px; padding-bottom: 56px; font-size: 13px; }
+.kk-frow { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; align-items: start; }
+.kk-flogo { width: 120px !important; filter: invert(1) brightness(2); }
+.kk-footer ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 20px; }
+.kk-footer a { text-decoration: none; color: var(--kk-paper); }
+.kk-copy { margin-top: 32px !important; font-size: 11.5px; opacity: .7; }
+@media (max-width: 800px) {
+  .kk-frow { grid-template-columns: 1fr; }
+  .kk-footer ul { grid-template-columns: 1fr 1fr; }
+}
+
+/* About */
+.kk-a-hero img.kk-a-mv { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; display: block; }
+.kk-a-cap { padding-top: 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 56px; align-items: start; }
+.kk-a-cap .kk-catch { text-align: left; margin: 0 !important; }
+.kk-a-body { display: flex; flex-direction: column; gap: 18px; font-size: 15px; line-height: 2.1; }
+.kk-belief { text-align: center; }
+.kk-belief .kk-in { max-width: 720px; display: flex; flex-direction: column; gap: 22px; align-items: center; }
+.kk-belief blockquote { margin: 8px 0; font-family: var(--kk-mincho); font-size: clamp(19px, 2.4vw, 24px); line-height: 1.9; letter-spacing: .06em; color: var(--kk-green); }
+.kk-awaji { background: var(--kk-green-soft); }
+.kk-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.kk-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.kk-facts div { background: var(--kk-paper); border-radius: 4px; padding: 16px 18px; font-size: 13.5px; line-height: 1.8; }
+.kk-facts b { display: block; font-family: var(--kk-mincho); font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+.kk-photos3 { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 14px; margin-bottom: 40px; }
+.kk-photos3 img { width: 100%; height: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; display: block; }
+.kk-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; counter-reset: kkst; }
+.kk-steps li { counter-increment: kkst; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: var(--kk-muted); line-height: 1.8; }
+.kk-steps li::before { content: counter(kkst); width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--kk-kraft); color: var(--kk-kraft); display: flex; align-items: center; justify-content: center; font-family: var(--kk-mincho); font-size: 13px; }
+.kk-steps b { font-family: var(--kk-mincho); font-weight: 600; font-size: 17px; color: var(--kk-ink); letter-spacing: .06em; }
+.kk-safety .kk-facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.kk-safety .kk-facts div { background: var(--kk-green-soft); }
+.kk-guide-box { border-top: 1px solid var(--kk-line); }
+.kk-guide-box .kk-intro { white-space: pre-wrap; font-size: 14px; color: var(--kk-muted); }
+@media (max-width: 900px) { .kk-safety .kk-facts { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 800px) {
+  .kk-a-hero img.kk-a-mv { aspect-ratio: 4 / 3; }
+  .kk-a-cap { grid-template-columns: 1fr; gap: 20px; padding-top: 40px; }
+  .kk-two { grid-template-columns: 1fr; gap: 28px; }
+  .kk-facts { grid-template-columns: 1fr; }
+  .kk-photos3 { grid-template-columns: 1fr 1fr; }
+  .kk-photos3 img:first-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+  .kk-steps { grid-template-columns: 1fr; gap: 0; }
+  .kk-steps li { display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--kk-line); }
+  .kk-steps li::before { grid-row: span 2; }
+}
+
+/* 商品詳細（BASEが出す部分の上から見た目を整える） */
+#shopDetailPage .itemdetail { background: var(--kk-bg); padding-top: 24px; }
+#shopDetailPage .itemdetail .name { font-family: var(--kk-mincho); font-weight: 500; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.6; letter-spacing: .06em; }
+#shopDetailPage .itemdetail .teika, #shopDetailPage .itemdetail .discountPrice__calcPrice { font-size: 24px; letter-spacing: .02em; }
+#shopDetailPage .itemdetail .purchaseButton__btn, #shopDetailPage .itemdetail .purchaseButton button, #shopDetailPage .itemdetail .purchaseButton input[type="submit"] { background: var(--kk-green) !important; border-color: var(--kk-green) !important; border-radius: 999px !important; color: var(--kk-paper) !important; letter-spacing: .08em; }
+#shopDetailPage .itemdetail p.text { font-size: 15px; line-height: 2.1; }
+.kk-sizes { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+.kk-sizes[hidden] { display: none; }
+.kk-sizes .kk-h { font-size: 12px; color: var(--kk-muted); letter-spacing: .1em; }
+.kk-sizes .kk-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.kk-sizes a { border: 1px solid var(--kk-line); border-radius: 2px; padding: 10px 6px; text-align: center; text-decoration: none; font-size: 13px; line-height: 1.5; background: var(--kk-paper); }
+.kk-sizes a[aria-current="page"] { border-color: var(--kk-green); outline: 1px solid var(--kk-green); }
+/* 追加の商品説明 App の出力：見出し（左）＋説明（右）の「商品の表」として見せる */
+#shopDetailPage .kuku-detail-content { max-width: 820px; margin: 56px auto 28px; padding: 0 20px; box-sizing: border-box; }
+#shopDetailPage .kuku-detail-content:empty, #shopDetailPage .kk-spec-title:only-child { display: none; }
+#shopDetailPage .kk-spec-title { font-family: var(--kk-mincho); font-weight: 500; font-size: clamp(20px, 2.4vw, 24px); letter-spacing: .08em; margin: 0 0 18px; text-align: left; }
+#shopDetailPage .itemlower #appsItemDetailCustom { text-align: left !important; }
+#shopDetailPage .itemlower #appsItemDetailCustom #appsItemDetailCustomTag { display: flex !important; flex-wrap: wrap !important; border-top: 1px solid var(--kk-line); }
+#shopDetailPage .itemlower #appsItemDetailCustom .appsItemDetailCustomTag_heading { width: 160px !important; background: none !important; padding: 14px 8px !important; margin: 0 !important; border-bottom: 1px solid var(--kk-line) !important; font-family: var(--kk-mincho) !important; font-weight: 600 !important; font-size: 14.5px !important; letter-spacing: .06em; text-align: left !important; color: var(--kk-ink) !important; box-sizing: border-box; }
+#shopDetailPage .itemlower #appsItemDetailCustom .appsItemDetailCustomTag_description { width: calc(100% - 160px) !important; padding: 14px 8px !important; margin: 0 !important; border-bottom: 1px solid var(--kk-line) !important; font-size: 14.5px !important; line-height: 1.9 !important; color: var(--kk-ink) !important; box-sizing: border-box; }
+#shopDetailPage .itemlower #appsItemDetailCustom .appsItemDetailCustomTag_image { width: 100% !important; margin-top: 24px !important; }
+#shopDetailPage .itemlower #appsItemDetailCustom .appsItemDetailCustomTag_image img { border-radius: 4px; }
+@media (max-width: 600px) {
+  #shopDetailPage .itemlower #appsItemDetailCustom .appsItemDetailCustomTag_heading { width: 100% !important; border-bottom: 0 !important; padding: 12px 4px 0 !important; font-size: 13px !important; color: var(--kk-kraft) !important; }
+  #shopDetailPage .itemlower #appsItemDetailCustom .appsItemDetailCustomTag_description { width: 100% !important; padding: 2px 4px 12px !important; }
+}
+/* かたさ・香り・おすすめのカード（追加の商品説明の行からJSで作る） */
+.kk-spec { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 28px; }
+.kk-spec div { background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; padding: 18px 10px; text-align: center; display: flex; flex-direction: column; gap: 4px; }
+.kk-spec .kk-k { font-size: 12px; color: var(--kk-muted); letter-spacing: .1em; }
+.kk-spec .kk-dots { color: var(--kk-green); letter-spacing: 3px; font-size: 13px; }
+.kk-spec b { font-family: var(--kk-mincho); font-weight: 600; font-size: 17px; line-height: 1.5; }
+@media (max-width: 480px) { .kk-spec { gap: 6px; } .kk-spec div { padding: 12px 4px; } .kk-spec b { font-size: 14px; } }
+/* 購入ボタンまわり：既存CSSの黒い箱を消して、緑の丸ボタンに（BASEの実際のクラス名が違っても当たるよう広めに指定） */
+#shopDetailPage .itemdetail .purchase [class*="purchaseButton"], #shopDetailPage .itemdetail .purchase [id*="purchaseButton"] { background: none !important; padding: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+#shopDetailPage .itemdetail .purchase button, #shopDetailPage .itemdetail .purchase input[type="submit"], #shopDetailPage .itemdetail .purchase input[type="button"], #shopDetailPage .itemdetail .purchase a[class*="purchase"], #shopDetailPage .itemdetail .purchase a[class*="Purchase"], #shopDetailPage .itemdetail .purchase [class*="purchaseButton"] > a, #shopDetailPage .itemdetail .purchase [class*="purchaseButton"] > button, #shopDetailPage .itemdetail .purchase .purchaseButton__btn { display: block !important; width: 100% !important; box-sizing: border-box !important; background: var(--kk-green) !important; background-image: none !important; border: 1px solid var(--kk-green) !important; border-radius: 999px !important; color: var(--kk-paper) !important; padding: 15px 20px !important; font-size: 15px !important; letter-spacing: .08em; text-align: center !important; text-decoration: none !important; box-shadow: none !important; }
+#shopDetailPage .itemdetail .purchase button:hover, #shopDetailPage .itemdetail .purchase input[type="submit"]:hover, #shopDetailPage .itemdetail .purchase .purchaseButton__btn:hover { opacity: .88; }
+#shopDetailPage .itemdetail .purchase button[disabled], #shopDetailPage .itemdetail .purchase input[disabled] { background: var(--kk-muted) !important; border-color: var(--kk-muted) !important; }
+#shopDetailPage .itemdetail .purchase .x_purchaseForm .purchaseButton { background: none !important; padding: 0 !important; border-radius: 0 !important; }
+#shopDetailPage .itemdetail .desc p.text { border-color: var(--kk-line) !important; }
+#shopDetailPage .itemdetail .desc .name { font-size: clamp(20px, 2.2vw, 24px) !important; font-weight: 500 !important; }
+.kk-lower { background: var(--kk-green-soft); margin-top: 48px; }
+.kk-caution { background: var(--kk-paper); border-radius: 4px; padding: 18px 20px; font-size: 14px; }
+.kk-caution b { display: block; font-family: var(--kk-mincho); font-weight: 600; font-size: 16px; margin-bottom: 6px; }
+.kk-caution ul { margin: 0; padding-left: 1.2em; list-style: disc; }
+.kk-links2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.kk-links2 .kk-help { margin: 0; }
+@media (max-width: 600px) { .kk-links2 { grid-template-columns: 1fr; } }
+#shopDetailPage .kuku-item-extras { max-width: 1120px; margin: 64px auto; padding: 0 20px; box-sizing: border-box; }
+#shopDetailPage .kuku-extras-title { font-family: var(--kk-mincho); font-weight: 500; font-size: clamp(22px, 2.6vw, 28px); letter-spacing: .08em; text-align: left; margin: 0 0 28px; color: var(--kk-ink); }
+#shopDetailPage .kuku-related-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+#shopDetailPage .kuku-related-card a { color: inherit; text-decoration: none; display: block; }
+#shopDetailPage .kuku-related-image { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+#shopDetailPage .kuku-related-name { font-size: 14px; line-height: 1.65; margin: 12px 0 4px; }
+#shopDetailPage .kuku-related-price { font-size: 13px; color: var(--kk-muted); }
+#shopDetailPage .kuku-all-items { text-align: center; margin: 30px auto 0; }
+@media (max-width: 767px) {
+  /* スマホは横スワイプの1列（商品が何個でも空きが出ない） */
+  #shopDetailPage .kuku-related-grid { display: flex !important; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin: 0 -20px; padding: 0 20px 8px; scroll-padding-left: 20px; scrollbar-width: none; }
+  #shopDetailPage .kuku-related-grid::-webkit-scrollbar { display: none; }
+  #shopDetailPage .kuku-related-card { flex: 0 0 42%; scroll-snap-align: start; }
+  #shopDetailPage .kuku-related-name { font-size: 12.5px; }
+}
+#shopDetailPage .kuku-detail-fold { max-width: 1000px; margin: 30px auto 56px; padding: 0 20px; box-sizing: border-box; }
+#shopDetailPage .kuku-detail-fold[hidden] { display: none; }
+#shopDetailPage .kuku-detail-fold > summary { border-top: 1px solid var(--kk-line); border-bottom: 1px solid var(--kk-line); padding: 18px 12px; font-family: var(--kk-mincho); font-size: 16px; }
+.kk-about-bn { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: stretch; background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; overflow: hidden; text-decoration: none; }
+.kk-about-bn img { width: 100%; height: 100%; max-height: 360px; object-fit: cover; display: block; }
+.kk-about-bn .kk-t { padding: 32px 36px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+.kk-about-bn b { font-family: var(--kk-mincho); font-weight: 500; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.7; letter-spacing: .06em; }
+.kk-about-bn small { color: var(--kk-muted); font-size: 13px; }
+.kk-about-bn .kk-go { color: var(--kk-green); font-size: 13.5px; }
+@media (max-width: 700px) {
+  .kk-about-bn { grid-template-columns: 1fr; }
+  .kk-about-bn img { aspect-ratio: 16 / 9; }
+  .kk-about-bn .kk-t { padding: 22px; }
+}
+
+/* お問い合わせ */
+.kk-contact-note { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.kk-contact-note div { background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; padding: 12px 16px; }
+.kk a:focus-visible, .kk button:focus-visible, .kk summary:focus-visible { outline: 2px solid var(--kk-kraft); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .kk * { transition: none !important; } }
+</style>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="annotate.css">
+</head>
+<!--preview--><body id="shopTopPage" class="shop template kk" data-gk-page="top">
+
+
+
+    <span id="max_page" style="display: none;">1</span>
+    <span id="next_page" style="display: none;">2</span>
+
+
+<header class="kk-header">
+    <div class="kk-in kk-hbar">
+        <a class="kk-logo" href="top.html"><img src="img/logo.png" alt="kukusini" width="455" height="348"></a>
+        <button class="kk-menu-btn" id="kk-menu-btn" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="kk-gnav"><span></span></button>
+        <nav class="kk-gnav" id="kk-gnav">
+            <ul>
+                <li><a href="top.html#kk-guide">選び方</a></li>
+                <li><a href="https://kukusini.base.shop/categories/5732586">商品一覧</a></li>
+                <li><a href="about.html">kukusiniについて</a></li>
+                <li><a href="top.html#kk-faq">よくある質問</a></li>
+                <li><a href="#">お問い合わせ</a></li>
+            </ul>
+        </nav>
+        <a class="kk-ig" href="https://www.instagram.com/kukusini193/" target="_blank" rel="noopener" aria-label="Instagram"><img src="https://basefile.akamaized.net/kukusini-base-shop/689c9b1914b0c/Instagram_Glyph_Black.jpg" alt=""></a>
+        <a class="kk-cart" href="https://kukusini.base.shop/shops/kukusini-base-shop/checkout/edit">カート</a>
+    </div>
+</header>
+
+
+<main class="index">
+
+
+    
+    <!-- ===== トップだけに出す部分 ===== -->
+    <section class="kk-hero">
+        <div class="kk-in">
+            <p class="kk-catch">うちの子のために、<br>素材からつくり方まで。</p>
+            <p class="kk-hero-lead">うちの子に、安心して「おいしいよ」と渡せるものを。淡路どりのジャーキーです。</p>
+        </div>
+        <div class="kk-hero-img"><img src="img/lineup.jpg" alt="淡路どりジャーキーのパッケージ" width="1600" height="800"></div>
+        <div class="kk-in">
+            <div class="kk-banners">
+                <a class="kk-bn" href="https://kukusini.base.shop/categories/5732586">
+                    <img src="img/sasami.jpg" alt="" width="900" height="900">
+                    <span class="kk-bn-t"><span class="kk-tag">初回限定 ／ 送料分お値引き</span><b>3種類お試しセット</b><small>ささみ・むね・ささみふりかけ</small></span>
+                    <span class="kk-arr" aria-hidden="true">›</span>
+                </a>
+                <a class="kk-bn" href="#kk-guide">
+                    <img src="img/break.jpg" alt="" width="1000" height="746">
+                    <span class="kk-bn-t"><span class="kk-tag kk-tag--line">選び方</span><b>うちの子の「好き」はどれ？</b><small>9種類を、かたさ・香りで比べる</small></span>
+                    <span class="kk-arr" aria-hidden="true">›</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="kk-sec">
+        <div class="kk-in">
+            <div class="kk-story-head">
+                <p class="kk-eyebrow">Our Story</p>
+                <h2 class="kk-h2">ペットではなく、家族だから。<br>食べるものに、こだわりを。</h2>
+                <p>うちの子は、ペットではなく家族の一員。だからこそ、毎日口にするものには妥協したくありません。kukusiniは、自分の子どもにもあげられる素材だけで、「食べて豊かになるもの」をつくっています。</p>
+            </div>
+            <div class="kk-craft3">
+                <article class="kk-craft-card">
+                    <img src="img/awaji.jpg" alt="" width="1000" height="750">
+                    <p class="kk-cat">素材へのこだわり</p>
+                    <h3>淡路島で育った淡路どり</h3>
+                    <p class="kk-d">淡路島で育ち、淡路島で処理された「淡路どり」を使っています。素材本来のおいしさを大切にしています。</p>
+                </article>
+                <article class="kk-craft-card">
+                    <img src="img/tray.jpg" alt="" width="1000" height="750">
+                    <p class="kk-cat">鮮度へのこだわり</p>
+                    <h3>その日の朝に処理した鶏肉</h3>
+                    <p class="kk-d">朝に処理された新鮮な鶏肉を、その日のうちにおやつに仕上げています。</p>
+                </article>
+                <article class="kk-craft-card">
+                    <img src="img/handcut.jpg" alt="" width="1000" height="750">
+                    <p class="kk-cat">製法へのこだわり</p>
+                    <h3>生のまま、一枚ずつ手切り</h3>
+                    <p class="kk-d">冷凍せず生のまま、手で割れる薄さに一枚ずつ切っています。鶏肉以外は何も加えていません。</p>
+                </article>
+            </div>
+            <a class="kk-more-bar" href="about.html">kukusiniの想いとこだわりを、もっと知る<span aria-hidden="true">→</span></a>
+        </div>
+    </section>
+
+    <section class="kk-sec kk-guide" id="kk-guide">
+        <div class="kk-in">
+            <p class="kk-eyebrow">How to Choose</p>
+            <h2 class="kk-h2">うちの子に合う、おやつの選び方。</h2>
+            <div class="kk-groups">
+                <div class="kk-grp">
+                    <img src="img/break.jpg" alt="手で割れるささみジャーキー" width="1000" height="746">
+                    <div class="kk-grp-body">
+                        <h3>やわらかめ</h3><p class="kk-sub">手で割れる。はじめてやシニアにも</p>
+                        <ul><li>ささみ <span class="kk-pop">いちばん人気</span></li><li>むね</li><li>きも（レバー）</li><li>鶏頭</li></ul>
+                        <a class="kk-more" href="https://kukusini.base.shop/categories/5732586">このグループをすべて見る ›</a>
+                    </div>
+                </div>
+                <div class="kk-grp">
+                    <img src="img/chew.jpg" alt="噛みごたえのあるジャーキー" width="900" height="900">
+                    <div class="kk-grp-body">
+                        <h3>噛みごたえ</h3><p class="kk-sub">噛むのが好きな子に</p>
+                        <ul><li>砂肝</li><li>軟骨入りセセリ</li><li>手羽先</li><li>鶏足</li></ul>
+                        <a class="kk-more" href="https://kukusini.base.shop/categories/5732586">このグループをすべて見る ›</a>
+                    </div>
+                </div>
+                <div class="kk-grp">
+                    <img src="img/lineup.jpg" alt="" width="1600" height="800">
+                    <div class="kk-grp-body">
+                        <h3>ごはんにかける</h3><p class="kk-sub">食が細い子・水分補給に</p>
+                        <ul><li>ささみふりかけ</li></ul>
+                        <a class="kk-more" href="https://kukusini.base.shop/categories/5732586">このグループをすべて見る ›</a>
+                    </div>
+                </div>
+            </div>
+            <div class="kk-guide-foot"><a class="kk-btn kk-btn--line" href="https://kukusini.base.shop/categories/5732586">詳しい選び方・比較表</a></div>
+        </div>
+    </section>
+    
+
+    
+
+    <!-- ===== 商品一覧（トップ・カテゴリ・検索で共通） ===== -->
+    <section class="kk-sec" id="kk-items">
+        <div class="kk-in">
+            <p class="kk-eyebrow">Items</p>
+            <h2 class="kk-h2">商品一覧</h2>
+            <a class="kk-help" href="top.html#kk-guide">どれがいいか迷ったら<b>選び方を見る ›</b></a>
+            <div class="kk-chips">
+                <a href="https://kukusini.base.shop/categories/5732586">すべて</a><a href="https://kukusini.base.shop/categories/5732586">やわらかめ</a><a href="https://kukusini.base.shop/categories/5732586">噛みごたえ</a><a href="https://kukusini.base.shop/categories/5732586">ごはんにかける</a><a href="https://kukusini.base.shop/categories/5732586">大容量 500g</a><a href="https://kukusini.base.shop/categories/5732586">お試しセット</a>
+            </div>
+            
+            <div id="mainContent" class="kk-grid kk-items is-top">
+            
+                <div class="kk-card" data-title="淡路どり ささみジャーキー 60g">
+                    <a href="item.html">
+                        <img src="img/sasami.jpg" alt="淡路どり ささみジャーキー 60g" loading="lazy">
+                        <span class="kk-lbls"></span>
+                        <span class="kk-nm">淡路どり ささみジャーキー 60g</span>
+                        <span class="kk-pr">990円</span>
+                    </a>
+                    
+                    
+                </div>
+            
+                <div class="kk-card" data-title="淡路どり ささみジャーキー 500g">
+                    <a href="item.html">
+                        <img src="img/sasami-500.jpg" alt="淡路どり ささみジャーキー 500g" loading="lazy">
+                        <span class="kk-lbls"></span>
+                        <span class="kk-nm">淡路どり ささみジャーキー 500g</span>
+                        <span class="kk-pr">5,940円</span>
+                    </a>
+                    
+                    
+                </div>
+            
+                <div class="kk-card" data-title="淡路どり むねジャーキー 500g">
+                    <a href="item.html">
+                        <img src="img/mune-500.jpg" alt="淡路どり むねジャーキー 500g" loading="lazy">
+                        <span class="kk-lbls"></span>
+                        <span class="kk-nm">淡路どり むねジャーキー 500g</span>
+                        <span class="kk-pr">5,940円</span>
+                    </a>
+                    
+                    
+                </div>
+            
+                <div class="kk-card" data-title="淡路どり ネックジャーキー 60g">
+                    <a href="item.html">
+                        <img src="img/neck.jpg" alt="淡路どり ネックジャーキー 60g" loading="lazy">
+                        <span class="kk-lbls"></span>
+                        <span class="kk-nm">淡路どり ネックジャーキー 60g</span>
+                        <span class="kk-pr">990円</span>
+                    </a>
+                    
+                    
+                </div>
+            
+                <div class="kk-card" data-title="淡路どり 手羽先ジャーキー 60g">
+                    <a href="item.html">
+                        <img src="img/chew.jpg" alt="淡路どり 手羽先ジャーキー 60g" loading="lazy">
+                        <span class="kk-lbls"></span>
+                        <span class="kk-nm">淡路どり 手羽先ジャーキー 60g</span>
+                        <span class="kk-pr">990円</span>
+                    </a>
+                    
+                    
+                </div>
+            
+                <div class="kk-card" data-title="淡路どり ささみふりかけ 60g">
+                    <a href="item.html">
+                        <img src="img/lineup.jpg" alt="淡路どり ささみふりかけ 60g" loading="lazy">
+                        <span class="kk-lbls"></span>
+                        <span class="kk-nm">淡路どり ささみふりかけ 60g</span>
+                        <span class="kk-pr">1,100円</span>
+                    </a>
+                    
+                    
+                </div>
+            
+                <div class="kk-card" data-title="淡路どり 3種類お試しセット">
+                    <a href="item.html">
+                        <img src="img/lineup.jpg" alt="淡路どり 3種類お試しセット" loading="lazy">
+                        <span class="kk-lbls"></span>
+                        <span class="kk-nm">淡路どり 3種類お試しセット</span>
+                        <span class="kk-pr">1,980円</span>
+                    </a>
+                    
+                    
+                </div>
+            
+                <div class="kk-card" data-title="淡路どり きもジャーキー 35g">
+                    <a href="item.html">
+                        <img src="img/break.jpg" alt="淡路どり きもジャーキー 35g" loading="lazy">
+                        <span class="kk-lbls"></span>
+                        <span class="kk-nm">淡路どり きもジャーキー 35g</span>
+                        <span class="kk-pr">990円</span>
+                    </a>
+                    
+                    
+                </div>
+            
+                <div class="kk-card" data-title="淡路どり 砂肝ジャーキー 35g">
+                    <a href="item.html">
+                        <img src="img/neck.jpg" alt="淡路どり 砂肝ジャーキー 35g" loading="lazy">
+                        <span class="kk-lbls"></span>
+                        <span class="kk-nm">淡路どり 砂肝ジャーキー 35g</span>
+                        <span class="kk-pr">990円</span>
+                    </a>
+                    
+                    
+                </div>
+            
+            </div>
+            
+            
+            
+            <div class="kk-items-foot"><a class="kk-btn kk-btn--line" href="https://kukusini.base.shop/categories/5732586">すべての商品を見る</a></div>
+            
+        </div>
+    </section>
+
+    
+    <!-- ===== トップだけに出す部分（つづき） ===== -->
+    <section class="kk-sec" style="padding-top: 24px;">
+        <div class="kk-in">
+            <p class="kk-eyebrow">Voices</p>
+            <h2 class="kk-h2">お客さまの声</h2>
+            <div class="kk-voices">
+                <p class="kk-voice">何も食べられなくなった老犬が、ささみだけは最後まで食べてくれました。<small>ささみ</small></p>
+                <p class="kk-voice">腎臓の関係でささみをあげられなくなりましたが、むねなら食べられます。<small>むね</small></p>
+                <p class="kk-voice">硬いものをあげたいけれど歯が心配で。砂肝なら安心してあげられます。<small>砂肝</small></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="kk-sec" id="kk-faq" style="padding-top: 24px;">
+        <div class="kk-in kk-faq-wrap">
+            <div><p class="kk-eyebrow">FAQ</p><h2 class="kk-h2">よくある<br>ご質問</h2></div>
+            <div>
+                <details><summary>どれから選べばいいですか？</summary><p>はじめての方には、やわらかくて香りのよい「ささみ」をおすすめしています。</p></details>
+                <details><summary>原材料は何ですか？</summary><p>淡路どりの鶏肉のみです。</p></details>
+                <details><summary>骨が入っている商品はありますか？</summary><p>（確認中）</p></details>
+                <details><summary>保存方法と賞味期限は？</summary><p>（確認中）</p></details>
+                <details><summary>与えるときの注意は？</summary><p>鶏アレルギーのある子には与えないでください。食べている間は目を離さないでください。</p></details>
+                <details><summary>クーポンはどこで入力しますか？</summary><p>ご注文時、カートの画面でクーポンコードを入力してください。</p></details>
+            </div>
+        </div>
+    </section>
+
+    <section class="kk-biz">
+        <div class="kk-in kk-biz-row">
+            <div><b>卸販売のご相談</b>お問い合わせ本文の最初に【卸】とご記入ください。</div>
+            <div><b>取材・メディアの方</b>お問い合わせ本文の最初に【取材】とご記入ください。</div>
+            <a class="kk-btn kk-btn--line" href="#">お問い合わせ</a>
+        </div>
+    </section>
+    
+
+</main>
+<script type="text/javascript">
+    // 無限スクロールはカテゴリ・検索ページだけ（トップは途中に一覧があるため止める）
+    var kkIsTop = false;
+    kkIsTop = true;
+    var process_flg = false;
+    var end_flg = kkIsTop;
+    $(window).bottom({ proximity: 0.05 });
+    $(window).on('bottom', function() {
+        if (process_flg == false && end_flg == false) {
+            var max_page = $("#max_page").text();
+            var next_page = $('#next_page').text();
+            if (Number(max_page) >= Number(next_page)) {
+                $.ajax({
+                    url: "" + next_page + "",
+                    dataType: 'html',
+                    beforeSend: function () { process_flg = true; },
+                    success: function (data) {
+                        $('#mainContent').append(data);
+                        next_page = Number(next_page) + 1;
+                        $('#next_page').text(next_page);
+                        if (window.kkLabel) window.kkLabel();
+                    },
+                    complete: function () { process_flg = false; }
+                });
+            } else {
+                end_flg = true;
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+    <div class="main">
+    
+    </div>
+
+<footer class="kk-footer">
+    <div class="kk-in">
+        <div class="kk-frow">
+            <a href="top.html"><img class="kk-flogo" src="img/logo.png" alt="kukusini" width="455" height="348"></a>
+            <ul>
+                <li><a href="about.html">kukusiniについて</a></li>
+                <li><a href="https://kukusini.base.shop/categories/5732586">商品一覧</a></li>
+                <li><a href="top.html#kk-faq">よくある質問</a></li>
+                <li><a href="#">お問い合わせ</a></li>
+                <li><a href="#">特定商取引法に基づく表記</a></li>
+                <li><a href="#">プライバシーポリシー</a></li>
+                <li><a href="https://www.instagram.com/kukusini193/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+        </div>
+        <p class="kk-copy">© kukusini. All rights reserved.</p>
+        <span hidden>kukusini</span>
+    </div>
+</footer>
+<input id="base_url" type="hidden" value="#">
+
+<script>
+// ===== 共通の小さな仕掛け（スマホのメニュー、商品ラベル、サイズ違いボタン） =====
+(function () {
+    'use strict';
+    // スマホのメニュー
+    var btn = document.getElementById('kk-menu-btn'), nav = document.getElementById('kk-gnav');
+    if (btn && nav) {
+        btn.addEventListener('click', function () {
+            var open = nav.classList.toggle('is-open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    }
+
+    // 商品名からラベルを決める（上から順に判定。ふりかけを先に見る）
+    var RULES = [
+        [/ふりかけ/, 'ごはんにかける'],
+        [/ささみ|むね|きも|レバー|頭/, 'やわらかめ'],
+        [/砂肝|ずり|ネック|セセリ|手羽|もみじ|鶏足/, '噛みごたえ'],
+        [/お試し/, 'お試しセット']
+    ];
+    function labelsFor(title) {
+        var out = [];
+        if (/ささみ/.test(title) && !/ふりかけ/.test(title) && !/500/.test(title)) out.push(['いちばん人気', true]);
+        for (var i = 0; i < RULES.length; i++) {
+            if (RULES[i][0].test(title)) { out.push([RULES[i][1], false]); break; }
+        }
+        if (/500\s*g/i.test(title)) out.push(['大容量', false]);
+        return out;
+    }
+    function render(box, title) {
+        if (!box || box.getAttribute('data-done')) return;
+        labelsFor(title).forEach(function (l) {
+            var s = document.createElement('span');
+            s.className = 'kk-lbl' + (l[1] ? ' kk-lbl--pop' : '');
+            s.textContent = l[0];
+            box.appendChild(s);
+        });
+        box.setAttribute('data-done', '1');
+    }
+    window.kkLabel = function () {
+        document.querySelectorAll('.kk-card').forEach(function (c) { render(c.querySelector('.kk-lbls'), c.getAttribute('data-title') || ''); });
+        var il = document.getElementById('kk-item-lbls');
+        if (il) render(il, il.getAttribute('data-title') || '');
+    };
+    window.kkLabel();
+
+    // サイズ違いボタン：同じ商品の 35g / 60g / 500g の商品IDを書く（商品登録後に埋める）
+    var KK_SIZES = {  };
+    var m = location.pathname.match(/items\/(\d+)/);
+    var box = document.getElementById('kk-sizes');
+    if (m && box) {
+        var id = m[1];
+        for (var k in KK_SIZES) {
+            var g = KK_SIZES[k];
+            var hit = g.filter(function (s) { return String(s.id) === id; }).length > 0;
+            if (!hit) continue;
+            var row = box.querySelector('.kk-row');
+            g.forEach(function (s) {
+                var a = document.createElement('a');
+                a.href = '/items/' + s.id;
+                a.textContent = s.label;
+                if (String(s.id) === id) a.setAttribute('aria-current', 'page');
+                row.appendChild(a);
+            });
+            box.hidden = false;
+            break;
+        }
+    }
+})();
+</script>
+<script src="annotate.js"></script>
+</body>
+</html>
+
+
+
