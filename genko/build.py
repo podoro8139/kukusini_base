@@ -144,7 +144,7 @@ def sheet_intro(wb, n_text, n_photo):
                      "・いまの写真のままで良いところは、シート「写真」の「いまのままでOK」に ✓ を付けて、ファイルは入れなくてOK"),
         ("写真の質", "スマホで撮る場合は、ズームなし・最高画質・フラッシュなし（窓の自然光）で。LINEで送ると画質が落ちるので、元のデータをドライブに入れてください。"),
         ("", None),
-        ("商品ごとの説明", "シート「商品説明」は、商品ページの「この商品について」の表と、商品名の下の短い説明です。9商品ぶん、空いているところを埋めてください。"),
+        ("商品ごとの説明", "シート「商品説明」は、いまのBASEの商品ページに書いてある文章を「現状」に写しています。文章シートと同じく、そのままで良ければ「いまのままでOK」に ✓、直したいところは「変更希望」へ。「（いまのBASEになし）」の項目は新しく足すところなので、下書きを見て変更希望に書いてください。"),
         ("", None),
         ("件数", f"文章 {n_text} か所／写真 {n_photo} 枠（＋商品写真 9商品）"),
     ]
@@ -267,36 +267,88 @@ def dots(v):
     return "●" * n + "○" * (5 - n)
 
 
+# 商品説明シート：いまのBASEの商品ページ（data/base_items_*.json に保存したもの）を「現状」に写す。
+# (ヒアリングの id, シートでの呼び方, BASE の商品ID（先頭がメインのページ、残りはサイズ違い）)
+PRODUCT_PAGES = [
+    ("sasami", "ささみ", ["83244697", "116472064", "163752671"]),
+    ("mune", "むね", ["83311190", "116472189", "163755550"]),
+    ("tebasaki", "手羽先", ["83311330", "116472323"]),
+    ("kimo", "きも", ["163756113"]),
+    ("zuri", "砂肝（ずり）", ["110301482"]),
+    ("neck", "ネック（サイコロ）", ["83311474", "116472465"]),
+    ("neck", "ネック（ロング）", ["83311600"]),
+    ("furikake", "ささみふりかけ", ["83311731", "116472692"]),
+    ("momiji", "もみじ（鶏足）", ["108555541"]),
+    ("atama", "鶏頭", []),
+]
+BASE_ITEMS = ROOT / "data" / "base_items_2026-11-26.json"
+NONE = "（いまのBASEになし）"
+
+
 def sheet_products(wb):
     ws = wb.create_sheet("商品説明")
-    headers = ["番号", "商品", "項目", "現状（資料からの下書き）", "変更希望", "メモ・質問"]
-    table(ws, headers, [7, 20, 16, 48, 48, 24], write_cols=("変更希望", "メモ・質問"))
-    ws.append(["", "", "", "商品名の下の短い説明（2〜3行）と、「この商品について」の表です。BASEの管理画面に入れる前の原稿として使います。"
-                           "かたさ・香りは ●○ の5段階で、●の数を変えてください。"])
+    headers = ["番号", "商品", "項目", "現状（いまのBASE）", "いまのままでOK", "変更希望", "メモ・質問", "BASE"]
+    table(ws, headers, [7, 16, 22, 50, 12, 46, 24, 9], write_cols=("いまのままでOK", "変更希望", "メモ・質問"))
+    dv = DataValidation(type="list", formula1='"✓"', allow_blank=True)
+    ws.add_data_validation(dv)
+    ws.append(["", "", "", "「現状」は、いまのBASEの商品ページに書いてある文章です（11/26時点）。"
+                           "BASEにない項目は「（いまのBASEになし）」とし、分かっている範囲で下書きを付けています。"
+                           "かたさ・香り・おすすめの3つは、新しい商品ページで上にカードとして並びます（●○ の5段階）。"
+                           "商品説明は、新しいページでは2〜3行の短い文にする予定です。"])
     ws.cell(ws.max_row, 4).alignment = WRAP
-    ws.row_dimensions[ws.max_row].height = 48
-    items = ["ひとこと説明", "かたさ", "香り", "おすすめ", "使い方", "与えるときの注意", "原材料", "内容量・価格", "保存方法", "賞味期限"]
-    n = 0
+    ws.row_dimensions[ws.max_row].height = 92
+    base = json.loads(BASE_ITEMS.read_text(encoding="utf-8"))
     with open(ROOT / "data" / "products.csv", encoding="utf-8") as f:
-        for row in csv.DictReader(f):
-            ws.append([row["正式な商品名"]])
-            r = ws.max_row
-            for i in range(1, len(headers) + 1):
-                ws.cell(r, i).fill = GROUP_FILL
-            ws.cell(r, 1).font = Font(bold=True)
-            caution = "" if row["注意事項"] in ("", "特になし") else row["注意事項"]
-            cur = {
-                "かたさ": dots(row["硬さ"]),
-                "香り": dots(row["風味"]),
-                "おすすめ": row["おすすめ犬種"],
-                "与えるときの注意": caution,
-                "内容量・価格": row["価格・内容量"],
-            }
-            for it in items:
-                n += 1
-                v = cur.get(it, "")
-                ws.append([f"P-{n:02d}", row["正式な商品名"], it, v, None, None])
-                style_row(ws, ws.max_row, len(headers), write_idx=(5, 6), height=max(20, 15 * lines(v) * 0.9 + 6))
+        hearing = {r["id"]: r for r in csv.DictReader(f)}
+    n = 0
+    for pid, label, ids in PRODUCT_PAGES:
+        h = hearing[pid]
+        main = base[ids[0]] if ids else None
+        det = dict(main["details"]) if main else {}
+        draft_caution = "" if h["注意事項"] in ("", "特になし") else h["注意事項"]
+
+        def new(v):
+            return NONE + ("\n下書き：" + v if v else "")
+
+        rows = []
+        if main:
+            rows.append(("商品名（ページの見出し）", main["title"]))
+            desc = main["description"]
+            rows.append(("商品説明（商品名の下の文章）", desc))
+            for other in ids[1:]:
+                d = base[other]["description"]
+                if "＊＊＊＊" in d:
+                    rows.append(("商品説明（大容量500gのページだけ、上に付く文章）", d.split("＊＊＊＊")[0].strip()))
+        else:
+            rows.append(("商品名（ページの見出し）", "（いまのBASEに商品ページなし）"))
+            rows.append(("商品説明（商品名の下の文章）", NONE))
+        rows.append(("かたさ", det.get("かたさ") or new(dots(h["硬さ"]))))
+        rows.append(("香り", det.get("香り") or new(dots(h["風味"]))))
+        rows.append(("おすすめ", det.get("おすすめ") or new(h["おすすめ犬種"])))
+        rows.append(("使い方", det.get("使い方") or NONE))
+        rows.append(("ご注意（与えるときの注意）", det.get("ご注意") or new(draft_caution)))
+        for k in ("商品名", "原材料名", "栄養分", "原産国", "賞味期限", "内容量", "保存方法", "補足"):
+            v = det.get(k, "")
+            if k == "内容量" and main and len(ids) > 1:
+                others = [dict(base[o]["details"]).get("内容量", "") for o in ids[1:]]
+                v = f"{v}\n（ほかのサイズのページ：{'、'.join(x for x in others if x)}）"
+            rows.append((f"{k}（表）", v or (NONE if main else NONE)))
+
+        ws.append([label])
+        r = ws.max_row
+        for i in range(1, len(headers) + 1):
+            ws.cell(r, i).fill = GROUP_FILL
+        ws.cell(r, 1).font = Font(bold=True)
+        if main:
+            link(ws.cell(r, 8), main["url"], "BASEで見る")
+        for item, v in rows:
+            n += 1
+            ws.append([f"P-{n:02d}", label, item, v, None, None, None])
+            rr = ws.max_row
+            style_row(ws, rr, len(headers), write_idx=(5, 6, 7), height=max(20, 15 * lines(v) * 0.9 + 6))
+            dv.add(ws.cell(rr, 5))
+            ws.cell(rr, 5).alignment = Alignment(horizontal="center", vertical="top")
+    ws.auto_filter.ref = f"A1:H{ws.max_row}"
 
 
 def main():
