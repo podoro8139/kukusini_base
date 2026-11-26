@@ -106,6 +106,20 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
 .kk-mv { --swiper-theme-color: var(--kk-paper); --swiper-navigation-size: 26px; --swiper-pagination-bullet-inactive-color: var(--kk-paper); --swiper-pagination-bullet-inactive-opacity: .55; }
 .kk-mv .swiper-pagination { bottom: 14px !important; }
 .kk-mv img { object-position: center 35%; }
+/* PC：最初の画面に写真とバナーまで収める。キャッチは写真の右側に重ねる */
+@media (min-width: 900px) {
+  .kk-hero { padding-top: 0; display: grid; grid-template-columns: minmax(0, 1fr); width: 100%; }
+  .kk-hero > * { min-width: 0; }
+  .kk-hero > .kk-hero-img { width: 100%; overflow: hidden; }
+  .kk-hero > .kk-in:first-child, .kk-hero > .kk-hero-img { grid-row: 1; grid-column: 1; }
+  .kk-hero > .kk-in:first-child { z-index: 2; align-self: center; justify-self: end; width: auto; max-width: 460px; margin: 0 clamp(24px, 5vw, 80px) 0 0; padding: 32px 36px;
+    background: rgba(255, 253, 249, .9); border-radius: 4px; box-shadow: 0 6px 24px rgba(40, 36, 28, .12); text-align: left; }
+  .kk-hero > .kk-in:first-child .kk-catch { font-size: clamp(22px, 2.2vw, 30px); white-space: nowrap; margin: 0 0 12px !important; }
+  .kk-hero > .kk-in:first-child .kk-hero-lead { margin: 0; font-size: 14px; }
+  .kk-hero-img { margin-top: 0; }
+  .kk-hero-img img { aspect-ratio: auto; height: clamp(340px, calc(100vh - 250px), 620px); }
+  .kk-banners { margin-top: 20px; }
+}
 .kk-mv .swiper-button-prev, .kk-mv .swiper-button-next { filter: drop-shadow(0 1px 3px rgba(0,0,0,.35)); }
 .kk-mv.is-single .swiper-pagination, .kk-mv.is-single .swiper-button-prev, .kk-mv.is-single .swiper-button-next { display: none; }
 .kk-banners { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; position: relative; }
