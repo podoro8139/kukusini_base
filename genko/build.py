@@ -32,7 +32,7 @@ OUT_DIR = HERE / "dist"
 XLSX = OUT_DIR / "kukusini_原稿と写真.xlsx"
 WORK = OUT_DIR / "_work"
 
-SITE = "https://kukusini.netlify.app"
+SITE = "https://kukusinshop.netlify.app"
 PHOTO_FOLDER = "https://drive.google.com/drive/folders/1mRrALdkIbxI-oWh8CbwaYqy15fQ4VOr4"
 PAGES = ["top", "about", "item", "contact"]
 
