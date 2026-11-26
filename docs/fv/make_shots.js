@@ -57,6 +57,50 @@ const V = {
    .kk-mv .swiper-pagination,.kk-mv .swiper-button-prev,.kk-mv .swiper-button-next{display:none!important} .kk-hero-img img{aspect-ratio:auto!important;height:100%!important}
    ${T}{align-self:start;justify-self:center;margin-top:206px!important;padding:16px 20px!important;background:rgba(255,253,249,.94);box-shadow:0 6px 24px rgba(40,36,28,.2);text-align:center}
    ${T} .kk-catch{font-size:20px!important;margin:0!important} ${T} .kk-hero-lead{display:none!important}` },
+ BS: { js: `const h=document.querySelector('.kk-hero'); const d=document.createElement('div'); d.className='mk-small'; d.innerHTML='<img src="img/sasami.jpg" alt="">'; h.appendChild(d);`,
+   pc: PCR + `@media(min-width:900px){
+   .kk-hero{grid-template-columns:minmax(360px,1fr) minmax(0,1.75fr)!important;max-width:1240px;margin:26px auto 0;padding:0 24px!important;box-sizing:border-box;column-gap:48px}
+   .kk-hero>.kk-hero-img{grid-column:2!important;grid-row:1!important;margin:0!important} .kk-hero-img img{height:clamp(340px,calc(100vh - 320px),540px)!important;border-radius:2px}
+   ${T}{grid-column:1!important;grid-row:1!important;justify-self:stretch!important;align-self:start!important;margin-top:clamp(40px,8vh,90px)!important;text-align:left}
+   ${T} .kk-catch{font-size:clamp(26px,2.5vw,36px)!important;white-space:nowrap}
+   .mk-small{grid-column:2;grid-row:1;z-index:3;align-self:end;justify-self:start;width:28%;margin:0 0 -22px -12%;background:var(--kk-paper);padding:8px;box-shadow:0 8px 24px rgba(40,36,28,.14)}
+   .mk-small img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+   .kk-hero>.kk-in:not(:first-child){grid-column:1/-1!important;grid-row:2!important} .kk-banners{margin-top:58px!important}}`,
+   sp: SPG + `${T}{grid-row:1;padding:26px 20px 18px!important;text-align:left} ${T} .kk-catch{font-size:24px!important;margin-bottom:8px!important} ${T} .kk-hero-lead{font-size:13px!important}
+   .kk-hero>.kk-hero-img{grid-row:2;width:84%!important;justify-self:end} .kk-hero-img img{aspect-ratio:auto!important;height:300px!important}
+   .mk-small{grid-row:2;grid-column:1;z-index:3;align-self:end;justify-self:start;width:42%;margin:0 0 -26px 16px;background:var(--kk-paper);padding:5px;box-shadow:0 6px 18px rgba(40,36,28,.16)}
+   .mk-small img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover} .kk-hero>.kk-in:not(:first-child){grid-row:3;padding-top:40px} .kk-mv .swiper-pagination{display:none}` },
+ FR: { js: `const t=document.querySelector('.kk-hero > .kk-in:first-child'); const e=document.createElement('p'); e.className='kk-eyebrow mk-eb'; e.textContent='Natural dog treats'; t.insertBefore(e,t.firstChild); const r=document.createElement('span'); r.className='mk-rule'; t.insertBefore(r, t.querySelector('.kk-hero-lead'));`,
+   pc: PCR + `@media(min-width:900px){
+   .kk-hero{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)!important;max-width:1180px;margin:36px auto 0;padding:0 24px!important;box-sizing:border-box;column-gap:0}
+   .kk-hero::before{content:"";grid-row:1;grid-column:1/-1;border:1px solid #c9c2b2;margin:-20px;pointer-events:none}
+   .kk-hero>.kk-hero-img{grid-column:2!important;grid-row:1!important;margin:0!important} .kk-hero-img img{height:clamp(320px,calc(100vh - 340px),500px)!important}
+   ${T}{grid-column:1!important;grid-row:1!important;justify-self:stretch!important;align-self:center!important;padding:0 40px 0 36px!important;text-align:left}
+   ${T} .mk-eb{margin:0 0 18px!important;letter-spacing:.2em} ${T} .kk-catch{font-size:clamp(24px,2.3vw,32px)!important;white-space:nowrap;margin-bottom:22px!important}
+   .mk-rule{display:block;width:40px;height:1px;background:#a6a18d;margin:0 0 20px} ${T} .kk-hero-lead{font-size:13.5px!important}
+   .kk-hero>.kk-in:not(:first-child){grid-column:1/-1!important;grid-row:2!important} .kk-banners{margin-top:44px!important}}`,
+   sp: SPG + `.kk-hero{margin:14px 14px 0!important;width:auto!important} .kk-hero::before{content:"";grid-row:1/span 2;grid-column:1;border:1px solid #c9c2b2;pointer-events:none}
+   .kk-hero>.kk-hero-img{grid-row:2;padding:0 14px 14px;box-sizing:border-box} .kk-hero-img img{aspect-ratio:auto!important;height:280px!important}
+   ${T}{grid-row:1;grid-column:1;padding:24px 22px 18px!important;text-align:left} ${T} .mk-eb{margin:0 0 10px!important;letter-spacing:.18em;font-size:11px}
+   ${T} .kk-catch{font-size:22px!important;margin-bottom:12px!important} .mk-rule{display:block;width:32px;height:1px;background:#a6a18d;margin:0 0 12px} ${T} .kk-hero-lead{font-size:12.5px!important}
+   .kk-hero>.kk-in:not(:first-child){grid-row:3;padding:0!important} .kk-banners{margin-top:16px!important} .kk-mv .swiper-pagination{display:none}` },
+ BN: { js: `document.querySelector('.kk-hero > .kk-in:first-child').appendChild(document.querySelector('.kk-banners'));`,
+   pc: PCR + `@media(min-width:900px){
+   .kk-hero{grid-template-columns:minmax(400px,1fr) minmax(0,1.45fr)!important;max-width:1280px;margin:24px auto 0;padding:0 24px!important;box-sizing:border-box;column-gap:56px}
+   .kk-hero>.kk-hero-img{grid-column:2!important;grid-row:1!important;margin:0!important} .kk-hero-img img{height:clamp(400px,calc(100vh - 140px),660px)!important;border-radius:2px}
+   ${T}{grid-column:1!important;grid-row:1!important;justify-self:stretch!important;align-self:center!important;text-align:left}
+   ${T} .kk-catch{font-size:clamp(26px,2.5vw,36px)!important;white-space:nowrap} ${T} .kk-hero-lead{margin-bottom:30px!important}
+   ${T} .kk-banners{display:flex!important;flex-direction:column;gap:12px!important;margin:0!important;max-width:420px}
+   ${T} .kk-bn{grid-template-columns:minmax(0,1fr) 16px!important;padding:14px 20px!important;box-shadow:none!important;border-radius:2px!important;border:1px solid var(--kk-green)!important}
+   ${T} .kk-bn img{display:none!important} ${T} .kk-bn:first-child{background:var(--kk-green)!important;color:#fff!important} ${T} .kk-bn:first-child *{color:#fff!important}
+   ${T} .kk-bn:first-child .kk-tag{background:rgba(255,255,255,.18)!important} ${T} .kk-bn b{font-size:17px!important}
+   .kk-hero>.kk-in:not(:first-child){display:none}}`,
+   sp: SPG + `.kk-hero>.kk-hero-img{grid-row:1} .kk-hero-img img{aspect-ratio:auto!important;height:330px!important}
+   ${T}{grid-row:2;padding:22px 20px 0!important;text-align:left} ${T} .kk-catch{font-size:23px!important;margin-bottom:6px!important} ${T} .kk-hero-lead{font-size:12.5px!important;margin-bottom:16px!important}
+   ${T} .kk-banners{display:flex!important;flex-direction:column;gap:10px!important;margin:0!important}
+   ${T} .kk-bn{grid-template-columns:minmax(0,1fr) 12px!important;padding:11px 16px!important;box-shadow:none!important;border-radius:2px!important;border:1px solid var(--kk-green)!important}
+   ${T} .kk-bn img{display:none!important} ${T} .kk-bn:first-child{background:var(--kk-green)!important} ${T} .kk-bn:first-child *{color:#fff!important}
+   ${T} .kk-bn:first-child .kk-tag{background:rgba(255,255,255,.18)!important} ${T} .kk-bn b{font-size:16px!important} .kk-hero>.kk-in:not(:first-child){display:none} .kk-mv .swiper-pagination{bottom:8px!important}` },
  C: { pc: '', sp: '' },
  P: { pc: `@media(min-width:900px){.kk-hero{display:block!important;padding-top:72px!important;text-align:center}
    ${T}{background:none!important;box-shadow:none!important;max-width:none!important;margin:0 auto!important;padding:0 24px!important;text-align:center!important;width:auto!important}
@@ -71,6 +115,7 @@ const V = {
       const ctx = await b.newContext({ viewport: vp, deviceScaleFactor: 2, isMobile: dev==='sp', hasTouch: dev==='sp' });
       const p = await ctx.newPage();
       await p.goto('file://'+file); await p.waitForTimeout(700);
+      if (v.js) await p.evaluate(v.js);
       await p.addStyleTag({content: (dev==='sp' ? `@media(max-width:899px){${css}}` : css) + BAN});
       await p.evaluate(()=>{ if(window.kkMv){ window.kkMv.autoplay.stop(); window.kkMv.update(); window.kkMv.slideToLoop(0,0);} window.scrollTo(0,0); });
       await p.waitForTimeout(500);

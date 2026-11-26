@@ -26,12 +26,12 @@ table { border-collapse:collapse; width:100%; margin-top:1mm; } th,td { border-b
 .tag { display:inline-grid; place-items:center; width:10mm; height:10mm; border-radius:50%; background:var(--green); color:#fff; font-weight:700; font-size:13pt; flex:none; }
 .tag.big { width:16mm; height:16mm; font-size:20pt; }
 .desc { color:var(--muted); margin:2mm 0 5mm; }
-.shots { display:grid; grid-template-columns: 176mm 62mm; gap:5mm 8mm; align-items:start; justify-content:center; } .shots .sp { grid-row: 1 / span 2; grid-column: 2; } .shots .pc { grid-column:1; grid-row:1; } .notes { grid-column:1; grid-row:2; display:grid; grid-template-columns: 1.2fr 1.2fr 0.9fr; gap:5mm; } .notes > div h4 { margin-top:0; }
+.shots { display:grid; grid-template-columns: 166mm 58mm; gap:5mm 8mm; align-items:start; justify-content:center; } .shots .sp { grid-row: 1 / span 2; grid-column: 2; } .shots .pc { grid-column:1; grid-row:1; } .notes { grid-column:1; grid-row:2; display:grid; grid-template-columns: 1.2fr 1.2fr 0.9fr; gap:5mm; } .notes > div h4 { margin-top:0; }
 .pc { background:#fff; border:1px solid #cfc9bc; border-radius:2.5mm; overflow:hidden; box-shadow:0 2mm 6mm rgba(0,0,0,.08); }
 .pc .bar { height:5mm; background:#ece8df; display:flex; gap:1.5mm; align-items:center; padding-left:3mm; } .pc .bar i { width:2mm; height:2mm; border-radius:50%; background:#c9c2b4; }
 .pc img { width:100%; display:block; }
 .sp { background:#1f2420; border-radius:7mm; padding:2.4mm; box-shadow:0 2mm 6mm rgba(0,0,0,.15); } .sp img { width:100%; display:block; border-radius:5mm; }
-.notes ul { margin:0 0 2mm; padding-left:4.5mm; } .notes li { margin-bottom:1.2mm; font-size:9.5pt; } .notes p { font-size:9.5pt; }
+.notes ul { margin:0 0 2mm; padding-left:4.5mm; } .notes li { margin-bottom:1mm; font-size:9pt; line-height:1.6; } .notes p { font-size:9.5pt; }
 .good li::marker { content:"○ "; color:var(--green); } .care li::marker { content:"△ "; color:var(--accent); }
 .rec .r1 { display:grid; grid-template-columns:16mm 1fr 92mm 28mm; gap:5mm; align-items:center; background:var(--paper); border:1px solid var(--line); border-radius:3mm; padding:5mm; }
 .rec .r1 h3 { margin-top:0; } .rec .r1 img { width:100%; border-radius:1.5mm; } .rec .r1 img.s { border-radius:3mm; }
@@ -39,10 +39,10 @@ table { border-collapse:collapse; width:100%; margin-top:1mm; } th,td { border-b
 .rec .r2 .tag { width:8mm; height:8mm; font-size:11pt; margin-right:2mm; } .rec .r2 h4 { display:inline; font-size:11pt; color:var(--ink); } .rec .r2 p { margin-top:2mm; font-size:9.5pt; }
 .note { margin-top:6mm; color:var(--muted); font-size:9.5pt; }
 @media print { body { background:none; } .page { margin:0; } }
-</style></head><body><section class="page cover">
+.grid { grid-template-columns:repeat(5,1fr) !important; gap:6mm 4mm !important; } .new { font-family:"Noto Sans JP",sans-serif; font-size:9pt; font-weight:700; color:#fff; background:#b45309; border-radius:1mm; padding:.6mm 2.2mm; margin-left:3mm; vertical-align:middle; letter-spacing:0; }</style></head><body><section class="page cover">
 <div class="cv"><p class="eyebrow">kukusini ECサイトリニューアル</p><h1>トップページ<br>ファーストビュー案</h1>
-<p class="sub">いまの公開サイト・前回の見本と、PC・スマホで7つの見せ方を比べます</p><p class="date">2026.11.26　谷</p></div>
-<img class="cvimg" src="D-pc.jpg"></section><section class="page">
+<p class="sub">いまの公開サイト・前回の見本と、PC・スマホで10の見せ方を比べます</p><p class="date">2026.11.26　谷</p></div>
+<img class="cvimg" src="BN-pc.jpg"></section><section class="page">
 <h2>ファーストビューとは</h2>
 <div class="two">
 <div>
@@ -61,9 +61,9 @@ table { border-collapse:collapse; width:100%; margin-top:1mm; } th,td { border-b
 <li><b>次に押すボタン</b><span>「3種類お試しセット」と「選び方」の2つのバナー</span></li></ol>
 <h3>今回の約束ごと</h3>
 <ul class="rule"><li>PC もスマホも、<b>バナー2つまでスクロールせずに見える</b>こと</li>
-<li>写真は3枚のスライドショー（H 案だけは3枚を同時に表示）</li>
+<li>写真は、いまある素材（犬の写真3枚・商品やジャーキーの写真）だけを使っています。新しい撮影や画像の生成はしていません</li>
 <li>このあとのページの画面は、PC は 1440×860、スマホは 390×844（iPhone の標準的な大きさ）で撮っています</li>
-<li>写真はまだ仮のものです。本番の写真で印象は大きく変わります</li></ul>
+<li>キャッチ・色・フォントはいまのまま。ファーストビューより下は変えません</li><li>写真はまだ仮のものです。本番の写真で印象は大きく変わります</li></ul>
 </div></div></section><section class="page opt"><div class="head"><span class="tag" style="background:#8a8f88">今</span><h2>いまの公開サイト（BASE）</h2></div>
 <p class="desc">shop.kukusini.com のトップ（2026.11.26 時点）。比べるための出発点です。</p>
 <div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="NOW-pc.jpg"></div>
@@ -76,39 +76,51 @@ table { border-collapse:collapse; width:100%; margin-top:1mm; } th,td { border-b
 <div class="sp"><img src="P-sp.jpg"></div>
 <div class="notes"><div><h4>良いところ</h4><ul class="good"><li>キャッチが最初に目に入り、ゆったり読める</li><li>写真が文字に邪魔されず、そのまま見える</li></ul></div>
 <div><h4>気になるところ</h4><ul class="care"><li>PC はキャッチの余白と写真で1画面が埋まり、バナー2つが下に隠れる</li><li>スマホも2つ目のバナーが1画面に収まらない</li><li>キャッチと写真が別々に見え、1枚の絵としての印象が弱い</li></ul></div>
-<div><h4>ここから</h4><p>キャッチを写真に重ねるか、写真の横に置くことで高さを詰め、バナーまで1画面に収めます。次のページからの7案は、その置き方の違いです。</p></div></div></div></section><section class="page"><h2>7つの案（PC）</h2><div class="grid"><figure><img src="C-pc.jpg"><figcaption><b>C</b>　写真に白いカードを重ねる</figcaption></figure><figure><img src="A-pc.jpg"><figcaption><b>A</b>　写真とキャッチを横に並べる</figcaption></figure><figure><img src="D-pc.jpg"><figcaption><b>D</b>　写真に直接のせる</figcaption></figure><figure><img src="E-pc.jpg"><figcaption><b>E</b>　斜めの透過面</figcaption></figure><figure><img src="F-pc.jpg"><figcaption><b>F</b>　縦書きのキャッチ</figcaption></figure><figure><img src="G-pc.jpg"><figcaption><b>G</b>　写真をずらしてカードを重ねる</figcaption></figure><figure><img src="H-pc.jpg"><figcaption><b>H</b>　3枚を並べて見せる</figcaption></figure></div></section><section class="page opt"><div class="head"><span class="tag">C</span><h2>写真に白いカードを重ねる</h2></div>
-<p class="desc">写真を画面いっぱいに広げ、キャッチは写真の右側に重ねた白いカードの中（前回の見本のあとに試した形）。</p>
-<div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="C-pc.jpg"></div>
-<div class="sp"><img src="C-sp.jpg"></div>
-<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>写真もキャッチも大きく見せられる</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>カードが写真の一部を隠すので、写真によっては犬の顔やおやつにかかる</li><li>スマホは「キャッチ → 写真 → バナー」の縦並びのため、2つ目のバナーが1画面に収まらない</li></ul></div><div><h4>向いている写真</h4><p>どんな写真でも使えるが、右側に余白のある写真がよい</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">A</span><h2>写真とキャッチを横に並べる</h2></div>
+<div><h4>ここから</h4><p>キャッチを写真に重ねるか、写真の横に置くことで高さを詰め、バナーまで1画面に収めます。次のページからの10案は、その置き方の違いです。</p></div></div></div></section><section class="page"><h2>10の案（PC）</h2><div class="grid"><figure><img src="A-pc.jpg"><figcaption><b>A</b>　写真とキャッチを横に並べる</figcaption></figure><figure><img src="C-pc.jpg"><figcaption><b>B</b>　写真に白いカードを重ねる</figcaption></figure><figure><img src="D-pc.jpg"><figcaption><b>C</b>　写真に直接のせる</figcaption></figure><figure><img src="E-pc.jpg"><figcaption><b>D</b>　斜めの透過面</figcaption></figure><figure><img src="F-pc.jpg"><figcaption><b>E</b>　縦書きのキャッチ</figcaption></figure><figure><img src="G-pc.jpg"><figcaption><b>F</b>　写真をずらしてカードを重ねる</figcaption></figure><figure><img src="H-pc.jpg"><figcaption><b>G</b>　3枚を並べて見せる</figcaption></figure><figure><img src="BS-pc.jpg"><figcaption><b>H</b>　大小の写真を組み合わせる</figcaption></figure><figure><img src="FR-pc.jpg"><figcaption><b>I</b>　余白を生かしたフレーム型</figcaption></figure><figure><img src="BN-pc.jpg"><figcaption><b>J</b>　バナーをファーストビューに組み込む</figcaption></figure></div></section><section class="page opt"><div class="head"><span class="tag">A</span><h2>写真とキャッチを横に並べる</h2></div>
 <p class="desc">中央の幅（1200px）に収め、写真の隣の余白にキャッチを置く。左右は入れ替え可能。</p>
 <div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="A-pc.jpg"></div>
 <div class="sp"><img src="A-sp.jpg"></div>
-<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>文字が写真に重ならないので、キャッチがいちばん読みやすい</li><li>写真を小さめに見せるため、スマホで撮った写真でも粗が出にくい</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>写真の迫力は控えめ。きちんとした印象になる分、印象には残りにくい</li><li>スマホでは写真の下にキャッチが来るので、写真とキャッチが別々に見える</li></ul></div><div><h4>向いている写真</h4><p>どんな写真でもよい</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">D</span><h2>写真に直接のせる</h2></div>
+<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>文字が写真に重ならないので、キャッチがいちばん読みやすい</li><li>写真を小さめに見せるため、スマホで撮った写真でも粗が出にくい</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>写真の迫力は控えめ。きちんとした印象になる分、印象には残りにくい</li><li>スマホでは写真の下にキャッチが来るので、写真とキャッチが別々に見える</li></ul></div><div><h4>向いている写真</h4><p>どんな写真でもよい</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">B</span><h2>写真に白いカードを重ねる</h2></div>
+<p class="desc">写真を画面いっぱいに広げ、キャッチは写真の右側に重ねた白いカードの中（前回の見本のあとに試した形）。</p>
+<div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="C-pc.jpg"></div>
+<div class="sp"><img src="C-sp.jpg"></div>
+<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>写真もキャッチも大きく見せられる</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>カードが写真の一部を隠すので、写真によっては犬の顔やおやつにかかる</li><li>スマホは「キャッチ → 写真 → バナー」の縦並びのため、2つ目のバナーが1画面に収まらない</li></ul></div><div><h4>向いている写真</h4><p>右側に余白のある写真</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">C</span><h2>写真に直接のせる</h2></div>
 <p class="desc">写真をいっぱいに見せ、左側（スマホは下側）をうっすら暗くして、白い文字のキャッチを直接のせる。</p>
 <div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="D-pc.jpg"></div>
 <div class="sp"><img src="D-sp.jpg"></div>
-<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>写真が主役で、キャッチも大きく読める。参考サイト（協栄さん・西田歯科技工所さん）に近い</li><li>スマホでも写真とキャッチが1枚の絵として見え、バナー2つまで1画面に収まる</li><li>写真を差し替えても形が崩れにくい</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>文字をのせる側（PCは左下、スマホは下）がごちゃっとしていない写真を選ぶ必要がある</li></ul></div><div><h4>向いている写真</h4><p>左側や下側に地面・芝生・空などの余白がある写真</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">E</span><h2>斜めの透過面</h2></div>
+<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>写真が主役で、キャッチも大きく読める。参考サイト（協栄さん・西田歯科技工所さん）に近い</li><li>スマホでも写真とキャッチが1枚の絵として見え、バナー2つまで1画面に収まる</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>文字をのせる側（PCは左下、スマホは下）がごちゃっとしていない写真を選ぶ必要がある</li></ul></div><div><h4>向いている写真</h4><p>左側や下側に地面・芝生・空などの余白がある写真</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">D</span><h2>斜めの透過面</h2></div>
 <p class="desc">ブランドの深緑を斜めに透かして重ね、その上にキャッチ。参考サイト（ディーテックさん）の形。</p>
 <div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="E-pc.jpg"></div>
 <div class="sp"><img src="E-sp.jpg"></div>
-<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>深緑がブランドの色として強く印象に残る</li><li>文字が確実に読める</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>緑の面が写真の3〜4割を隠すので、犬の顔の位置に気をつけて写真を選ぶ</li><li>色面が強いぶん、やさしい・手づくりの雰囲気からは少し離れる</li></ul></div><div><h4>向いている写真</h4><p>主役（犬・おやつ）が右側に寄っている写真</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">F</span><h2>縦書きのキャッチ</h2></div>
+<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>深緑がブランドの色として強く印象に残る</li><li>文字が確実に読める</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>緑の面が写真の3〜4割を隠すので、犬の顔の位置に気をつけて写真を選ぶ</li><li>色面が強いぶん、やさしい・手づくりの雰囲気からは少し離れる</li></ul></div><div><h4>向いている写真</h4><p>主役（犬・おやつ）が右側に寄っている写真</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">E</span><h2>縦書きのキャッチ</h2></div>
 <p class="desc">明朝体の縦書きで、キャッチを右端に置く。説明文は写真の下へ。</p>
 <div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="F-pc.jpg"></div>
 <div class="sp"><img src="F-sp.jpg"></div>
-<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>「うちの子のために」の手づくり感・和の雰囲気といちばん合う</li><li>ほかのペット用品のサイトと見た目で差がつく</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>縦書きにできるのは短い文だけ。説明文は外に出す</li><li>右側に暗めで落ち着いた背景がある写真でないと、文字が読みにくい</li></ul></div><div><h4>向いている写真</h4><p>右側に余白があり、全体のトーンが落ち着いた写真</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">G</span><h2>写真をずらしてカードを重ねる</h2></div>
+<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>「うちの子のために」の手づくり感・和の雰囲気といちばん合う</li><li>ほかのペット用品のサイトと見た目で差がつく</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>縦書きにできるのは短い文だけ。説明文は外に出す</li><li>右側に暗めで落ち着いた背景がある写真でないと、文字が読みにくい</li></ul></div><div><h4>向いている写真</h4><p>右側に余白があり、全体のトーンが落ち着いた写真</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">F</span><h2>写真をずらしてカードを重ねる</h2></div>
 <p class="desc">写真を右（スマホは下）に寄せ、空いた余白から写真にかかるようにキャッチのカードを重ねる。</p>
 <div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="G-pc.jpg"></div>
 <div class="sp"><img src="G-sp.jpg"></div>
-<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>雑誌のように上品にまとまる</li><li>カードが写真の端にかかるだけなので、写真をほとんど隠さない</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>写真が少し小さくなるぶん、迫力は控えめ</li></ul></div><div><h4>向いている写真</h4><p>どんな写真でもよい（主役が中央〜右寄りだとより良い）</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">H</span><h2>3枚を並べて見せる</h2></div>
+<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>雑誌のように上品にまとまる</li><li>カードが写真の端にかかるだけなので、写真をほとんど隠さない</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>写真が少し小さくなるぶん、迫力は控えめ</li></ul></div><div><h4>向いている写真</h4><p>どんな写真でもよい（主役が中央〜右寄りだとより良い）</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">G</span><h2>3枚を並べて見せる</h2></div>
 <p class="desc">スライドさせずに3枚を同時に並べ、中央にキャッチ。スマホは大1枚＋小2枚。</p>
 <div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="H-pc.jpg"></div>
 <div class="sp"><img src="H-sp.jpg"></div>
-<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>いろいろな子が食べている様子が一目で伝わり、「うちの子」感がいちばん出る</li><li>スライドを待たなくても全部の写真が見える</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>3枚とも写真の質と色味がそろっていないとちぐはぐに見える</li><li>1枚ずつは小さくなる</li></ul></div><div><h4>向いている写真</h4><p>同じ日・同じ光で撮った、トーンのそろった3枚</p></div></div></div></section><section class="page"><h2>谷のおすすめ</h2>
+<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>いろいろな子が食べている様子が一目で伝わり、「うちの子」感がいちばん出る</li><li>スライドを待たなくても全部の写真が見える</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>3枚とも写真の質と色味がそろっていないとちぐはぐに見える</li><li>1枚ずつは小さくなる</li></ul></div><div><h4>向いている写真</h4><p>同じ日・同じ光で撮った、トーンのそろった3枚</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">H</span><h2>大小の写真を組み合わせる <span class="new">今回追加</span></h2></div>
+<p class="desc">犬の写真を大きく置き、その左下に商品の写真を小さく重ねる。キャッチは左の余白に。雑誌のようなメリハリのある構成。</p>
+<div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="BS-pc.jpg"></div>
+<div class="sp"><img src="BS-sp.jpg"></div>
+<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>「犬が喜ぶ」と「この商品」が1画面で同時に伝わる</li><li>大小の差で目線が自然に動き、単調にならない</li><li>商品写真はいまあるパッケージ写真で足りる</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>小さい写真が重なる分、PCは写真の下に少し余白が要る</li><li>大小の写真の色味が離れすぎるとちぐはぐに見える</li></ul></div><div><h4>向いている写真</h4><p>大：犬の表情が分かる写真／小：パッケージと中身が分かる商品写真</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">I</span><h2>余白を生かしたフレーム型 <span class="new">今回追加</span></h2></div>
+<p class="desc">写真を全面に広げず、細い罫線の枠の中に写真とキャッチを収める。小さな英字（Natural dog treats）と短い線で文字を整える。</p>
+<div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="FR-pc.jpg"></div>
+<div class="sp"><img src="FR-sp.jpg"></div>
+<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>ナチュラルで上質な雰囲気がいちばん出る</li><li>写真が小さめなので、スマホで撮った写真でも粗が出にくい</li><li>いまの色・明朝体の世界観とよく合う</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>迫力は控えめ。目を引く力より、落ち着きを取る案</li><li>英字（Natural dog treats）は飾りとして足している。不要なら外せる</li></ul></div><div><h4>向いている写真</h4><p>どんな写真でもよい（明るく、背景がすっきりした写真がより合う）</p></div></div></div></section><section class="page opt"><div class="head"><span class="tag">J</span><h2>バナーをファーストビューに組み込む <span class="new">今回追加</span></h2></div>
+<p class="desc">キャッチの下に「3種類お試しセット」「選び方」をボタンとして並べ、写真と一緒に1つの絵にする。写真の下の独立したバナーはなくす。</p>
+<div class="shots"><div class="pc"><div class="bar"><i></i><i></i><i></i></div><img src="BN-pc.jpg"></div>
+<div class="sp"><img src="BN-sp.jpg"></div>
+<div class="notes"><div><h4>良いところ</h4><ul class="good"><li>写真・キャッチ・次に押すボタンが1か所にまとまり、ファーストビューの考え方にいちばん素直</li><li>バナーの帯がなくなる分、写真をいちばん大きく（縦に長く）見せられる</li><li>スマホでもボタン2つまで1画面に収まる</li></ul></div><div><h4>気をつけること</h4><ul class="care"><li>バナーにあった小さな商品写真はなくなる（ボタンの文字だけになる）</li><li>PCは横長より縦長寄りの写真のほうが収まりがよい</li></ul></div><div><h4>向いている写真</h4><p>縦長〜正方形に近い、犬の表情が中心にある写真</p></div></div></div></section><section class="page"><h2>谷のおすすめ</h2>
 <div class="rec">
-<div class="r1"><span class="tag big">D</span><div><h3>本命：写真に直接のせる</h3>
-<p>おやつを前にした犬の表情がいちばん大きく見え、キャッチも大きく読めます。スマホでも写真とキャッチが1枚の絵になり、バナー2つまで1画面に収まります。写真を差し替えても形が崩れにくいので、これから写真が増えていっても運用しやすい案です。</p></div><img src="D-pc.jpg"><img class="s" src="D-sp.jpg"></div>
-<div class="r2"><div><span class="tag">F</span><h4>個性を出すなら：縦書き</h4><p>手づくり・和の雰囲気がいちばん出ます。右側が落ち着いた写真が撮れるなら、D と迷うところです。</p></div>
-<div><span class="tag">G</span><h4>上品にまとめるなら：ずらし＋カード</h4><p>写真をほとんど隠さず、きれいに整います。写真の質に左右されにくい堅実な案です。</p></div></div>
-<p class="note">どの案も、ファーストビューより下（こだわり・選び方・商品一覧など）は変わりません。決まった案を PC・スマホの両方でテンプレートに入れ、見本ページで確認していただきます。</p>
+<div class="r1"><span class="tag big">J</span><div><h3>本命：バナーをファーストビューに組み込む</h3>
+<p>「写真・キャッチ・次に押すボタン」というファーストビューの基本が、1つの絵にまとまります。バナーの帯がなくなる分、犬の写真をいちばん大きく見せられ、PC もスマホも同じ考え方で作れます。お試しセットへの入口がキャッチのすぐ下にあるので、初めての方を迷わせません。</p></div><img src="BN-pc.jpg"><img class="s" src="BN-sp.jpg"></div>
+<div class="r2"><div><span class="tag">C</span><h4>写真の迫力を取るなら：写真に直接のせる</h4><p>犬の表情が画面いっぱいに広がり、いちばん印象に残ります。写真を差し替えても崩れにくい案です。</p></div>
+<div><span class="tag">I</span><h4>上質さを取るなら：余白のフレーム型</h4><p>細い枠と余白で、ナチュラルで落ち着いた世界観がいちばん出ます。写真の質に左右されにくい案です。</p></div></div>
+<p class="note">J の左右（写真とキャッチの位置）は好みで入れ替えられます。どの案も、ファーストビューより下（こだわり・選び方・商品一覧など）は変わりません。決まった案を PC・スマホの両方でテンプレートに入れ、見本ページで確認していただきます。</p>
 </div></section></body></html>
