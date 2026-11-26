@@ -129,9 +129,9 @@ def sheet_intro(wb, n_text, n_photo):
         ("", "文章の前のオレンジの札（T-01 など）が、シート「文章」の番号です。写真の上の青い札（トップ_メイン1 など）が写真名です。\n"
              "見本の上の「番号を隠す」で、札なしの見た目も確認できます。シートの「見本で見る」を押すと、その場所に飛んで黄色く光ります。"),
         ("", None),
-        ("文章の直し方", "シート「文章」の「変更希望」（黄色い欄）に、直したあとの文章をそのまま書いてください。\n"
-                       "・変えないところは空欄のままでOK\n"
-                       "・消したいときは「（削除）」と書く\n"
+        ("文章の直し方", "シート「文章」の「変更」で「あり／なし」を選び、「あり」のところは「変更希望」（黄色い欄）に直したあとの文章をそのまま書いてください。\n"
+                       "・変えないところは「なし」を選ぶ（変更希望は空欄でOK）\n"
+                       "・消したいときは「あり」にして、変更希望に「（削除）」と書く\n"
                        "・改行したい位置は、セルの中で改行（Excel：Alt+Enter／Googleスプレッドシート：Ctrl+Enter）\n"
                        "・迷っていること・質問は「メモ・質問」へ"),
         ("番号の頭の文字", "C＝全ページ共通（メニュー・フッター）／T＝トップ／A＝About／S＝商品ページ（全商品共通の部分）／Q＝お問い合わせ／P＝商品ごとの説明"),
@@ -165,8 +165,10 @@ def sheet_intro(wb, n_text, n_photo):
 
 def sheet_texts(wb, data):
     ws = wb.create_sheet("文章")
-    headers = ["番号", "ページ", "場所", "種類", "現状", "変更希望", "メモ・質問", "見本"]
-    table(ws, headers, [7, 14, 22, 16, 46, 46, 24, 11], write_cols=("変更希望", "メモ・質問"))
+    headers = ["番号", "ページ", "場所", "種類", "現状", "変更", "変更希望", "メモ・質問", "見本"]
+    table(ws, headers, [7, 14, 22, 16, 46, 9, 46, 24, 11], write_cols=("変更", "変更希望", "メモ・質問"))
+    dv = DataValidation(type="list", formula1='"あり,なし"', allow_blank=True)
+    ws.add_data_validation(dv)
     seen = set()
     order = []
     # 共通（C）を先頭にまとめ、そのあと各ページ
@@ -186,11 +188,13 @@ def sheet_texts(wb, data):
                 ws.cell(r, i).fill = GROUP_FILL
             ws.cell(r, 1).font = Font(bold=True)
             prev = t["page"]
-        ws.append([t["id"], t["page"], t["section"], t["kind"], t["text"], None, None])
+        ws.append([t["id"], t["page"], t["section"], t["kind"], t["text"], None, None, None])
         r = ws.max_row
-        link(ws.cell(r, 8), f"{SITE}/genko/{name}.html#{t['id']}")
-        style_row(ws, r, len(headers), write_idx=(6, 7), height=max(20, 15 * lines(t["text"]) * 0.9 + 6))
-    ws.auto_filter.ref = f"A1:H{ws.max_row}"
+        link(ws.cell(r, 9), f"{SITE}/genko/{name}.html#{t['id']}")
+        style_row(ws, r, len(headers), write_idx=(6, 7, 8), height=max(20, 15 * lines(t["text"]) * 0.9 + 6))
+        dv.add(ws.cell(r, 6))
+        ws.cell(r, 6).alignment = Alignment(horizontal="center", vertical="top")
+    ws.auto_filter.ref = f"A1:I{ws.max_row}"
     return sum(1 for _ in order)
 
 
