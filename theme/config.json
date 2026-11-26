@@ -2,9 +2,9 @@
   "_説明": "【試し表示用】images は仮に Netlify の資料サイトの画像を参照している。本番前に BASE のファイルアップローダーの URL に差し替えること。BASEのファイルアップローダーに画像を上げたら、そのURLを images に貼る。カテゴリを作ったら categories にURLを貼る。空欄のままだと、画像は表示されず、カテゴリは「商品一覧」に飛ぶ。",
   "images": {
     "LOGO": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/logo.png",
-    "MAIN1": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/lineup.jpg",
-    "MAIN2": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/awaji.jpg",
-    "MAIN3": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/tray.jpg",
+    "MAIN1": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/main1.jpg",
+    "MAIN2": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/main2.jpg",
+    "MAIN3": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/main3.jpg",
     "LINEUP": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/lineup.jpg",
     "SASAMI": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/sasami.jpg",
     "BREAK": "https://radiant-sfogliatella-5a7754.netlify.app/mock/img/break.jpg",

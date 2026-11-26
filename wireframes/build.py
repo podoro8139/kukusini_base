@@ -152,8 +152,9 @@ a:hover, a:focus-visible { border-color:var(--accent); outline:none; }
 <li><a href="genko/top.html">トップ</a></li><li><a href="genko/about.html">About</a></li>
 <li><a href="genko/item.html">商品ページ</a></li><li><a href="genko/contact.html">お問い合わせ</a></li></ul></section>
 <section><h2>番号なしの見本（BASE用テンプレートのプレビュー）</h2><ul>
-<li><a href="theme-preview/top.html">トップ</a></li><li><a href="theme-preview/category.html">カテゴリ</a></li>
-<li><a href="theme-preview/item.html">商品詳細</a></li><li><a href="theme-preview/about.html">About</a></li></ul></section>
+<li><a href="theme-preview/top.html">トップ</a></li><li><a href="theme-preview/about.html">About</a></li>
+<li><a href="theme-preview/item.html">商品ページ</a></li><li><a href="theme-preview/contact.html">お問い合わせ</a></li>
+<li><a href="theme-preview/category.html">カテゴリ（商品一覧）</a></li></ul></section>
 </main>""")
 
 
