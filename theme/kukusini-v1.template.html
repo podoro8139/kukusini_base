@@ -9,6 +9,7 @@
     {FaviconTag}
     {CanonicalTag}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jackmoore/colorbox@1.6.4/example1/colorbox.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9.4.1/swiper-bundle.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
@@ -149,6 +150,11 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
 .kk-hero-lead { color: var(--kk-muted); font-size: 14.5px; }
 .kk-hero-img { margin-top: 40px; }
 .kk-hero-img img { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; object-position: center 70%; display: block; }
+/* メイン画像のスライドショー（いまのBASEと同じ Swiper。3.5秒ごと・ループ・点と矢印） */
+.kk-mv { --swiper-theme-color: var(--kk-paper); --swiper-navigation-size: 26px; --swiper-pagination-bullet-inactive-color: var(--kk-paper); --swiper-pagination-bullet-inactive-opacity: .55; }
+.kk-mv .swiper-pagination { bottom: 52px !important; }
+.kk-mv .swiper-button-prev, .kk-mv .swiper-button-next { filter: drop-shadow(0 1px 3px rgba(0,0,0,.35)); }
+.kk-mv.is-single .swiper-pagination, .kk-mv.is-single .swiper-button-prev, .kk-mv.is-single .swiper-button-next { display: none; }
 .kk-banners { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: -36px; position: relative; }
 .kk-bn { display: grid; grid-template-columns: 88px minmax(0, 1fr) 16px; gap: 16px; align-items: center; padding: 12px; background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; text-decoration: none; box-shadow: 0 6px 24px rgba(40, 36, 28, .08); text-align: left; }
 .kk-bn img { width: 88px; height: 88px; object-fit: cover; border-radius: 2px; }
@@ -161,6 +167,8 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
 @media (max-width: 720px) {
   .kk-banners { grid-template-columns: 1fr; margin-top: 16px; }
   .kk-hero-img img { aspect-ratio: 4 / 3; }
+  .kk-mv .swiper-pagination { bottom: 10px !important; }
+  .kk-mv .swiper-button-prev, .kk-mv .swiper-button-next { display: none; }
 }
 
 /* トップ：想い＋3つのこだわり */
@@ -418,7 +426,39 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
             <p class="kk-catch">うちの子のために、<br>素材からつくり方まで。</p>
             <p class="kk-hero-lead">うちの子に、安心して「おいしいよ」と渡せるものを。淡路どりのジャーキーです。</p>
         </div>
-        <div class="kk-hero-img"><img src="__IMG_LINEUP__" alt="淡路どりジャーキーのパッケージ" width="1600" height="800"></div>
+        <!-- メイン画像：スライドショー（画像URLは config.json の MAIN1〜3。空欄の枚はスキップ） -->
+        <div class="kk-hero-img swiper kk-mv" id="kk-mv">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="__IMG_MAIN1__" alt="淡路どりジャーキーのパッケージ" width="1600" height="800"></div>
+                <div class="swiper-slide"><img src="__IMG_MAIN2__" alt="" width="1600" height="800"></div>
+                <div class="swiper-slide"><img src="__IMG_MAIN3__" alt="" width="1600" height="800"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev" aria-label="前へ"></div>
+            <div class="swiper-button-next" aria-label="次へ"></div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9.4.1/swiper-bundle.min.js"></script>
+        <script>
+        (function () {
+            var mv = document.getElementById('kk-mv');
+            if (!mv) return;
+            // URL が空の枚は外す
+            mv.querySelectorAll('.swiper-slide').forEach(function (s) {
+                var img = s.querySelector('img');
+                if (!img || !img.getAttribute('src')) s.parentNode.removeChild(s);
+            });
+            var n = mv.querySelectorAll('.swiper-slide').length;
+            if (n < 2) { mv.classList.add('is-single'); }
+            if (!window.Swiper || n === 0) return;
+            window.kkMv = new Swiper(mv, {
+                loop: n > 1,
+                allowTouchMove: n > 1,
+                autoplay: n > 1 ? { delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true } : false,
+                pagination: { el: mv.querySelector('.swiper-pagination'), clickable: true },
+                navigation: { nextEl: mv.querySelector('.swiper-button-next'), prevEl: mv.querySelector('.swiper-button-prev') }
+            });
+        })();
+        </script>
         <div class="kk-in">
             <div class="kk-banners">
                 <a class="kk-bn" href="__URL_TRIAL__">
@@ -787,12 +827,12 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
         <div id="kuku-brand-images" class="kuku-detail-fold-inner"></div>
     </details>
 
-    <!-- 共通：About「つくり方」へのバナー -->
+    <!-- 共通：About（ページの一番上）へのバナー -->
     <section class="kk-sec" style="padding-top: 0;">
         <div class="kk-in">
-            <a class="kk-about-bn" href="{AboutPageURL}#kk-craft">
+            <a class="kk-about-bn" href="{AboutPageURL}">
                 <img src="__IMG_HANDCUT__" alt="生の鶏肉を包丁で切っている手元" width="964" height="1280">
-                <span class="kk-t"><span class="kk-eyebrow" style="margin: 0;">Material &amp; Craft</span><b>その日の朝の鶏肉を、<br>その日のうちに。</b><small>淡路どりのこと・手切りのこと</small><span class="kk-go">素材とつくり方を見る ›</span></span>
+                <span class="kk-t"><span class="kk-eyebrow" style="margin: 0;">Material &amp; Craft</span><b>商品へのこだわり</b><small>はじまり・淡路どりのこと・つくり方</small><span class="kk-go">kukusiniについて見る ›</span></span>
             </a>
         </div>
     </section>

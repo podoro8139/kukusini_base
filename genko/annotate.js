@@ -18,14 +18,33 @@
   // 写真の枠：[場所, 写真名の頭, 何の写真か]
   var PHOTO_RULES = [
     ['.kk-logo img, .kk-flogo', '共通_ロゴ', function () { return 'ロゴ（ヘッダーとフッターの両方に使う）。元データ（PNG・背景が透明なもの）があればそれを'; }],
-    ['.kk-hero-img img', 'トップ_メイン', function () { return 'サイトを開いて最初に見える写真。商品が並んだ写真、または愛犬が食べている写真'; }],
+    ['.kk-hero-img img', 'トップ_メイン', function (img) {
+      return 'サイトを開いて最初に見える写真（3枚のスライドショーの' + (slideIndex(img) + 1) + '枚目）。商品が並んだ写真、愛犬が食べている写真、淡路島の風景など'; }],
     ['.kk-bn img', 'トップ_バナー', function (img) { return 'バナー「' + txt(img.closest('.kk-bn').querySelector('b')) + '」の写真'; }],
     ['.kk-craft-card img', 'トップ_こだわり', function (img) { return '「' + txt(img.closest('.kk-craft-card').querySelector('h3')) + '」に合う写真'; }],
     ['.kk-grp img', 'トップ_選び方', function (img) { return '「' + txt(img.closest('.kk-grp').querySelector('h3')) + '」グループの商品の写真'; }],
     ['.kk-a-mv', 'about_メイン', function () { return 'Aboutページの最初の写真。淡路島の風景など'; }],
     ['.kk-photos3 img', 'about_つくり方', function (img) { return img.getAttribute('alt') || ''; }],
-    ['.kk-about-bn img', '商品_つくり方バナー', function (img) { return '商品ページの下にある「つくり方」へのバナー。' + (img.getAttribute('alt') || ''); }]
+    ['.kk-about-bn img', '商品_こだわりバナー', function () { return '商品ページの下にある「商品へのこだわり」のバナー（押すとAboutの一番上へ）。いまは生の鶏肉を切っている手元'; }]
   ];
+
+  // スライドショーの何枚目か（ループで並び順が入れ替わっても、元の順番を返す）
+  function slideIndex(img) {
+    var s = img.closest('.swiper-slide');
+    if (!s) return -1;
+    var a = s.getAttribute('data-swiper-slide-index');
+    if (a !== null) return Number(a);
+    return Array.prototype.indexOf.call(s.parentNode.children, s);
+  }
+
+  // スライドの写真を見える位置に出す（札・切り抜き・「見本で見る」用）
+  function reveal(img) {
+    var box = img.closest('.swiper');
+    var sw = box && box.swiper;
+    if (!sw) return;
+    if (sw.autoplay) sw.autoplay.stop();
+    sw.slideToLoop(slideIndex(img), 0);
+  }
 
   function txt(el) { return el ? ownText(el, true).replace(/\s+/g, ' ').trim() : ''; }
 
@@ -55,7 +74,7 @@
     if (el.closest('.kk-hero, .kk-a-hero')) return 'メイン';
     if (el.closest('.kk-biz')) return '卸・取材のご案内';
     if (el.closest('.kk-lower')) return '与えるときの注意・案内';
-    if (el.closest('.kk-about-bn')) return 'つくり方へのバナー';
+    if (el.closest('.kk-about-bn')) return 'こだわりバナー';
     if (el.closest('.kuku-item-extras')) return 'ほかの商品';
     if (el.closest('.kuku-detail-fold')) return 'こだわりの折りたたみ';
     if (el.closest('.itemdetail')) return '商品情報';
@@ -119,7 +138,9 @@
     var seen = {};
     PHOTO_RULES.forEach(function (r) {
       var n = 0;
-      document.querySelectorAll(r[0]).forEach(function (img) {
+      var list = Array.prototype.slice.call(document.querySelectorAll(r[0]));
+      list.sort(function (a, b) { return slideIndex(a) - slideIndex(b); });
+      list.forEach(function (img) {
         if (img.closest(SKIP)) return;
         var name = r[1] === '共通_ロゴ' ? r[1] : r[1] + (++n);
         var first = !seen[name];
@@ -159,6 +180,12 @@
     photos.forEach(function (p) {
       var r = p.el.getBoundingClientRect();
       var hide = r.width < 2 || r.height < 2;
+      // スライドショーで画面に出ていない写真は札を出さない
+      var box = p.el.closest('.swiper');
+      if (box) {
+        var b = box.getBoundingClientRect(), cx = r.left + r.width / 2;
+        if (cx < b.left || cx > b.right) hide = true;
+      }
       p.badge.style.display = hide ? 'none' : '';
       p.badge.style.left = (r.left + window.scrollX + 6) + 'px';
       // 小さい写真は札が文章に重なるので、写真のすぐ下に出す
@@ -177,6 +204,7 @@
     var t = texts.filter(function (x) { return x.id === id; })[0];
     var p = photos.filter(function (x) { return x.name === id; })[0];
     var target = t ? t.el : p ? p.el : b;
+    if (p) { reveal(p.el); place(); }
     target.scrollIntoView({ block: 'center' });
     target.classList.remove('gk-flash'); void target.offsetWidth; target.classList.add('gk-flash');
   }
@@ -205,10 +233,14 @@
     window.addEventListener('resize', place);
     window.addEventListener('hashchange', focusHash);
     document.querySelectorAll('img').forEach(function (i) { i.addEventListener('load', place); });
-    setInterval(place, 1000);
+    setInterval(place, 250);
     setTimeout(focusHash, 300);
     // シートを作るときに読む一覧
     window.__GK = {
+      reveal: function (name) {
+        var p = photos.filter(function (x) { return x.name === name; })[0];
+        if (p) reveal(p.el);
+      },
       texts: texts.map(function (t) { return { id: t.id, common: t.common, page: t.page, section: t.section, kind: t.kind, text: t.text }; }),
       photos: photos.map(function (p) {
         var r = p.el.getBoundingClientRect();

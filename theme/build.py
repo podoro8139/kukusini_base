@@ -24,7 +24,7 @@ MOCK_IMG = ROOT / "wireframes" / "mock" / "img"
 BASE_CSS = HERE / "base-css"
 
 LOCAL_IMG = {
-    "LOGO": "logo.png", "LINEUP": "lineup.jpg", "SASAMI": "sasami.jpg", "BREAK": "break.jpg",
+    "LOGO": "logo.png", "MAIN1": "lineup.jpg", "MAIN2": "awaji.jpg", "MAIN3": "tray.jpg", "LINEUP": "lineup.jpg", "SASAMI": "sasami.jpg", "BREAK": "break.jpg",
     "HANDCUT": "handcut.jpg", "TRAY": "tray.jpg", "AWAJI": "awaji.jpg", "CHEW": "chew.jpg",
 }
 

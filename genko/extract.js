@@ -18,6 +18,8 @@ const fs = require('fs');
     const data = await page.evaluate(() => window.__GK);
     for (const p of data.photos) {
       if (!p.first) continue;
+      await page.evaluate((n) => window.__GK.reveal(n), p.name);
+      await page.waitForTimeout(100);
       const el = await page.$('[data-gk-ph="' + p.name + '"]');
       const box = el && await el.boundingBox();
       if (!box || box.width < 2) continue;
