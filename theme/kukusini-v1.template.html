@@ -152,10 +152,11 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
 .kk-hero-img img { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; object-position: center 70%; display: block; }
 /* メイン画像のスライドショー（いまのBASEと同じ Swiper。3.5秒ごと・ループ・点と矢印） */
 .kk-mv { --swiper-theme-color: var(--kk-paper); --swiper-navigation-size: 26px; --swiper-pagination-bullet-inactive-color: var(--kk-paper); --swiper-pagination-bullet-inactive-opacity: .55; }
-.kk-mv .swiper-pagination { bottom: 52px !important; }
+.kk-mv .swiper-pagination { bottom: 14px !important; }
+.kk-mv img { object-position: center 35%; }
 .kk-mv .swiper-button-prev, .kk-mv .swiper-button-next { filter: drop-shadow(0 1px 3px rgba(0,0,0,.35)); }
 .kk-mv.is-single .swiper-pagination, .kk-mv.is-single .swiper-button-prev, .kk-mv.is-single .swiper-button-next { display: none; }
-.kk-banners { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: -36px; position: relative; }
+.kk-banners { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; position: relative; }
 .kk-bn { display: grid; grid-template-columns: 88px minmax(0, 1fr) 16px; gap: 16px; align-items: center; padding: 12px; background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; text-decoration: none; box-shadow: 0 6px 24px rgba(40, 36, 28, .08); text-align: left; }
 .kk-bn img { width: 88px; height: 88px; object-fit: cover; border-radius: 2px; }
 .kk-bn-t { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
