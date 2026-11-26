@@ -58,10 +58,15 @@ const V = {
    ${T}{align-self:start;justify-self:center;margin-top:206px!important;padding:16px 20px!important;background:rgba(255,253,249,.94);box-shadow:0 6px 24px rgba(40,36,28,.2);text-align:center}
    ${T} .kk-catch{font-size:20px!important;margin:0!important} ${T} .kk-hero-lead{display:none!important}` },
  C: { pc: '', sp: '' },
+ P: { pc: `@media(min-width:900px){.kk-hero{display:block!important;padding-top:72px!important;text-align:center}
+   ${T}{background:none!important;box-shadow:none!important;max-width:none!important;margin:0 auto!important;padding:0 24px!important;text-align:center!important;width:auto!important}
+   ${T} .kk-catch{font-size:clamp(26px,4.4vw,44px)!important;white-space:normal!important;margin:0 0 20px!important} ${T} .kk-hero-lead{font-size:14.5px!important}
+   .kk-hero-img{margin-top:40px!important} .kk-hero-img img{height:auto!important;aspect-ratio:16/7!important}
+   .kk-banners{margin-top:-36px!important}}`, sp: '' },
 };
 (async () => {
   const b = await chromium.launch(); const [file,out]=process.argv.slice(2);
-  for (const [k,v] of Object.entries(V)) {
+  for (const [k,v] of Object.entries(V)) { if (process.argv[4] && !process.argv[4].split(',').includes(k)) continue;
     for (const [dev,vp,css] of [['pc',{width:1440,height:860},v.pc],['sp',{width:390,height:844},v.sp]]) {
       const ctx = await b.newContext({ viewport: vp, deviceScaleFactor: 2, isMobile: dev==='sp', hasTouch: dev==='sp' });
       const p = await ctx.newPage();
