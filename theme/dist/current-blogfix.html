@@ -1,0 +1,665 @@
+{block:NotLoadItemsPage}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="copyright" content="BASE">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{PageTitle}</title>
+    {FaviconTag}
+    {CanonicalTag}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jackmoore/colorbox@1.6.4/example1/colorbox.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+
+    {block:ItemPage}
+        {MetaItemInfoTag}
+        <link rel="stylesheet" href="{BASEURL}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/malihu/malihu-custom-scrollbar-plugin@3.1.5/jquery.mCustomScrollbar.min.css">
+    {/block:ItemPage}
+
+    {block:NotItemPage}
+        {MetaShopInfoTag}
+    {/block:NotItemPage}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jimyi/jquery_bottom@1b7e2204c9193647884581804011ceb5d1d95aac/jquery.bottom-1.0.min.js"></script>
+    <script src="{BASEURL}/js/change_status.js?{UpdateTime}"></script>
+
+    {GoogleAnalyticsTag}
+    {BackgroundTag}
+
+    {block:AppsSearch}
+        <link rel="stylesheet" type="text/css" href="{BASEURL}/search/css/shopTemplate/search.css?{UpdateTime}">
+    {/block:AppsSearch}
+
+    {block:AppsItemLabel}
+        <link rel="stylesheet" type="text/css" href="{BASEURL}/item_label/css/ShopTemplate/style.css?{UpdateTime}">
+        <script type="text/javascript" src="{BASEURL}/item_label/js/ShopTemplate/labelpostion.js?{UpdateTime}"></script>
+    {/block:AppsItemLabel}
+
+    {block:AppsBlog}
+        <link href="{BlogFeedPageURL}" rel="alternate" type="application/rss+xml" title="Blog | {ShopName}">
+    {/block:AppsBlog}
+
+    <link rel="stylesheet" type="text/css" href="https://basefile.akamaized.net/kukusini-base-shop/65cebb5a4bfc9/reset.css">
+    <link rel="stylesheet" type="text/css" href="https://basefile.akamaized.net/kukusini-base-shop/689ca54e884d2/style.css">
+    <script src="https://basefile.akamaized.net/kukusini-base-shop/65cebb7f57528/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"><!--add By D 13.08.25-->
+
+
+
+<!-- KUKU 商品詳細改善 v4：既存デザインへの影響を商品詳細ページ内に限定 -->
+<style>
+#shopDetailPage .kuku-detail-content {max-width:1000px;margin:28px auto 28px;box-sizing:border-box;}
+#shopDetailPage .kuku-detail-content:empty {display:none;}
+#shopDetailPage .kuku-item-extras {max-width:1100px;margin:30px auto 72px;padding:0 24px;box-sizing:border-box;}
+#shopDetailPage .kuku-item-extras .kuku-extras-title {font:600 26px/1.5 inherit;font-size:26px;font-weight:600;text-align:center;letter-spacing:.06em;color:#252525;margin:0 0 28px;line-height:1.5;}
+#shopDetailPage .kuku-item-extras .kuku-related-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+#shopDetailPage .kuku-item-extras .kuku-related-card {min-width:0;}
+#shopDetailPage .kuku-item-extras .kuku-related-card a {color:inherit;text-decoration:none;display:block;}
+#shopDetailPage .kuku-item-extras .kuku-related-card a:hover {opacity:.82;}
+#shopDetailPage .kuku-item-extras .kuku-related-image {display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#f6f4f1;}
+#shopDetailPage .kuku-item-extras .kuku-related-name {font-size:14px;line-height:1.65;margin:12px 0 4px;overflow-wrap:anywhere;}
+#shopDetailPage .kuku-item-extras .kuku-related-price {font-size:14px;line-height:1.5;color:#666;}
+#shopDetailPage .kuku-item-extras .kuku-all-items {text-align:center;margin:30px auto 0;}
+#shopDetailPage .kuku-item-extras .kuku-all-items a {display:inline-block;border:1px solid #333;padding:13px 30px;color:#222;text-decoration:none;font-size:14px;letter-spacing:.06em;}
+#shopDetailPage .kuku-detail-fold {max-width:1000px;margin:30px auto 56px;padding:0 24px;box-sizing:border-box;}
+#shopDetailPage .kuku-detail-fold[hidden] {display:none;}
+#shopDetailPage .kuku-detail-fold > summary {cursor:pointer;list-style:none;border-top:1px solid #dedede;border-bottom:1px solid #dedede;padding:19px 30px 19px 12px;position:relative;font-size:15px;font-weight:600;line-height:1.5;color:#333;}
+#shopDetailPage .kuku-detail-fold > summary::-webkit-details-marker {display:none;}
+#shopDetailPage .kuku-detail-fold > summary::after {content:'＋';position:absolute;right:8px;top:17px;font-size:20px;font-weight:400;}
+#shopDetailPage .kuku-detail-fold[open] > summary::after {content:'－';}
+#shopDetailPage .kuku-detail-fold .kuku-detail-fold-inner {padding:24px 0;}
+@media(max-width:767px){
+ #shopDetailPage .kuku-item-extras {padding:0 16px;margin:24px auto 52px;}
+ #shopDetailPage .kuku-item-extras .kuku-extras-title {font-size:21px;margin-bottom:20px;}
+ #shopDetailPage .kuku-item-extras .kuku-related-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+ #shopDetailPage .kuku-item-extras .kuku-related-name,#shopDetailPage .kuku-item-extras .kuku-related-price {font-size:12px;}
+ #shopDetailPage .kuku-detail-fold {padding:0 16px;}
+}
+</style>
+<!-- KUKU ブログ記事の見た目 v1：ブログ記事ページ（#about.blogDetail）の中だけに効く -->
+<style>
+/* BASE標準では本文の大見出し(h2)が16pxで小見出し(h3)より小さく、テーマの「h2は中央寄せ」も重なって画像の説明文のように見えるため直す
+   BASEのブログ用CSSは本文の中で後から読み込まれるので、body.template を付けて優先度を上げている
+   BASEのタグと混同しないよう、{ } の内側にはスペースを入れている */
+body.template .main #about.blogDetail { max-width: 760px; margin: 0 auto; }
+body.template .main #about.blogDetail .blog_title h2 { font-size: clamp(22px, 3.4vw, 28px); font-weight: 700; line-height: 1.6; text-align: left; margin: 0; }
+body.template .main #about.blogDetail .blog_title h2 a { color: #252525; text-decoration: none; }
+body.template .main #about.blogDetail .blog_publish { margin: 8px 0 36px; }
+body.template .main #about.blogDetail .publish_date { font-size: 13px; color: #888; margin: 0; }
+body.template .main #about.blogDetail .blog_body { font-size: 16px; line-height: 2; letter-spacing: .03em; color: #333; }
+body.template .main #about.blogDetail .blog_body p { font-family: "Noto Sans JP", sans-serif !important; font-size: 16px !important; line-height: 2 !important; text-align: left !important; margin: 0 0 1.2em; }
+body.template .main #about.blogDetail .blog_body span { font-family: inherit !important; }
+body.template .main #about.blogDetail .blog_body h2 { font-size: 22px; font-weight: 700; line-height: 1.6; letter-spacing: .03em; text-align: left; color: #252525; margin: 2.6em 0 1em; padding: 0 0 .5em; border-bottom: 1px solid #dedede; }
+body.template .main #about.blogDetail .blog_body h3 { font-size: 18px; font-weight: 700; line-height: 1.6; text-align: left; color: #252525; margin: 2em 0 .8em; padding: 0 0 0 .7em; border-left: 3px solid #252525; }
+body.template .main #about.blogDetail .blog_body img { display: block; margin: 1.8em auto; border-radius: 6px; }
+body.template .main #about.blogDetail .blog_body ul, body.template .main #about.blogDetail .blog_body ol { margin: 0 0 1.4em; padding: 0 0 0 1.5em; }
+body.template .main #about.blogDetail .blog_body ul li { list-style: disc; margin: .3em 0; }
+body.template .main #about.blogDetail .blog_body ol li { list-style: decimal; margin: .3em 0; }
+body.template .main #about.blogDetail .blog_body table { width: 100%; border-collapse: collapse; margin: 1.6em 0; font-size: 15px; line-height: 1.7; }
+body.template .main #about.blogDetail .blog_body th, body.template .main #about.blogDetail .blog_body td { border: 1px solid #dedede; padding: .6em .8em; text-align: left; vertical-align: top; }
+body.template .main #about.blogDetail .blog_body th { background: #f6f4f1; font-weight: 700; }
+body.template .main #about.blogDetail .blog_body blockquote { margin: 1.6em 0; padding: 1em 1.2em; background: #f6f4f1; border-radius: 6px; }
+body.template .main #about.blogDetail .blog_body hr { border: 0; border-top: 1px solid #dedede; margin: 2.4em 0; }
+@media (max-width: 767px) {
+  body.template .main #about.blogDetail .blog_body h2 { font-size: 20px; }
+  body.template .main #about.blogDetail .blog_body h3 { font-size: 17px; }
+  body.template .main #about.blogDetail .blog_body table { font-size: 14px; }
+}
+</style>
+</head>
+<body id="{block:IndexPage}shopTopPage{/block:IndexPage}{block:ItemPage}shopDetailPage{/block:ItemPage}{block:ContactPage}contactPage{/block:ContactPage}" class="shop template">
+{block:AppsInformationBanner}
+    {AppsInformationBannerTag}
+    <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', function() {
+            const banner = document.getElementsByClassName('informationBanner');
+            if (!banner || banner.length === 0) return;
+
+            const resizeObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    const bannerHeight = entry.target.offsetHeight;
+                    document.documentElement.style.setProperty("--information-banner-height", bannerHeight + 'px');
+                }
+            });
+            resizeObserver.observe(banner[0]);
+        });
+    </script>
+{/block:AppsInformationBanner}
+{BASEMenuTag}
+{block:IndexPage}
+    <span id="max_page" style="display: none;">{MaxPageNumber}</span>
+    <span id="next_page" style="display: none;">{NextPageNumber}</span>
+{/block:IndexPage}
+<header class="header {block:IndexPage}index-nav{/block:IndexPage}">
+    <div class="header__inner">
+        <h1 class="logo"><a href="{IndexPageURL}" id="logo">{LogoTag}</a></h1>
+
+        <a href="https://www.instagram.com/kukusini193/"class="header-sns header-sns--ig"
+        target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="https://basefile.akamaized.net/kukusini-base-shop/689c9b1914b0c/Instagram_Glyph_Black.jpg" alt="Instagram">
+        </a>
+        <span class="header-sns-label">Official SNS</span>
+
+
+        <div class="header-nav">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+            <nav>
+                <ul>
+                    <li><a href="{AboutPageURL}">kukusiniについて</a></li>
+                    <li><a href="https://kukusini.base.shop/categories/5732586">商品一覧</a></li>
+                    <li><a href="{ContactPageURL}">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="btn-cart"><a href="https://kukusini.base.shop/shops/kukusini-base-shop/checkout/edit">カートを見る</a></div>
+        </div>
+    </div>
+</header>
+
+{block:IndexPage}
+    <div class="index">
+    {block:NotShopPublic}
+        <p style="display:flex;justify-content: center;align-items: center;height:60vh;">{lang:NotShopPublicMessage}</p>
+    {/block:NotShopPublic}
+    {block:ShopPublic}
+        {block:NoIndexPageCategory}{block:NoIndexPageSearch}
+            <div class="mainvisual"></div>
+            <section class="lead cont__wrapper">
+                <div class="lead--img"><img src="https://basefile.akamaized.net/kukusini-base-shop/65cebce8ed8e3/logo-symbol.png" alt=""></div>
+                <h2 class="lead--ttl">自然豊かな淡路島で育った<br>
+                    “淡路どり”を使った<br>
+                無添加おやつとごはん。</h2>
+                <p class="lead--text">飼い主さまとワンちゃんが毎日笑顔で過ごせるような、<br>
+                おやつとごはんをつくっています。<br>
+                全商品、添加物や保存料は一切使用しておりません。<br>
+                <br>
+                素材は、製造者自ら厳選。<br>
+                特に良質な淡路どりにこだわっており、<br>
+                鮮度の良い鶏肉を仕入れ製造。<br>
+                お客様のもとへお届けしております。<br>
+                <br>
+                安心・安全なkukusini（ククシーニ）のおやつでワンちゃんを元気に。
+                </p>
+            </section>
+        {/block:NoIndexPageSearch}{/block:NoIndexPageCategory}
+        {block:AppsBlogArticleIsPinned}{block:NoIndexPageCategory}{block:NoIndexPageSearch}
+            <div class="pinnedBlog">
+                <p class="pinnedBlog_title mainHeaderNavColor">
+                    <a href="{AppsBlogArticlePageURL}">{AppsBlogArticleTitle}</a>
+                </p>
+            </div>
+        {/block:NoIndexPageSearch}{/block:NoIndexPageCategory}{/block:AppsBlogArticleIsPinned}
+
+        {block:IndexPageSearch}
+            <h3 class="ttl--main">{lang:ItemSearchResult}</h3>
+        {/block:IndexPageSearch}
+        {block:HasItems}
+        <section class="itemlist cont--border {block:IndexPageCategory}noline--top {block:IndexPageSearch}{/block:IndexPageSearch}{/block:IndexPageCategory}noline">
+            <h3 class="ttl--main"><span>AWAJI JERKY</span>淡路ジャーキー</h3>
+                <div class="itemlist__inner cont__wrapper">
+                {block:Items}
+                    <div class="itemlist__block">
+                        <div class="itemlist--image">
+                            <a href="{ItemPageURL}">
+                            <img src="{block:ItemImage1}{ItemImage1URL-500}{/block:ItemImage1}{block:NoItemImage1}{ItemNoImageURL}{/block:NoItemImage1}" alt="{ItemTitle}" title="{ItemTitle}" class="image-resize"></a>
+                        </div>
+                        {block:ItemNowOnSale}
+                            {block:NoItemStock}
+                                <div class="soldout_cover"><p>SOLD OUT</p></div>
+                            {/block:NoItemStock}
+                        {/block:ItemNowOnSale}
+                        {block:ItemEndOfSale}
+                            <div class="soldout_cover"><p>SOLD OUT</p></div>
+                        {/block:ItemEndOfSale}
+                        <div class="itemlist--name">{ItemTitle}<br>
+                            {ItemPrice}</div>
+                    </div>
+                {/block:Items}
+            </div>
+        </section>
+        {/block:HasItems}
+        {block:NoItems}
+            <p style="text-align: center;">{lang:NoItemsMessage}</p>
+        {/block:NoItems}
+    {/block:ShopPublic}
+    <script type="text/javascript">
+        var process_flg = false;
+        var end_flg = false;
+        $(window).bottom({proximity: 0.05});
+        $(window).on('bottom', function() {
+            if (process_flg == false && end_flg == false) {
+                var max_page = $("#max_page").text();
+                var next_page = $('#next_page').text();
+                if (eval(max_page) >= eval(next_page)) {
+                    $.ajax({
+                        url: "{LoadItemsPageURL}" + next_page + "{LoadItemsPageURLParams}",
+                        dataType: 'html',
+                        beforeSend: function () {
+                            process_flg = true;
+                            $('#loading').css('display', 'block');
+                        },
+                        success: function (data) {
+                            $('#mainContent').append(data);
+                            next_page = eval(next_page) + 1;
+                            $('#next_page').text(next_page);
+                        },
+                        complete: function () {
+                            process_flg = false;
+                            $('#loading').css('display', 'none');
+                        }
+                    });
+                } else {
+                    end_flg = true;
+                }
+            }
+        });
+    </script>
+    </div>
+{/block:IndexPage}
+{block:ItemPage}
+{IllegalReportMessageTag}
+
+<div class="itemdetail main">
+    <div class="cont__wrapper itemupper">
+        <section id="mainContent" class="wrapper clearfix">
+            <div class="item clearfix">
+                <div class="itemImg clearfix">
+                    <div class="itemImgSlide">
+                        <ul id="slideImg">
+                            <li><div class="imgBox"><a href="{block:ItemImage1}{ItemImage1URL-origin}{/block:ItemImage1}{block:NoItemImage1}{ItemNoImageURL}{/block:NoItemImage1}" class="ajax btn grn save" rel="group">
+                            {block:AppsItemLabel}
+                                {AppsItemLabelTag}
+                            {/block:AppsItemLabel}
+                            <img src="{block:ItemImage1}{ItemImage1URL-640}{/block:ItemImage1}{block:NoItemImage1}{ItemNoImageURL}{/block:NoItemImage1}" alt="{ItemTitle}" title=""></a></div></li>
+                            {block:ItemImage2}<li style="display:none;"><div class="imgBox"><a href="{ItemImage2URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage2URL-640}" alt="" title=""></a></div></li>{/block:ItemImage2}
+                            {block:ItemImage3}<li style="display:none;"><div class="imgBox"><a href="{ItemImage3URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage3URL-640}" alt="" title=""></a></div></li>{/block:ItemImage3}
+                            {block:ItemImage4}<li style="display:none;"><div class="imgBox"><a href="{ItemImage4URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage4URL-640}" alt="" title=""></a></div></li>{/block:ItemImage4}
+                            {block:ItemImage5}<li style="display:none;"><div class="imgBox"><a href="{ItemImage5URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage5URL-640}" alt="" title=""></a></div></li>{/block:ItemImage5}
+                            {block:ItemImage6}<li style="display:none;"><div class="imgBox"><a href="{ItemImage6URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage6URL-640}" alt="" title=""></a></div></li>{/block:ItemImage6}
+                            {block:ItemImage7}<li style="display:none;"><div class="imgBox"><a href="{ItemImage7URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage7URL-640}" alt="" title=""></a></div></li>{/block:ItemImage7}
+                            {block:ItemImage8}<li style="display:none;"><div class="imgBox"><a href="{ItemImage8URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage8URL-640}" alt="" title=""></a></div></li>{/block:ItemImage8}
+                            {block:ItemImage9}<li style="display:none;"><div class="imgBox"><a href="{ItemImage9URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage9URL-640}" alt="" title=""></a></div></li>{/block:ItemImage9}
+                            {block:ItemImage10}<li style="display:none;"><div class="imgBox"><a href="{ItemImage10URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage10URL-640}" alt="" title=""></a></div></li>{/block:ItemImage10}
+                            {block:ItemImage11}<li style="display:none;"><div class="imgBox"><a href="{ItemImage11URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage11URL-640}" alt="" title=""></a></div></li>{/block:ItemImage11}
+                            {block:ItemImage12}<li style="display:none;"><div class="imgBox"><a href="{ItemImage12URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage12URL-640}" alt="" title=""></a></div></li>{/block:ItemImage12}
+                            {block:ItemImage13}<li style="display:none;"><div class="imgBox"><a href="{ItemImage13URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage13URL-640}" alt="" title=""></a></div></li>{/block:ItemImage13}
+                            {block:ItemImage14}<li style="display:none;"><div class="imgBox"><a href="{ItemImage14URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage14URL-640}" alt="" title=""></a></div></li>{/block:ItemImage14}
+                            {block:ItemImage15}<li style="display:none;"><div class="imgBox"><a href="{ItemImage15URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage15URL-640}" alt="" title=""></a></div></li>{/block:ItemImage15}
+                            {block:ItemImage16}<li style="display:none;"><div class="imgBox"><a href="{ItemImage16URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage16URL-640}" alt="" title=""></a></div></li>{/block:ItemImage16}
+                            {block:ItemImage17}<li style="display:none;"><div class="imgBox"><a href="{ItemImage17URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage17URL-640}" alt="" title=""></a></div></li>{/block:ItemImage17}
+                            {block:ItemImage18}<li style="display:none;"><div class="imgBox"><a href="{ItemImage18URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage18URL-640}" alt="" title=""></a></div></li>{/block:ItemImage18}
+                            {block:ItemImage19}<li style="display:none;"><div class="imgBox"><a href="{ItemImage19URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage19URL-640}" alt="" title=""></a></div></li>{/block:ItemImage19}
+                            {block:ItemImage20}<li style="display:none;"><div class="imgBox"><a href="{ItemImage20URL-origin}" class="ajax btn grn save" rel="group"><img src="{ItemImage20URL-640}" alt="" title=""></a></div></li>{/block:ItemImage20}
+                        </ul>
+                    </div>
+                    <ul id="slideImgPager">
+                        <li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{block:ItemImage1}{ItemImage1URL-146}{/block:ItemImage1}{block:NoItemImage1}{ItemNoImageURL}{/block:NoItemImage1}" alt="{ItemTitle}" title=""></div></a></li>
+                        {block:ItemImage2}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage2URL-146}" alt="" title=""></div></a></li>{/block:ItemImage2}
+                        {block:ItemImage3}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage3URL-146}" alt="" title=""></div></a></li>{/block:ItemImage3}
+                        {block:ItemImage4}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage4URL-146}" alt="" title=""></div></a></li>{/block:ItemImage4}
+                        {block:ItemImage5}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage5URL-146}" alt="" title=""></div></a></li>{/block:ItemImage5}
+                        {block:ItemImage6}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage6URL-146}" alt="" title=""></div></a></li>{/block:ItemImage6}
+                        {block:ItemImage7}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage7URL-146}" alt="" title=""></div></a></li>{/block:ItemImage7}
+                        {block:ItemImage8}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage8URL-146}" alt="" title=""></div></a></li>{/block:ItemImage8}
+                        {block:ItemImage9}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage9URL-146}" alt="" title=""></div></a></li>{/block:ItemImage9}
+                        {block:ItemImage10}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage10URL-146}" alt="" title=""></div></a></li>{/block:ItemImage10}
+                        {block:ItemImage11}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage11URL-146}" alt="" title=""></div></a></li>{/block:ItemImage11}
+                        {block:ItemImage12}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage12URL-146}" alt="" title=""></div></a></li>{/block:ItemImage12}
+                        {block:ItemImage13}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage13URL-146}" alt="" title=""></div></a></li>{/block:ItemImage13}
+                        {block:ItemImage14}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage14URL-146}" alt="" title=""></div></a></li>{/block:ItemImage14}
+                        {block:ItemImage15}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage15URL-146}" alt="" title=""></div></a></li>{/block:ItemImage15}
+                        {block:ItemImage16}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage16URL-146}" alt="" title=""></div></a></li>{/block:ItemImage16}
+                        {block:ItemImage17}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage17URL-146}" alt="" title=""></div></a></li>{/block:ItemImage17}
+                        {block:ItemImage18}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage18URL-146}" alt="" title=""></div></a></li>{/block:ItemImage18}
+                        {block:ItemImage19}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage19URL-146}" alt="" title=""></div></a></li>{/block:ItemImage19}
+                        {block:ItemImage20}<li><a data-slide-index="{Counter}" href=""><div class="smallImgBox"><img src="{ItemImage20URL-146}" alt="" title=""></div></a></li>{/block:ItemImage20}
+                    </ul>
+                </div>
+            </div>
+            <div class="desc">
+                <div class="itemDescription">
+                    <h2 class="name">{ItemTitle}{block:AppsDownload}{block:ItemDigitalContent}({ItemDigitalContent}){/block:ItemDigitalContent}{/block:AppsDownload}</h2>
+                    <div class="itemPrice {block:ItemNowOnSale}{block:NoItemStock}itemPrice_soldout{/block:NoItemStock}{/block:ItemNowOnSale} {block:ItemEndOfSale}itemPrice_soldout{/block:ItemEndOfSale}">
+                        {block:NoItemProperPrice}
+                        <!-- 定価 -->
+                        <p class="teika">{ItemPrice}</p>
+                        {/block:NoItemProperPrice}
+                        {block:HasItemProperPrice}
+                        <!-- 割引 -->
+                        <h2 class="discountPrice">
+                            <span class="discountPrice__default">{ItemProperPrice}</span><span class="discountPrice__ratio">{ItemDiscountRate}</span>
+                            <span class="discountPrice__calcPrice">{ItemPrice}</span>
+                        </h2>
+                        {/block:HasItemProperPrice}
+
+                        {block:ItemNowOnSale}{block:NoItemStock}
+                            <span>SOLD OUT</span>
+                        {/block:NoItemStock}{/block:ItemNowOnSale}
+                        {block:ItemEndOfSale}
+                            <span>SOLD OUT</span>
+                        {/block:ItemEndOfSale}
+                        {block:ItemWatingForSale}
+                            <p class="comingSoon">{ItemSaleStatusTag}</p>
+                        {/block:ItemWatingForSale}
+                    </div>
+                    <div class="purchase sp">
+                        {block:PurchaseForm}
+                            {ItemSelectTag}
+                            {block:AppsCommunity}
+                                {CommunityPurchaseButton}
+                            {/block:AppsCommunity}
+                            {AppsAgeVerificationWarningTag}
+                            {PurchaseButton}
+                        {/block:PurchaseForm}
+                        <div id="reportBtn">
+                            {IllegalReportTag}
+                        </div>
+                        {ItemAttentionTag}
+                    </div>
+                    <p class="text">{ItemDetail}</p>
+                </div>
+                <div class="purchase pc">
+                    {block:PurchaseForm}
+                        {ItemSelectTag}
+                        {block:AppsCommunity}
+                            {CommunityPurchaseButton}
+                        {/block:AppsCommunity}
+                        {AppsAgeVerificationWarningTag}
+                        {PurchaseButton}
+                    {/block:PurchaseForm}
+                    <div id="reportBtn">
+                        {IllegalReportTag}
+                    </div>
+                    {ItemAttentionTag}
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="cont__wrapper itemlower">
+        <!-- 商品の基本情報・原材料等を口コミより上に表示 -->
+        {block:AppsItemDetailCustom}
+        <div id="kuku-custom-content" class="kuku-detail-content">
+            {AdditionalItemDetail}
+        </div>
+        {AdditionalItemDetailDefaultCssAndJs}
+        {/block:AppsItemDetailCustom}
+        <!-- 口コミを関連商品より先に -->
+        {block:AppsReview}
+            {AppsReviewTag}
+        {/block:AppsReview}
+    </div>
+
+    {block:HasRelatedItems}
+    <section class="kuku-item-extras" aria-label="こちらの商品もおすすめ">
+        <h2 class="kuku-extras-title">こちらの商品もおすすめ</h2>
+        <div class="kuku-related-grid">
+        {block:RelatedItems}
+            <article class="kuku-related-card">
+                <a href="{RelatedItemPageURL}">
+                    <img class="kuku-related-image" src="{RelatedItemImageURL-640}" alt="{RelatedItemTitle}" loading="lazy">
+                    <p class="kuku-related-name">{RelatedItemTitle}</p>
+                    <p class="kuku-related-price">{RelatedItemPrice}</p>
+                </a>
+            </article>
+        {/block:RelatedItems}
+        </div>
+        <div class="kuku-all-items"><a href="{IndexPageURL}">ほかの商品も見る</a></div>
+    </section>
+    {/block:HasRelatedItems}
+
+    <!-- 画像中心の説明だけを自動抽出。文字を含む要素は移動せず、購入情報の欠落を防止 -->
+    <details id="kuku-brand-fold" class="kuku-detail-fold" hidden>
+        <summary>淡路どり・素材や製法へのこだわりを見る</summary>
+        <div id="kuku-brand-images" class="kuku-detail-fold-inner"></div>
+    </details>
+</div>
+    <script src="https://cdn.jsdelivr.net/gh/jackmoore/colorbox@1.6.4/jquery.colorbox-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/stevenwanderski/bxslider-4@4.2.15/dist/jquery.bxslider.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/malihu/malihu-custom-scrollbar-plugin@3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+        (function(win, doc, $) {
+            'use strict';
+            var COMMON = {};
+            $(function() {
+                COMMON.init();
+            });
+
+            COMMON = {
+                init: function() {
+                    $(window).on('load', function(){
+                        COMMON.slide_img();
+                        COMMON.colorbox();
+                        COMMON.customScrollBar();
+                    });
+                },
+                slide_img: function(){
+                    $('#slideImg').bxSlider({
+                        controls: false,
+                        pagerCustom: '#slideImgPager',
+                        adaptiveHeight: true,
+                        mode: 'fade'
+                    });
+                },
+                colorbox:function(){
+                    $(".ajax").on('click', function(e) {e.preventDefault();});
+                    $(".ajax").colorbox({className:'itemCb',maxWidth:'90%',maxHeight:'90%',current:false});
+                },
+                customScrollBar: function(){
+                    $("#slideImgPager").mCustomScrollbar({
+                        axis:"y",
+                        theme:"dark-thin"
+                    });
+                }
+            };
+        }(window, document, jQuery));
+    </script>
+
+    <!-- 追加商品説明のうち、画像だけの要素を折りたたむ。テキストは原位置で表示 -->
+    <script>
+    (function(){
+        'use strict';
+        function splitImageOnlyContent(){
+            var source=document.getElementById('kuku-custom-content');
+            var fold=document.getElementById('kuku-brand-fold');
+            var target=document.getElementById('kuku-brand-images');
+            if(!source || !fold || !target) return;
+            // BASE Appの生成完了後に走る。画像のみの要素を特定するが、説明文や表は移動しない。
+            var images=Array.prototype.slice.call(source.querySelectorAll('img'));
+            var moved=0;
+            images.forEach(function(img){
+                if(!source.contains(img)) return;
+                var candidate=img;
+                while(candidate.parentElement && candidate.parentElement!==source){
+                    var parent=candidate.parentElement;
+                    if(parent.querySelectorAll('img').length!==1) break;
+                    // 文字（見出し・スペック等）が含まれる親要素は巻き込まない
+                    if((parent.textContent||'').replace(/\s/g,'').length>0) break;
+                    if(parent.querySelector('script,style,table,form,button,input')) break;
+                    candidate=parent;
+                }
+                // 文字を含まない画像要素のみ移動し、商品基本情報はそのまま残す
+                if((candidate.textContent||'').replace(/\s/g,'').length===0){
+                    target.appendChild(candidate);
+                    moved++;
+                }
+            });
+            if(moved>0) fold.hidden=false;
+        }
+        if(document.readyState==='complete') splitImageOnlyContent();
+        else window.addEventListener('load',splitImageOnlyContent);
+    })();
+    </script>
+{/block:ItemPage}
+{block:AboutPage}
+
+<section class="about main">
+    <div class="cont__wrapper">
+        <div class="lead">
+            <div class="lead--img"><img src="https://basefile.akamaized.net/kukusini-base-shop/65cebce8ed8e3/logo-symbol.png" alt=""></div>
+            <p class="lead--text">{ShopIntroduction}</p>
+            <div class="btn btn--blk">
+                <a href="{LawPageURL}">お支払い方法などはこちら</a>
+            </div>
+        </div>
+    </div>
+</section>
+{/block:AboutPage}
+{block:ContactPage}
+<section class="contact main">
+    <div class="cont__wrapper">
+        <h2 class="ttl--main"><span>お問い合わせ</span></h2>
+    </div>
+</section>
+{/block:ContactPage}
+
+    <div class="main">
+    {PageContents}
+    </div>
+    <footer class="footer">
+        <div class="footer__block">
+            <div class="logo"><a href="{IndexPageURL}" id="logo">{LogoTag}</a></div>
+            <div class="copyright">© 2024 kukusini. All rights reserved.</div>
+        </div>
+        <nav class="footer-nav">
+            <ul>
+                <li><a href="{AboutPageURL}">お買い物ガイド</a></li>
+                <li><a href="https://kukusini.base.shop/categories/5732586">商品一覧</a></li>
+                <li><a href="{ContactPageURL}">お問い合わせ</a></li>
+                <li><a href="{PrivacyPageURL}">プライバシーポリシー</a></li>
+                <li><a href="{LawPageURL}">特定商取引法に基づく表記</a></li>
+            </ul>
+        </nav>
+    </footer>
+<input id="base_url" type="hidden" value="{ShopURL}">
+<!-- script:Facebook -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&appId=350947278320210&version=v2.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- script:Twitter -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<!-- add by D 13.08.25-->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<style>
+  /* .mainvisual の中でスライダーを全体表示 */
+  .mainvisual .swiper { width: 100%; height: 100%; }
+  .mainvisual img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  /* ページ内に既に .swiper-button-prev/next のスタイルがあるならこのブロックは不要 */
+  .mainvisual .swiper-button-prev,
+  .mainvisual .swiper-button-next { mix-blend-mode: normal; }
+</style>
+
+<script>
+(function(){
+  // ← ファイルアップローダーで取得した画像URLに差し替えてください
+  var slides = [
+    { url: 'https://basefile.akamaized.net/kukusini-base-shop/65cebcd12772e/index-mv.jpg', link: null, alt: 'KV1' }
+  //  { url: 'https://basefile.akamaized.net/kukusini-base-shop/65cebcd12772e/index-mv.jpg', link: null, alt: 'KV2' },
+  //{ url: 'https://basefile.akamaized.net/xxx/notice3.jpg', link: null, alt: 'KV3' }
+  ];
+
+  var mv = document.querySelector('.mainvisual');
+  if (!mv || !slides.length) return;
+
+  // 既存の中身を、同じ場所にスライダーへ置換
+  mv.innerHTML =
+    '<div class="swiper mv-swiper">' +
+      '<div class="swiper-wrapper">' +
+        slides.map(function(s){
+          var img = '<img src="'+s.url+'" alt="'+(s.alt||'')+'" loading="lazy">';
+          return '<div class="swiper-slide">' + (s.link ? '<a href="'+s.link+'">'+img+'</a>' : img) + '</div>';
+        }).join('') +
+      '</div>' +
+      '<div class="swiper-pagination"></div>' +
+      '<div class="swiper-button-prev" aria-label="前へ"></div>' +
+      '<div class="swiper-button-next" aria-label="次へ"></div>' +
+    '</div>';
+
+  // 初期化
+  new Swiper('.mv-swiper', {
+    loop: slides.length > 1,
+    autoplay: { delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+    // フェードにしたい場合： effect: 'fade', fadeEffect: { crossFade: true }
+  });
+})();
+</script>
+
+</body>
+</html>
+{/block:NotLoadItemsPage}
+{block:LoadItemsPage}
+{block:Items}
+    <div class="item part">
+        <div class="itemImg">
+            <a href="{ItemPageURL}">
+                {block:AppsItemLabel}
+                    {AppsItemLabelTag}
+                {/block:AppsItemLabel}
+                <img src="{block:ItemImage1}{ItemImage1URL-300}{/block:ItemImage1}{block:NoItemImage1}{ItemNoImageURL}{/block:NoItemImage1}" alt="{ItemTitle}" title="{ItemTitle}" class="image-resize">
+                {block:ItemNowOnSale}{block:NoItemStock}
+                    <div class="soldout_cover"><p>SOLD OUT</p></div>
+                {/block:NoItemStock}{/block:ItemNowOnSale}
+                {block:ItemEndOfSale}
+                    <div class="soldout_cover"><p>SOLD OUT</p></div>
+                {/block:ItemEndOfSale}
+            </a>
+        </div>
+        <a href="{ItemPageURL}">
+            <div class="itemTitle">
+                <h2>{ItemTitle}</h2>
+            </div>
+            <ul class="itemDetail">
+                {block:NoItemProperPrice}
+                    <li class="itemPrice">{ItemPrice}</li>
+                {/block:NoItemProperPrice}
+                {block:HasItemProperPrice}
+                    <li class="discountPrice">
+                        <span class="discountPrice__ratio">{ItemDiscountRate}</span>
+                        <span class="discountPrice__calcPrice">{ItemPrice}</span>
+                    </li>
+                {/block:HasItemProperPrice}
+            </ul>
+            {block:HasItemStock}
+                {block:ItemWatingForSale}
+                    <p class="comingSoon">COMING SOON</p>
+                {/block:ItemWatingForSale}
+                {block:ItemNowOnSale}{block:ItemPreOrder}
+                    <p class="preOrder">{lang:PreOrderItem}</p>
+                {/block:ItemPreOrder}{block:ItemLottery}
+                    <p class="lottery">{lang:LotteryItem}</p>
+                {/block:ItemLottery}{block:ItemTakeout}
+                    <p class="takeout">{lang:TakeoutItem}</p>
+                {/block:ItemTakeout}{block:ItemCommunityLimited}
+                    <p class="community">{lang:CommunityLimitedItem}</p>
+                {/block:ItemCommunityLimited}{/block:ItemNowOnSale}
+            {/block:HasItemStock}
+            {block:NoItemStock}
+                {block:ItemWatingForSale}
+                    <p class="comingSoon">COMING SOON</p>
+                {/block:ItemWatingForSale}
+            {/block:NoItemStock}
+        </a>
+    </div>
+{/block:Items}
+{/block:LoadItemsPage}
+{block:AppsSearch}
+<script>
+    $(function(){
+        var _color = $('#x_iconSearch').css('color');
+        $('#x_itemSearchForm').css('border-color' , _color);
+    });
+</script>
+{/block:AppsSearch}
