@@ -12,7 +12,7 @@
     '.gk-ui', 'script', 'style', 'noscript', 'select', 'option', '[hidden]',
     '.kk-card', '.kk-chips', '.kk-lbls', '.kuku-related-card',
     '#kuku-custom-content', '.itemdetail .item', '.purchase', '#itemSelect',
-    '.kk-intro', '.kk-help b[data-dyn]', '.kk-soldout', '#max_page', '#next_page', '.itemupper'
+    '.kk-intro', '.kk-help b[data-dyn]', '.kk-soldout', '#max_page', '#next_page', '.itemupper', '.kk-hero-eb'
   ].join(',');
 
   // 写真の枠：[場所, 写真名の頭, 何の写真か]
