@@ -314,6 +314,38 @@ body.kk { background: var(--kk-bg); color: var(--kk-ink); font-family: var(--kk-
 .kk-contact-note div { background: var(--kk-paper); border: 1px solid var(--kk-line); border-radius: 4px; padding: 12px 16px; }
 .kk a:focus-visible, .kk button:focus-visible, .kk summary:focus-visible { outline: 2px solid var(--kk-kraft); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .kk * { transition: none !important; } }
+
+/* ブログ記事（BASEのブログAppが出す #about.blogDetail を整える）
+   ・BASEのブログ用CSSは本文の中で後から読み込まれるため、body.kk を付けて優先度を上げている
+   ・BASE標準では本文の大見出し(h2)が16pxで小見出し(h3)より小さくなるので、大小を正しく直す
+   ・ほかのツールから貼り付けた文章に付く中央寄せ・行間・フォントの指定を打ち消す */
+body.kk .main #about.blogDetail { max-width: 720px; margin: 0 auto; }
+body.kk .main #about.blogDetail > .blog_inner { border-bottom: 1px solid var(--kk-line); padding: 0 0 48px; }
+body.kk .main #about.blogDetail .blog_title h2 { font-family: var(--kk-mincho); font-weight: 600; font-size: clamp(22px, 3.4vw, 30px); line-height: 1.6; letter-spacing: .04em; text-align: left; margin: 0; }
+body.kk .main #about.blogDetail .blog_title h2 a { color: var(--kk-ink); text-decoration: none; }
+body.kk .main #about.blogDetail .blog_publish { margin: 8px 0 36px; }
+body.kk .main #about.blogDetail .publish_date { font-size: 13px; color: var(--kk-muted); margin: 0; }
+body.kk .main #about.blogDetail .blog_body { font-size: 16px; line-height: 2; letter-spacing: .03em; color: var(--kk-ink); }
+body.kk .main #about.blogDetail .blog_body p { font-family: var(--kk-sans) !important; font-size: 16px !important; line-height: 2 !important; text-align: left !important; margin: 0 0 1.2em; }
+body.kk .main #about.blogDetail .blog_body p p { margin: 0 0 1.2em; }
+body.kk .main #about.blogDetail .blog_body span { font-family: inherit !important; }
+body.kk .main #about.blogDetail .blog_body h2 { font-family: var(--kk-mincho); font-weight: 600; font-size: 22px; line-height: 1.6; letter-spacing: .04em; text-align: left; margin: 2.6em 0 1em; padding: 0 0 .5em; border-bottom: 1px solid var(--kk-line); }
+body.kk .main #about.blogDetail .blog_body h3 { font-weight: 700; font-size: 18px; line-height: 1.6; text-align: left; margin: 2em 0 .8em; padding: 0 0 0 .7em; border-left: 3px solid var(--kk-green); }
+body.kk .main #about.blogDetail .blog_body img { display: block; margin: 1.8em auto; border-radius: 6px; }
+body.kk .main #about.blogDetail .blog_body a { color: var(--kk-green); }
+body.kk .main #about.blogDetail .blog_body ul, body.kk .main #about.blogDetail .blog_body ol { margin: 0 0 1.4em; padding: 0 0 0 1.5em; }
+body.kk .main #about.blogDetail .blog_body ul li { list-style: disc; margin: .3em 0; }
+body.kk .main #about.blogDetail .blog_body ol li { list-style: decimal; margin: .3em 0; }
+body.kk .main #about.blogDetail .blog_body table { width: 100%; border-collapse: collapse; margin: 1.6em 0; font-size: 15px; line-height: 1.7; background: var(--kk-paper); }
+body.kk .main #about.blogDetail .blog_body th, body.kk .main #about.blogDetail .blog_body td { border: 1px solid var(--kk-line); padding: .6em .8em; text-align: left; vertical-align: top; }
+body.kk .main #about.blogDetail .blog_body th { background: var(--kk-green-soft); font-weight: 600; }
+body.kk .main #about.blogDetail .blog_body blockquote { margin: 1.6em 0; padding: 1em 1.2em; background: var(--kk-green-soft); border-radius: 6px; }
+body.kk .main #about.blogDetail .blog_body hr { border: 0; border-top: 1px solid var(--kk-line); margin: 2.4em 0; }
+@media (max-width: 768px) {
+  body.kk .main #about.blogDetail .blog_body h2 { font-size: 20px; }
+  body.kk .main #about.blogDetail .blog_body h3 { font-size: 17px; }
+  body.kk .main #about.blogDetail .blog_body table { font-size: 14px; }
+}
 </style>
 </head>
 <!--preview--><body id="shopTopPage" class="shop template kk"><div style="background:#f3e6da;color:#7a3f1f;font:12px/1.6 sans-serif;text-align:center;padding:6px">BASE用テンプレートのプレビュー（BASEのタグに見本データを入れて表示しています）</div>
