@@ -116,11 +116,13 @@ body.template .main #about.blogDetail .blog_body span, body.template .main #abou
   body.template .main #about.blogDetail .blog_body table { font-size: 14px; }
 }
 </style>
-<!-- KUKU ブログ記事の簡単な書式 v1：記事本文の **太字** ==マーカー== ++大きい文字++ を変換 -->
+<!-- KUKU ブログ記事の簡単な書式 v2：記事本文の ## 大見出し / ### 小見出し / **太字** / ==マーカー== / ++大きい文字++ を変換 -->
 <style>
 body.template .main #about.blogDetail .blog_body strong.kuku-b { font-weight: 700; }
 body.template .main #about.blogDetail .blog_body mark.kuku-m { background: linear-gradient(transparent 55%, #ffe36b 55%); color: inherit; padding: 0 .1em; }
 body.template .main #about.blogDetail .blog_body span.kuku-l { font-size: 1.25em !important; font-weight: 700; }
+/* 貼り付けで「折り返さない」指定が入ったときも、画面の幅で折り返す */
+body.template .main #about.blogDetail .blog_body [style*="white-space"] { white-space: pre-wrap !important; }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -131,29 +133,51 @@ document.addEventListener('DOMContentLoaded', function () {
     { re: /==([^=\n]+?)==/, tag: 'mark', cls: 'kuku-m' },
     { re: /\+\+([^+\n]+?)\+\+/, tag: 'span', cls: 'kuku-l' }
   ];
-  function apply(node) {
+  var HEAD = /^[ 　]*(###|＃＃＃|##|＃＃)[ 　]+(.+?)[ 　]*$/;
+  function isBr(n) { return n && n.nodeType === 1 && n.tagName === 'BR'; }
+  function heading(node) {
+    var m = HEAD.exec(node.nodeValue);
+    if (!m) return false;
+    var prev = node.previousSibling, next = node.nextSibling;
+    if (prev && !isBr(prev)) return false;
+    if (next && !isBr(next)) return false;
+    var h = document.createElement(m[1] === '##' || m[1] === '＃＃' ? 'h2' : 'h3');
+    h.textContent = m[2];
+    var parent = node.parentNode;
+    parent.replaceChild(h, node);
+    if (isBr(h.nextSibling)) parent.removeChild(h.nextSibling);
+    if (isBr(h.previousSibling)) parent.removeChild(h.previousSibling);
+    if (parent !== body && parent.childNodes.length === 1 && /^(P|DIV)$/.test(parent.tagName)) parent.parentNode.replaceChild(h, parent);
+    inline(h.firstChild);
+    return true;
+  }
+  function inline(node) {
+    var best = null, bi = -1;
+    for (var i = 0; i < rules.length; i++) {
+      var m = rules[i].re.exec(node.nodeValue);
+      if (m && (!best || m.index < best.index)) { best = m; bi = i; }
+    }
+    if (!best) return;
+    var hit = node.splitText(best.index);
+    var rest = hit.splitText(best[0].length);
+    var el = document.createElement(rules[bi].tag);
+    el.className = rules[bi].cls;
+    el.textContent = best[1];
+    hit.parentNode.replaceChild(el, hit);
+    inline(el.firstChild);
+    inline(node);
+    inline(rest);
+  }
+  function walk(node) {
     if (node.nodeType === 1) {
       if (/^(SCRIPT|STYLE|CODE|PRE|TEXTAREA)$/.test(node.tagName)) return;
-      Array.prototype.slice.call(node.childNodes).forEach(apply);
+      Array.prototype.slice.call(node.childNodes).forEach(walk);
       return;
     }
     if (node.nodeType !== 3) return;
-    for (var i = 0; i < rules.length; i++) {
-      var m = rules[i].re.exec(node.nodeValue);
-      if (!m) continue;
-      var hit = node.splitText(m.index);
-      var rest = hit.splitText(m[0].length);
-      var el = document.createElement(rules[i].tag);
-      el.className = rules[i].cls;
-      el.textContent = m[1];
-      hit.parentNode.replaceChild(el, hit);
-      apply(el.firstChild);
-      apply(node);
-      apply(rest);
-      return;
-    }
+    if (!heading(node)) inline(node);
   }
-  apply(body);
+  walk(body);
 });
 </script>
 </head>
