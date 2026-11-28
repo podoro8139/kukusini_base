@@ -116,7 +116,7 @@ body.template .main #about.blogDetail .blog_body span, body.template .main #abou
   body.template .main #about.blogDetail .blog_body table { font-size: 14px; }
 }
 </style>
-<!-- KUKU ブログ記事の簡単な書式 v2：記事本文の ## 大見出し / ### 小見出し / **太字** / ==マーカー== / ++大きい文字++ を変換 -->
+<!-- KUKU ブログ記事の簡単な書式 v3（空行を詰める）：記事本文の ## 大見出し / ### 小見出し / **太字** / ==マーカー== / ++大きい文字++ を変換 -->
 <style>
 body.template .main #about.blogDetail .blog_body strong.kuku-b { font-weight: 700; }
 body.template .main #about.blogDetail .blog_body mark.kuku-m { background: linear-gradient(transparent 55%, #ffe36b 55%); color: inherit; padding: 0 .1em; }
@@ -178,6 +178,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!heading(node)) inline(node);
   }
   walk(body);
+  // 空の段落（空行を貼ったときやEnterを2回押したときにできる）を消して、余白が空きすぎないようにする
+  Array.prototype.slice.call(body.querySelectorAll('p, div')).forEach(function (el) {
+    if (el.querySelector('img, iframe, video, table, hr')) return;
+    if ((el.textContent || '').replace(/[\s\u00a0\u3000]/g, '') === '') el.parentNode.removeChild(el);
+  });
 });
 </script>
 </head>
