@@ -116,11 +116,12 @@ body.template .main #about.blogDetail .blog_body span, body.template .main #abou
   body.template .main #about.blogDetail .blog_body table { font-size: 14px; }
 }
 </style>
-<!-- KUKU ブログ記事の簡単な書式 v2：記事本文の ## 大見出し / ### 小見出し / **太字** / ==マーカー== / ++大きい文字++ を変換 -->
+<!-- KUKU ブログ記事の簡単な書式 v3：記事本文の ## 大見出し / ### 小見出し / **太字** / ==マーカー== / ++大きい文字++ / URL・[文字](URL) のリンク を変換 -->
 <style>
 body.template .main #about.blogDetail .blog_body strong.kuku-b { font-weight: 700; }
 body.template .main #about.blogDetail .blog_body mark.kuku-m { background: linear-gradient(transparent 55%, #ffe36b 55%); color: inherit; padding: 0 .1em; }
 body.template .main #about.blogDetail .blog_body span.kuku-l { font-size: 1.25em !important; font-weight: 700; }
+body.template .main #about.blogDetail .blog_body a.kuku-a { color: #8a6a00; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 /* 貼り付けで「折り返さない」指定が入ったときも、画面の幅で折り返す */
 body.template .main #about.blogDetail .blog_body [style*="white-space"] { white-space: pre-wrap !important; }
 </style>
@@ -131,7 +132,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var rules = [
     { re: /\*\*([^*\n]+?)\*\*/, tag: 'strong', cls: 'kuku-b' },
     { re: /==([^=\n]+?)==/, tag: 'mark', cls: 'kuku-m' },
-    { re: /\+\+([^+\n]+?)\+\+/, tag: 'span', cls: 'kuku-l' }
+    { re: /\+\+([^+\n]+?)\+\+/, tag: 'span', cls: 'kuku-l' },
+    { re: /\[([^\]\n]+)\]\((https?:\/\/[^\s)）]+)\)/, tag: 'a', cls: 'kuku-a', link: 2 },
+    { re: /https?:\/\/[^\s<>"'）」』、。]+/, tag: 'a', cls: 'kuku-a', link: 0, raw: true }
   ];
   var HEAD = /^[ 　]*(###|＃＃＃|##|＃＃)[ 　]+(.+?)[ 　]*$/;
   function isBr(n) { return n && n.nodeType === 1 && n.tagName === 'BR'; }
@@ -162,15 +165,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var rest = hit.splitText(best[0].length);
     var el = document.createElement(rules[bi].tag);
     el.className = rules[bi].cls;
-    el.textContent = best[1];
+    var r = rules[bi];
+    el.textContent = r.raw ? best[0] : best[1];
+    if (r.tag === 'a') {
+      el.href = best[r.link];
+      if (el.hostname !== location.hostname) { el.target = '_blank'; el.rel = 'noopener'; }
+    }
     hit.parentNode.replaceChild(el, hit);
-    inline(el.firstChild);
+    if (!r.raw) inline(el.firstChild);
     inline(node);
     inline(rest);
   }
   function walk(node) {
     if (node.nodeType === 1) {
-      if (/^(SCRIPT|STYLE|CODE|PRE|TEXTAREA)$/.test(node.tagName)) return;
+      if (/^(SCRIPT|STYLE|CODE|PRE|TEXTAREA|A)$/.test(node.tagName)) return;
       Array.prototype.slice.call(node.childNodes).forEach(walk);
       return;
     }
